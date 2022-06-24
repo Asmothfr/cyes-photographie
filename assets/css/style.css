@@ -1,8 +1,12 @@
-.header{
-
-    background-image: url("../img/49720878792_3bd868bc17_o.jpg");
+.subBGC {
+    background-image: url(../img/49720878792_3bd868bc17_o.jpg);
     background-repeat: no-repeat;
-    background-size:cover;
-    /* aspect-ratio: auto; */
-    width: 100%;
+    background-size: cover;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: -1;
+    background-position-x: 60%;
+    background-position-y: 100%;
 }

@@ -13,8 +13,9 @@ class HomeController extends LayoutController
 
     public function displayHome(): void
     {
-        $view = "home";
-        require_once "/views/homeLayout.phtml";
+        // $view = "home";
+        // require_once "/views/homeLayout.phtml";
+        $this->render("home");
     }
 
     public function displayTestConnection(): void

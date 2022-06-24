@@ -2,24 +2,28 @@
 
 namespace Library;
 
+use Controller;
+
 class Router
-{
-    public function routerQuery(): void
+{   
+
+    // Instancie le bon controlleur et sa méthode en fonction de la route.
+    public function setup(): void
     {   
-        $routes = require "App/paths/paths.php";
+        $routes = require "App/routes/routes.php";
     
-        $keyRoute = htmlspecialchars($_GET['path'] ?? "home");
+        $queriedRoute = htmlspecialchars($_GET['route'] ?? "home");
     
-        if(!isset($routes[$keyRoute]))
+        if(!isset($routes[$queriedRoute]))
         {
-            header("location: index.php?path=404");
+            header("location: index.php?route=404");
         }
     
-        $routeName = $routes[$keyRoute];
-        $controllerName = $routeName[0];
-        $methodName = $routeName[1];
+        $routeName = $routes[$queriedRoute];
+        $controller = $routeName["controller"];
+        $method = $routeName["method"];
         
-        $controller = new $controllerName();
-        $controller->$methodName();
+        $display = new $controller();
+        $display->$method();
     }
 }
