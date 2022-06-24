@@ -27,16 +27,20 @@ class FrontController extends LayoutController
     }
 
     public function displayPhotos(): void
-    {   $id= $_GET["id"];
+    {   
+        $id= $_GET["id"];
+
         $model = new GalleriesModel;
         $album = $model->getOneAlbum($id);
-        $photos = $model->getAllPhotos($id);
-        echo("<pre>");
-        print_r($album);
-        echo("</pre>");
-        echo("<pre>");
-        print_r($photos);
-        echo("</pre>");
+
+        $secondModel = new PhotosModel;
+        $photos = $secondModel->getAllPhotos($id);
+
         $this->render("photos", ["album"=>$album, "photos"=>$photos]);
+    }
+
+    public function displayAbout()
+    {
+        $this->render("about");
     }
 }

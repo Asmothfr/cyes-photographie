@@ -16,4 +16,8 @@ return [
         "controller"=> "App\Controllers\FrontController",
         "method"=> "displayPhotos"
     ],
+    "about" => [
+        "controller"=> "App\Controllers\FrontController",
+        "method"=> "displayAbout"
+    ],
 ];
