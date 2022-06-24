@@ -1,23 +1,19 @@
 <?php
 return [
     "404" =>[
-        "controller"=>"App\Controllers\HomeController",
+        "controller"=>"App\Controllers\FrontController",
         "method"=>"display404"
     ],
     "home" => [
-        "controller"=>"App\Controllers\HomeController",
+        "controller"=>"App\Controllers\FrontController",
         "method"=>"displayHome"
     ],
-    "test" => [
-        "controller"=> "App\Controllers\TestController",
-        "method"=> "displayTest"
+    "galleries" => [
+        "controller"=> "App\Controllers\FrontController",
+        "method"=> "displayAlbums"
     ],
-    "db" => [
-        "controller"=> "App\Controllers\HomeController",
-        "method"=>"displayTestConnection"
-    ],
-    "404" => [
-        "controller"=> "App\Controllers\HomeController",
-        "method"=> "display404"
+    "photos" => [
+        "controller"=> "App\Controllers\FrontController",
+        "method"=> "displayPhotos"
     ],
 ];
