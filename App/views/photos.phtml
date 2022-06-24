@@ -1,5 +1,7 @@
 <section>
-<?php foreach($photos as $photo): ?>
-    <img src="assets/img/<?=htmlspecialchars($photo["pht_url_photo"]) ?>" alt="photo de la gallerie">
-<?php endforeach?>
+    <h2><?=htmlspecialchars($album["albm_title"])?></h2>
+    <p><?=htmlspecialchars($album["albm_description"])?></p>
+    <?php foreach($photos as $photo): ?>
+        <img src="assets/img/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
+    <?php endforeach; ?>
 </section>

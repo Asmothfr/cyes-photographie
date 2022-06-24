@@ -22,4 +22,12 @@ class Database
         $dbResult = $dbQuery->fetchAll();
         return $dbResult;
     }
+
+    public function find(string $sqlQuery, $params = []): array
+    {
+        $dbQuery = $this->db->prepare($sqlQuery);
+        $dbQuery->execute($params);
+        $dbResult = $dbQuery->fetch();
+        return $dbResult;
+    }
 }
