@@ -1,0 +1,10 @@
+<section>
+    <?php foreach($contents as $content): ?>
+    <article>
+        <img src="assets/img/actu_img/<?=$content["act_photo"] ?>" alt="photo d'illustration de l'article">
+        <h2><?=$content["act_title"]?></h2>
+        <p><?=$content["act_date"]?></p>
+        <p><?=$content["act_content"]?></p>
+    </article>
+    <?php endforeach ?>
+</section>

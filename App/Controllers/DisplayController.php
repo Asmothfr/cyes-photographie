@@ -2,12 +2,13 @@
 
 namespace App\Controllers;
 
+use Library\LayoutController;
 use App\Models\GalleriesModel;
 use App\Models\PhotosModel;
-use Library\LayoutController;
-use Models\PhotosModel as ModelsPhotosModel;
+use App\Models\AboutModel;
+use App\Models\ActualitiesModel;
 
-class FrontController extends LayoutController
+class DisplayController extends LayoutController
 {
     public function display404(): void
     {
@@ -39,8 +40,18 @@ class FrontController extends LayoutController
         $this->render("photos", ["album"=>$album, "photos"=>$photos]);
     }
 
-    public function displayAbout()
+    public function displayAbout(): void
     {
-        $this->render("about");
+        $model = new AboutModel;
+        $about = $model->getOneContent();
+        $this->render("about", ["about"=>$about]);
+    }
+
+    public function displayActualities():void
+    {
+        $model = new ActualitiesModel;
+        $actu = $model->getActuContent();
+        var_dump($actu);
+        $this->render("actualities", ["contents"=>$actu]);
     }
 }
