@@ -24,4 +24,8 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayActualities"
     ],
+    "contact" => [
+        "controller"=> "App\Controllers\DisplayController",
+        "method"=> "displayContact"
+    ],
 ];
