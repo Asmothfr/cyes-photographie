@@ -7,6 +7,7 @@ use App\Models\GalleriesModel;
 use App\Models\PhotosModel;
 use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
+use App\Models\TestModel;
 
 class DisplayController extends LayoutController
 {
@@ -57,5 +58,21 @@ class DisplayController extends LayoutController
     public function displayContact():void
     {
         $this->render("contact");
+    }
+
+    public function displayTestForm():void
+    {
+        if( isset($_POST["test1"]) && !empty($_POST["test1"]) &&
+            isset($_POST["test2"]) && !empty($_POST["test2"]))
+        {
+            print_r($_POST);
+            $data = [
+                "d1"=>$_POST["test1"],
+                "d2"=>$_POST["test2"],
+            ];
+            $model = new TestModel();
+            $model->contactFormValidation($data["d1"],$data["d2"],);
+        }
+        $this->render("test_formulaire");
     }
 }

@@ -28,4 +28,8 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayContact"
     ],
+    "test" => [
+        "controller"=> "App\Controllers\DisplayController",
+        "method"=> "displayTestForm"
+    ],
 ];
