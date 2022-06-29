@@ -2,8 +2,6 @@
 
 namespace Library;
 
-use Controller;
-
 class Router
 {   
 
