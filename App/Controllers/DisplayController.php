@@ -62,17 +62,6 @@ class DisplayController extends LayoutController
 
     public function displayTestForm():void
     {
-        if( isset($_POST["test1"]) && !empty($_POST["test1"]) &&
-            isset($_POST["test2"]) && !empty($_POST["test2"]))
-        {
-            print_r($_POST);
-            $data = [
-                "d1"=>$_POST["test1"],
-                "d2"=>$_POST["test2"],
-            ];
-            $model = new TestModel();
-            $model->contactFormValidation($data["d1"],$data["d2"],);
-        }
         $this->render("test_formulaire");
     }
 }

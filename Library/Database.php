@@ -31,15 +31,9 @@ class Database
         return $dbResult;
     }
 
-    public function addOne($sqlQuery, $params=[])
+    public function addOne($sqlQuery, $data)
     {
         $dbQuery = $this->db->prepare($sqlQuery);
-        $dbQuery->execute($params);
+        $dbQuery->execute($data);
     }
 }
-
-// $sqlQuery = 'INSERT INTO test (toto, titi) VALUES (:toto,:titi)';
-//         $params = [
-//             "toto"=>$data1,
-//             "titi"=>$data2
-//         ];

@@ -32,4 +32,8 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayTestForm"
     ],
+    "validation" => [
+        "controller"=> "App\Controllers\FormController",
+        "method"=> "testFormValidation"
+    ],
 ];

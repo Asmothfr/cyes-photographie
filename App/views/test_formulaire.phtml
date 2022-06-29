@@ -1,5 +1,5 @@
 <section>
-    <form method="POST">
+    <form action= "index.php?route=validation" method="POST">
 
         <label for="test1"></label>
         <input type="text" name="test1" placeholder="test1">
@@ -9,4 +9,7 @@
 
         <button type="submit">Valider</button>
     </form>
+    <?php if( isset($_GET['testformerror']) ) : ?>
+        <?= htmlspecialchars($_GET['testformerror'])  ?>
+    <?php endif ?>
 </section>
