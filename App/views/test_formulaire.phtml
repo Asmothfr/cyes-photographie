@@ -9,7 +9,7 @@
 
         <button type="submit">Valider</button>
     </form>
-    <?php if( isset($_GET['testformerror']) ) : ?>
-        <?= htmlspecialchars($_GET['testformerror'])  ?>
+    <?php if( isset($_GET['errorMessage']) ) : ?>
+        <?= htmlspecialchars($_GET['errorMessage'])  ?>
     <?php endif ?>
 </section>

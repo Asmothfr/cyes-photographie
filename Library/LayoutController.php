@@ -2,7 +2,7 @@
 
 namespace Library;
 
-abstract class LayoutController
+class LayoutController
 {
     public function render(string $view, $model=[]): void
     {

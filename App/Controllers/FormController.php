@@ -25,14 +25,14 @@ class Formcontroller extends LayoutController
             }
             else
             {
-                throw new \Exception("Tous les champs doivent être remplis.");
+                throw new \Exception("Veuillez remplir tous les champs.");
             }
             
         }
         catch( \Exception $e )
         {
             $errorMessage = $e->getMessage();
-            header( 'Location: index.php?route=test&testformerror=' . $errorMessage);
+            header('Location: index.php?route=test&errorMessage=' . $errorMessage);
             exit();
         }
     }
