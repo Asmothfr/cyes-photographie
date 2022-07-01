@@ -4,12 +4,24 @@
         <label for="test1"></label>
         <input type="text" name="test1" placeholder="test1">
 
+        <?php if( isset($errors) && in_array([0],$errors) ) : ?>
+        <?= $errors[0]?>
+        <?php endif ?>
+
         <label for="test2"></label>
         <input type="text" name="test2" placeholder="test2">
 
+        <?php if( isset($errors) && in_array([1],$errors) ) : ?>
+            <?= $errors[1]?>
+        <?php endif ?>
+
         <button type="submit">Valider</button>
     </form>
-    <?php if( isset($_GET['errorMessage']) ) : ?>
-        <?= htmlspecialchars($_GET['errorMessage'])  ?>
-    <?php endif ?>
+    <pre>
+    <?php var_dump($data); ?>
+    </pre>
+    <br>
+    <pre>
+    <?php print_r($errors); ?>
+    </pre>
 </section>
