@@ -1,27 +1,19 @@
 <section>
     <form action= "index.php?route=validation" method="POST">
-
-        <label for="test1"></label>
-        <input type="text" name="test1" placeholder="test1">
-
-        <?php if( isset($errors) && in_array([0],$errors) ) : ?>
-        <?= $errors[0]?>
-        <?php endif ?>
-
-        <label for="test2"></label>
-        <input type="text" name="test2" placeholder="test2">
-
-        <?php if( isset($errors) && in_array([1],$errors) ) : ?>
-            <?= $errors[1]?>
-        <?php endif ?>
-
+        <div>
+            <label for="test1"></label>
+            <input type="text" name="test1" placeholder="test1">
+            <?php if( isset($errors) && array_key_exists(0,$errors) ): ?>
+                <p><?= $errors[0] ?></p>
+            <?php endif ?>
+        </div>
+        <div>
+            <label for="test2"></label>
+            <input type="text" name="test2" placeholder="test2">
+            <?php if( isset($errors) &&  array_key_exists(1,$errors) ) : ?>
+                <p><?= $errors[1]?></p>
+            <?php endif ?>
+        </div>
         <button type="submit">Valider</button>
     </form>
-    <pre>
-    <?php var_dump($data); ?>
-    </pre>
-    <br>
-    <pre>
-    <?php print_r($errors); ?>
-    </pre>
 </section>

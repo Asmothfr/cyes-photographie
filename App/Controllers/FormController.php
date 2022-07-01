@@ -9,59 +9,39 @@ class Formcontroller extends LayoutController
 {
     public function testFormValidation()
     {
-        // if( isset($_POST["test1"]) && !empty($_POST["test1"]) &&
-        //     isset($_POST["test2"]) && !empty($_POST["test2"]))
-        // {
-        //     $data = [
-        //         "d1"=>$_POST["test1"],
-        //         "d2"=>$_POST["test2"],
-        //     ];
-        //     $model = new TestModel();
-        //     $model->contactFormValidation($data);
-        //     $this->render("test_formulaire");
-        // }
-        // else
-        // {
-        //     $error= "Veuillez remplir tous les champs.";
-        //     $this->render("test_formulaire", ["error"=>$error]);
-        // }
-
-        // $data = [];
-        $errors = [];
-
+        $testdata1 = false;
+        $testdata2 = false;
+        $error = [];
         if(isset($_POST["test1"]) && !empty($_POST["test1"]))
         {
-            array_push($data, $_POST["test1"]);
+            $testdata1 = true;
         }
         else
         {
-            // $error1 = "Veuillez remplir champs 1.";
-            array_push($errors,  $error1 = "Veuillez remplir champs 1.");
+            array_push($error,"Veuillez remplir champs 1" );
         }
-        if(!isset($_POST["test2"]) && empty($_POST["test2"]))
+        if(isset($_POST["test2"]) && !empty($_POST["test2"]))
         {
-            array_push($data, $_POST["test2"]);
+            $testdata2 = true;
         }
         else
         {
-            $error2 = "Veuillez remplir champs 2.";
-            array_push($errors, $error2);
+            array_push($error,"Veuillez remplir champs 2" );
         }
-        //je vérifie dans mon tableau d'erreur.
-        // if(isset($error1) && !empty($error1))
-        if(isset($errors)&&!empty($errors))
-        {
-            $this->render("test_formulaire",["errors"=>$errors]);
-        }
-        else
+        if($testdata1 && $testdata2)
         {
             $data = [
-                        "d1"=>$_POST["test1"],
-                        "d2"=>$_POST["test2"],
-                    ];
-                    $model = new TestModel();
-                    $model->contactFormValidation($data);
-                    $this->render("test_formulaire");
+                "d1"=>$_POST["test1"],
+                "d2"=>$_POST["test2"],
+            ];
+            $model = new TestModel();
+            $model->contactFormValidation($data);
+            $this->render("test_formulaire");
+        }
+        if(isset($error) && !empty($error))
+        {
+            $errorMessage = $error;
+            $this->render("test_formulaire", ["errors"=>$errorMessage]);
         }
     }
 }
