@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Library\Database;
+use Database\Database;
 
 class ActualitiesModel extends Database
 {
