@@ -10,10 +10,13 @@
         <div>
             <label for="test2"></label>
             <input type="text" name="test2" placeholder="test2">
-            <?php if( isset($errors) &&  array_key_exists(1,$errors) ) : ?>
-                <p><?= $errors[1]?></p>
+            <?php if( isset($errors) && array_key_exists(1,$errors) ) : ?>
+                <p><?= $errors[1] ?></p>
             <?php endif ?>
         </div>
         <button type="submit">Valider</button>
+        <?php if(isset($valid) && !empty($valid)): ?>
+            <p><?= $valid ?></p>
+        <?php endif ?>
     </form>
 </section>

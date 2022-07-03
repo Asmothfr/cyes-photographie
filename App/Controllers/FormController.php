@@ -9,26 +9,16 @@ class Formcontroller extends LayoutController
 {
     public function testFormValidation()
     {
-        $testdata1 = false;
-        $testdata2 = false;
         $error = [];
-        if(isset($_POST["test1"]) && !empty($_POST["test1"]))
-        {
-            $testdata1 = true;
-        }
-        else
+        if(!isset($_POST["test1"]) || empty($_POST["test1"]))
         {
             array_push($error,"Veuillez remplir champs 1" );
         }
-        if(isset($_POST["test2"]) && !empty($_POST["test2"]))
-        {
-            $testdata2 = true;
-        }
-        else
+        if(!isset($_POST["test2"]) || empty($_POST["test2"]))
         {
             array_push($error,"Veuillez remplir champs 2" );
         }
-        if($testdata1 && $testdata2)
+        if(empty($error))
         {
             $data = [
                 "d1"=>$_POST["test1"],
@@ -36,9 +26,10 @@ class Formcontroller extends LayoutController
             ];
             $model = new TestModel();
             $model->contactFormValidation($data);
-            $this->render("test_formulaire");
+            $validation = "Merci, votre message a bien été envoyé.";
+            $this->render("test_formulaire", ["valid"=>$validation]);
         }
-        if(isset($error) && !empty($error))
+        else
         {
             $errorMessage = $error;
             $this->render("test_formulaire", ["errors"=>$errorMessage]);
