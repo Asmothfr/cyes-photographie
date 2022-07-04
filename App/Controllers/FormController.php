@@ -3,36 +3,51 @@
 namespace App\Controllers;
 
 use Library\LayoutController;
-use App\Models\TestModel;
+use App\Models\ContactModel;
 
 class Formcontroller extends LayoutController
 {
-    public function testFormValidation()
+    public function FormValidation()
     {
-        $error = [];
-        if(!isset($_POST["test1"]) || empty($_POST["test1"]))
+        $errors = [];
+        if(!isset($_POST["lastname"]) || empty($_POST["lastname"]))
         {
-            array_push($error,"Veuillez remplir champs 1" );
+            $errors["e1"] = "Veuillez renseigner votre prénom.";
         }
-        if(!isset($_POST["test2"]) || empty($_POST["test2"]))
+        if(!isset($_POST["firstname"]) || empty($_POST["firstname"]))
         {
-            array_push($error,"Veuillez remplir champs 2" );
+            $errors["e2"] = "Veuillez renseigner votre nom.";
         }
-        if(empty($error))
+        if(!isset($_POST["tel"]) || empty($_POST["tel"]))
+        {
+            $errors["e3"] = "Veuillez renseigner votre numéro de téléphone.";
+        }
+        if(!isset($_POST["mail"]) || empty($_POST["mail"]))
+        {
+            $errors["e4"] = "Veuillez renseigner votre mail.";
+        }
+        if(!isset($_POST["content"]) || empty($_POST["content"]))
+        {
+            $errors["e5"] = "Veuillez renseigner votre demande.";
+        }
+        if(empty($errors))
         {
             $data = [
-                "d1"=>$_POST["test1"],
-                "d2"=>$_POST["test2"],
+                "lastname"=>$_POST["lastname"],
+                "firstname"=>$_POST["firstname"],
+                "tel"=>$_POST["tel"],
+                "mail"=>$_POST["mail"],
+                "content"=>$_POST["content"]
             ];
-            $model = new TestModel();
+            $model = new ContactModel();
             $model->contactFormValidation($data);
             $validation = "Merci, votre message a bien été envoyé.";
-            $this->render("test_formulaire", ["valid"=>$validation]);
+            $this->render("contact", ["valid"=>$validation]);
         }
         else
         {
-            $errorMessage = $error;
-            $this->render("test_formulaire", ["errors"=>$errorMessage]);
+            $errorMessage = $errors;
+            $this->render("contact", ["errors"=>$errorMessage]);
         }
     }
 }

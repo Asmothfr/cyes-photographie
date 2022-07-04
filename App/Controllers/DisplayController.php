@@ -59,9 +59,4 @@ class DisplayController extends LayoutController
     {
         $this->render("contact");
     }
-
-    public function displayTestForm():void
-    {
-        $this->render("test_formulaire");
-    }
 }
