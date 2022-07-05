@@ -1,11 +1,13 @@
 <div class="bgc"></div>
 
 <section>
-    <form action="" method="POST">
+    <?php if(!isset($_SESSION["connected"])): ?>
+    <form action="index.php?route=login" method="POST">
         <label for="login"></label>
-        <input id="login"type="text" placeholder="login">
+        <input id="login"type="text" name="login" placeholder="Identifiant">
         <label for="password"></label>
-        <input id="password"type="text" placeholder="password">
+        <input id="password"type="password" name="password" placeholder="Mot de passe">
         <button>Valider</button>
     </form>
+    <?php endif ?>
 </section>

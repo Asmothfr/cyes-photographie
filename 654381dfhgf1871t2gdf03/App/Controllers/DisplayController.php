@@ -54,9 +54,4 @@ class DisplayController extends LayoutController
         $actu = $model->getActuContent();
         $this->render("actualities", ["contents"=>$actu]);
     }
-
-    public function displayContact():void
-    {
-        $this->render("contact");
-    }
 }

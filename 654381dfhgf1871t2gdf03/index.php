@@ -1,10 +1,20 @@
 <?php
-
+use App\Controllers\LoginController;
 use Library\Router;
 
 spl_autoload_register(function ($className) {
     require lcfirst(str_replace('\\', '/', $className)) . '.php';
 });
 
-$router = new Router();
-$router->setup();
+session_start();
+
+if(!isset($_SESSION["connected"]))
+{
+    $home = new LoginController;
+    $home->connectionCheaking();
+}
+else
+{
+    $router = new Router();
+    $router->setup();
+}

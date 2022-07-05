@@ -24,4 +24,12 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayActualities"
     ],
+    "login" => [
+        "controller"=> "App\Controllers\LoginController",
+        "method"=> "connectionCheaking"
+    ],
+    "logout" => [
+        "controller"=> "App\Controllers\LoginController",
+        "method"=> "logout"
+    ],
 ];
