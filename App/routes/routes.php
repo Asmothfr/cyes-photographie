@@ -28,10 +28,6 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayContact"
     ],
-    "contact" => [
-        "controller"=> "App\Controllers\DisplayController",
-        "method"=> "displayContact"
-    ],
     "validation" => [
         "controller"=> "App\Controllers\FormController",
         "method"=> "FormValidation"

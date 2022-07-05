@@ -14,7 +14,7 @@ class Database
     {
         $this->db = new PDO('mysql:host='. DB_HOST . ';dbname=' . DB_NAME .';charset=utf8', DB_USER, DB_PASSWORD);
     }
-
+    // 
     public function findAll(string $sqlQuery, $params = []): array
     {
         $dbQuery = $this->db->prepare($sqlQuery);
@@ -36,4 +36,6 @@ class Database
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($data);
     }
+
+    
 }

@@ -8,11 +8,11 @@ return [
         "controller"=>"App\Controllers\DisplayController",
         "method"=>"displayHome"
     ],
-    "galleries" => [
+    "album" => [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayAlbums"
     ],
-    "photos" => [
+    "gallery" => [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayPhotos"
     ],
@@ -23,17 +23,5 @@ return [
     "actualities" => [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayActualities"
-    ],
-    "contact" => [
-        "controller"=> "App\Controllers\DisplayController",
-        "method"=> "displayContact"
-    ],
-    "contact" => [
-        "controller"=> "App\Controllers\DisplayController",
-        "method"=> "displayContact"
-    ],
-    "validation" => [
-        "controller"=> "App\Controllers\FormController",
-        "method"=> "FormValidation"
     ],
 ];

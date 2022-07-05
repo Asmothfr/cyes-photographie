@@ -2,6 +2,8 @@
 
 namespace Library;
 
+    session_start();
+
 class Router
 {   
 

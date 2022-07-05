@@ -2,6 +2,6 @@
     <h2><?=htmlspecialchars($album["albm_title"])?></h2>
     <p><?=htmlspecialchars($album["albm_description"])?></p>
     <?php foreach($photos as $photo): ?>
-        <img src="assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
+        <img src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
     <?php endforeach; ?>
 </section>
