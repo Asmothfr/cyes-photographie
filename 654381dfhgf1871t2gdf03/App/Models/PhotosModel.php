@@ -6,11 +6,11 @@ use Database\Database;
 
 class PhotosModel extends Database
 {
-    public function getPhotos(): array
-    {
-        $sqlQuery = "SELECT * FROM photos";
-        return $this->findAll($sqlQuery);
-    }
+    // public function getPhotos(): array
+    // {
+    //     $sqlQuery = "SELECT * FROM photos";
+    //     return $this->findAll($sqlQuery);
+    // }
 
     public function getAllPhotos($id): array
     {
@@ -18,5 +18,11 @@ class PhotosModel extends Database
                     FROM photos
                     WHERE pht_albm_id = ?";
         return $this->findAll( $sqlQuery, [$id]);
+    }
+
+    public function deleteOnePhoto($id):mixed
+    {
+        $sqlQuery = "DELETE FROM photos WHERE pht_id = ?";
+        return $this->processOneTableRow($sqlQuery, [$id]);
     }
 }

@@ -44,4 +44,8 @@ return [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOneMail"
     ],
+    "deletePhoto" => [
+        "controller"=> "App\Controllers\DeleteController",
+        "method"=> "deleteOnePhoto"
+    ],
 ];
