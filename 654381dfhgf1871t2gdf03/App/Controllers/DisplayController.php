@@ -7,6 +7,7 @@ use App\Models\GalleriesModel;
 use App\Models\PhotosModel;
 use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
+use App\Models\ContactModel;
 use App\Models\TestModel;
 
 class DisplayController extends LayoutController
@@ -53,5 +54,12 @@ class DisplayController extends LayoutController
         $model = new ActualitiesModel;
         $actu = $model->getActuContent();
         $this->render("actualities", ["contents"=>$actu]);
+    }
+
+    public function displayMails():void
+    {
+        $model = new ContactModel;
+        $mails = $model->getAllMails();
+        $this->render("mails",["mails"=>$mails]);
     }
 }

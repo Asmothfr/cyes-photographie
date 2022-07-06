@@ -1,0 +1,14 @@
+<section>
+    <table>
+        <?php foreach($mails as $content): ?>
+    <a href="#">
+        <tr>
+        <td><?= $content["cont_date"] ?></td>
+        <td><?= $content["cont_usr_lastname"] ?></td>
+        <td><?= $content["cont_usr_firstname"] ?></td>
+        <td><?= $content["cont_usr_content"] ?></td>
+        </tr>
+    </a>
+        <?php endforeach ?>
+    </table>
+</section>

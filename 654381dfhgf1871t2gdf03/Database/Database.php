@@ -37,5 +37,4 @@ class Database
         $dbQuery->execute($data);
     }
 
-    
 }

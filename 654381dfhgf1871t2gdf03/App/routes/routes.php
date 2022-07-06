@@ -4,6 +4,14 @@ return [
         "controller"=>"App\Controllers\DisplayController",
         "method"=>"display404"
     ],
+    "login" => [
+        "controller"=> "App\Controllers\LoginController",
+        "method"=> "connectionCheaking"
+    ],
+    "logout" => [
+        "controller"=> "App\Controllers\LoginController",
+        "method"=> "logout"
+    ],
     "home" => [
         "controller"=>"App\Controllers\DisplayController",
         "method"=>"displayHome"
@@ -24,12 +32,8 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayActualities"
     ],
-    "login" => [
-        "controller"=> "App\Controllers\LoginController",
-        "method"=> "connectionCheaking"
-    ],
-    "logout" => [
-        "controller"=> "App\Controllers\LoginController",
-        "method"=> "logout"
+    "mails" => [
+        "controller"=> "App\Controllers\DisplayController",
+        "method"=> "displayMails"
     ],
 ];

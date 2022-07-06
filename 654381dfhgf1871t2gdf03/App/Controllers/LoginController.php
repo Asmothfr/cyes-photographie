@@ -9,7 +9,6 @@ class LoginController extends LayoutController
 {
     public function connectionCheaking()
     {
-
         $model = new AdminModel();
         $admin = $model -> adminInfo();
 
@@ -17,7 +16,7 @@ class LoginController extends LayoutController
            isset($_POST["password"]) && !empty($_POST["password"])  && password_verify($_POST["password"], $admin["adm_password"]))
         {
             $_SESSION["connected"] = true;
-            $this->render("home");
+            header("location: index.php?route=home");
         }
         else
         {
