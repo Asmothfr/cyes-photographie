@@ -8,7 +8,6 @@ use App\Models\PhotosModel;
 use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
 use App\Models\ContactModel;
-use App\Models\TestModel;
 
 class DisplayController extends LayoutController
 {
@@ -61,5 +60,13 @@ class DisplayController extends LayoutController
         $model = new ContactModel;
         $mails = $model->getAllMails();
         $this->render("mails",["mails"=>$mails]);
+    }
+
+    public function displayOneMail():void
+    {
+        $id = $_GET["id"];
+        $model = new ContactModel;
+        $mail = $model->getOneMail($id);
+        $this->render("mail", ["mail"=>$mail]);
     }
 }

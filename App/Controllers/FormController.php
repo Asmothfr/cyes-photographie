@@ -42,7 +42,7 @@ class Formcontroller extends LayoutController
             $model = new ContactModel();
             $model->contactFormValidation($data);
             $validation = "Merci, votre message a bien été envoyé.";
-            $this->render("contact", ["valid"=>$validation]);
+            header("location:index.php?route=contact");
         }
         else
         {

@@ -20,7 +20,6 @@ class LoginController extends LayoutController
         }
         else
         {
-            $error = "Les champs ont mal était renseigné.";
             $this->render("home");
         }
     }

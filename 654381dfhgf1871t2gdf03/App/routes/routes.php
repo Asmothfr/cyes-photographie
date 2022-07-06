@@ -36,4 +36,12 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayMails"
     ],
+    "mail" => [
+        "controller"=> "App\Controllers\DisplayController",
+        "method"=> "displayOneMail"
+    ],
+    "deleteMail" => [
+        "controller"=> "App\Controllers\DeleteController",
+        "method"=> "deleteOneMail"
+    ],
 ];

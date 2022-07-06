@@ -31,10 +31,9 @@ class Database
         return $dbResult;
     }
 
-    public function addOne($sqlQuery, $data)
+    public function processOneTableRow($sqlQuery, $data):void
     {
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($data);
     }
-
 }

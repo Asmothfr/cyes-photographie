@@ -1,0 +1,12 @@
+<section>
+    <article>
+        <h3> <?= htmlspecialchars($mail["cont_usr_firstname"])  ?> <?= htmlspecialchars($mail["cont_usr_lastname"])  ?></h3>
+        <p> le <?= htmlspecialchars($mail["cont_date"])  ?></p>
+        <p> <?= htmlspecialchars($mail["cont_usr_mail"])  ?></p>
+        <p><?= htmlspecialchars($mail["cont_usr_tel"]) ?></p>
+        <p><?= htmlspecialchars($mail["cont_usr_content"])  ?></p>
+        <a href="index.php?route=deleteMail&id=<?= htmlspecialchars($mail["cont_id"]) ?>">
+            <button>Supprimer</button>
+        </a>
+    </article>
+</section>

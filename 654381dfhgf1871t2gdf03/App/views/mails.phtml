@@ -1,14 +1,28 @@
 <section>
     <table>
-        <?php foreach($mails as $content): ?>
-    <a href="#">
+        <?php foreach($mails as $mail): ?>
         <tr>
-        <td><?= $content["cont_date"] ?></td>
-        <td><?= $content["cont_usr_lastname"] ?></td>
-        <td><?= $content["cont_usr_firstname"] ?></td>
-        <td><?= $content["cont_usr_content"] ?></td>
+            <td>
+            <a href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+                <?= htmlspecialchars($mail["cont_date"])?>
+                </a>
+            </td>
+            <td>
+            <a href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+                    <?= htmlspecialchars($mail["cont_usr_lastname"]) ?>
+                </a>
+            </td>
+            <td>
+            <a href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+                    <?= htmlspecialchars($mail["cont_usr_firstname"])?>
+                </a>
+            </td>
+            <td>
+            <a href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+                    <?= htmlspecialchars($mail["cont_usr_content"])  ?>
+                </a>
+            </td>
         </tr>
-    </a>
         <?php endforeach ?>
     </table>
 </section>
