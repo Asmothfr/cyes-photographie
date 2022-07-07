@@ -15,4 +15,28 @@
             </a>
         </article>
     <?php endforeach ?>
+
+    <h3>Ajouter un Album :</h3>
+    <form action="index.php?route=addAlbum" method="POST">
+        
+        <label id="categories"></label>
+        <select name="categories" id="categories">
+            <!-- Sélecteur de catégorie -->
+            <option value="">Catégorie</option>
+            <?php foreach($categories as $categorie):?>
+            <option value="<?= htmlspecialchars($categorie["cat_name"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
+            <?php endforeach ?>
+        </select>
+
+        <label id="title"></label>
+        <input id="title" type="text" name="title" placeholder="Titre">
+
+        <label id="description"></label>
+        <input id="description" type="text" name="description" placeholder="Description">
+
+        <label id="photoName"></label>
+        <input id="photoName" type="file" name="photoName" placeholder="Photo de Présentation">
+
+    <button>Valider</button>
+    </form>
 </section>

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Library\LayoutController;
 use App\Models\ContactModel;
-use App\Models\GalleriesModel;
+use App\Models\AlbumsModel;
 use App\Models\PhotosModel;
 
 class DeleteController extends LayoutController
@@ -44,7 +44,7 @@ class DeleteController extends LayoutController
         $albmPthName = $_GET["albm_photo"];
         $albmDir = "../assets/img/photos/".$albmId;
 
-        $model = new GalleriesModel;
+        $model = new AlbumsModel;
         $model->deleteOneAlbum($albmId);
 
         delTree($albmDir);

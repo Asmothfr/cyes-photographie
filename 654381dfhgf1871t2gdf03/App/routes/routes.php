@@ -40,6 +40,10 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayOneMail"
     ],
+    "addAlbum" => [
+        "controller"=> "App\Controllers\AddController",
+        "method"=> "addOneAlbum"
+    ],
     "deleteMail" => [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOneMail"
