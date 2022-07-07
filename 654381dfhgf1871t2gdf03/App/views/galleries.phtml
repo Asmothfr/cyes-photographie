@@ -7,6 +7,12 @@
         <article>
             <a href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>"><img src="../assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des catégories"></a>
             <h2><?=htmlspecialchars($album["albm_title"])?></h2>
+            <a href="#">
+                <button>Modifier</button>
+            </a>
+            <a href="index.php?route=deleteAlbum&albm_id=<?=htmlspecialchars($album["albm_id"])?>&albm_photo=<?=htmlspecialchars($album["albm_photo"])?>">
+                <button>Supprimer</button>
+            </a>
         </article>
     <?php endforeach ?>
 </section>

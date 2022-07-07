@@ -20,9 +20,9 @@ class PhotosModel extends Database
         return $this->findAll( $sqlQuery, [$id]);
     }
 
-    public function deleteOnePhoto($id):mixed
+    public function deleteOnePhoto($phtName):mixed
     {
-        $sqlQuery = "DELETE FROM photos WHERE pht_id = ?";
-        return $this->processOneTableRow($sqlQuery, [$id]);
+        $sqlQuery = "DELETE FROM photos WHERE pht_name = ?";
+        return $this->processOneTableRow($sqlQuery, [$phtName]);
     }
 }

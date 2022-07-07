@@ -19,4 +19,10 @@ class GalleriesModel extends Database
                     WHERE albm_id = ?";
         return $this->find( $sqlQuery, [$id]);
     }
+
+    public function deleteOneAlbum($albmId)
+    {
+        $sqlQuery = "DELETE FROM albums WHERE albm_id = ?";
+        return $this->processOneTableRow($sqlQuery, [$albmId]);
+    }
 }
