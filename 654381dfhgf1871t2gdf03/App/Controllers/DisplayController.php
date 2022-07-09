@@ -29,7 +29,7 @@ class DisplayController extends LayoutController
 
         $albModel = new AlbumsModel;
         $albums = $albModel->getAlbums();
-        $this->render("galleries", ["albums"=>$albums, "categories"=>$cat]);
+        $this->render("albums", ["albums"=>$albums, "categories"=>$cat]);
     }
 
     public function displayPhotos(): void

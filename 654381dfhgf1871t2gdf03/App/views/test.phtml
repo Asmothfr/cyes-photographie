@@ -1,0 +1,8 @@
+<form action="index.php?route=validTest" method="POST">
+    <label id="photoName"></label>
+    <input id="photoName" type="file" name="photoName">
+    <?php if( isset($errors) && array_key_exists("e4",$errors) ): ?>
+        <p><?= htmlspecialchars($errors["e4"]) ?></p>
+    <?php endif?>
+    <button>Valider</button>
+    </form>

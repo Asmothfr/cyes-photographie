@@ -11,4 +11,9 @@ class CategoriesModel extends Database
         $sqlQuery = "SELECT * FROM categories";
         return $this->findAll($sqlQuery);
     }
+    public function addOneCategorie($data)
+    {
+        $sqlQuery = "INSERT INTO categories(cat_name) VALUES (:catName)";
+        return $this->processOneTableRow($sqlQuery, $data);
+    }
 }

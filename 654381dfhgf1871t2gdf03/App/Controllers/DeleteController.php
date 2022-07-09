@@ -49,7 +49,7 @@ class DeleteController extends LayoutController
 
         delTree($albmDir);
         unlink("../assets/img/albm_photos/$albmPthName");
-        header("location: index.php?route=album");
+        header("location: index.php?route=albums");
     }
 }
 

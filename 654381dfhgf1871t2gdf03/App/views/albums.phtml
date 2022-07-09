@@ -15,28 +15,54 @@
             </a>
         </article>
     <?php endforeach ?>
+    <h3>Ajouter une Catégorie</h3>
+    <form action="index.php?route=addCategorie" method="POST">
+
+        <label id="catName"></label>
+        <input id="catName"type="text" name="catName" placeholder="Nom de la catégorie">
+        <?php if( isset($error) && array_key_exists("catError",$error) ): ?>
+                <p><?= htmlspecialchars($error["catError"]) ?></p>
+            <?php endif?>
+
+        <button>Valider</button>
+    </form>
 
     <h3>Ajouter un Album :</h3>
     <form action="index.php?route=addAlbum" method="POST">
         
         <label id="categories"></label>
-        <select name="categories" id="categories">
-            <!-- Sélecteur de catégorie -->
+        <select enctype="multipart/form-data" name="categories" id="categories">
+            
             <option value="">Catégorie</option>
             <?php foreach($categories as $categorie):?>
-            <option value="<?= htmlspecialchars($categorie["cat_name"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
+            <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
             <?php endforeach ?>
+            <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
+                <p><?= htmlspecialchars($errors["e1"]) ?></p>
+            <?php endif?>
         </select>
-
+        
         <label id="title"></label>
         <input id="title" type="text" name="title" placeholder="Titre">
-
+        <?php if( isset($errors) && array_key_exists("e2",$errors) ): ?>
+            <p><?= htmlspecialchars($errors["e2"]) ?></p>
+        <?php endif?>
+        
         <label id="description"></label>
         <input id="description" type="text" name="description" placeholder="Description">
-
-        <label id="photoName"></label>
-        <input id="photoName" type="file" name="photoName" placeholder="Photo de Présentation">
-
+        <?php if( isset($errors) && array_key_exists("e3",$errors) ): ?>
+            <p><?= htmlspecialchars($errors["e3"]) ?></p>
+        <?php endif?>
+        <button>Valider</button>
+    </form>
+    
+    <form action="index.php?route=addAlbum" method="POST">
+    <label id="photoName"></label>
+    <input id="photoName" type="file" name="photoName">
+    <?php if( isset($errors) && array_key_exists("e4",$errors) ): ?>
+        <p><?= htmlspecialchars($errors["e4"]) ?></p>
+    <?php endif?>
     <button>Valider</button>
     </form>
+
 </section>

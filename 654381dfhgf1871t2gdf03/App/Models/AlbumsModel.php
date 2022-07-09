@@ -22,9 +22,7 @@ class AlbumsModel extends Database
 
     public function addOneAlbum($data)
     {
-        $sqlQuery =  "INSERT INTO albums (albm_cat_id,albm_title,albm_description,albm_photo)
-                     SELECT 'categories.albm_cat_id' FROM albums INNER JOIN categories 'albums.albm_cat_id' = 'categories.cat_id'
-                     VALUES (:categories,:title,:descript,:photoName)";
+        $sqlQuery = "INSERT INTO albums (albm_cat_id,albm_title,albm_description,albm_photo) VALUES (:categories,:title,:descript,:photoName)";
         $this->processOneTableRow($sqlQuery, $data);
     }
 

@@ -16,7 +16,7 @@ return [
         "controller"=>"App\Controllers\DisplayController",
         "method"=>"displayHome"
     ],
-    "album" => [
+    "albums" => [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayAlbums"
     ],
@@ -40,6 +40,10 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayOneMail"
     ],
+    "addCategorie" => [
+        "controller"=> "App\Controllers\AddController",
+        "method"=> "addOneCategorie"
+    ],
     "addAlbum" => [
         "controller"=> "App\Controllers\AddController",
         "method"=> "addOneAlbum"
@@ -55,5 +59,13 @@ return [
     "deleteAlbum" => [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "DeleteOneAlbum"
+    ],
+    "test" => [
+        "controller"=> "App\Controllers\TestController",
+        "method"=> "addFiles"
+    ],
+    "validTest" => [
+        "controller"=> "App\Controllers\TestController",
+        "method"=> "validTest"
     ],
 ];
