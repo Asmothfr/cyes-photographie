@@ -6,11 +6,11 @@ use Database\Database;
 
 class PhotosModel extends Database
 {
-    // public function getPhotos(): array
-    // {
-    //     $sqlQuery = "SELECT * FROM photos";
-    //     return $this->findAll($sqlQuery);
-    // }
+    public function getPhotos(): array
+    {
+        $sqlQuery = "SELECT * FROM photos";
+        return $this->findAll($sqlQuery);
+    }
 
     public function getAllPhotos($id): array
     {

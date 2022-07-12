@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Library\LayoutController;
 use App\Models\ContactModel;
 use App\Models\AlbumsModel;
+use App\Models\CategoriesModel;
 use App\Models\PhotosModel;
 
 class DeleteController extends LayoutController
@@ -32,25 +33,48 @@ class DeleteController extends LayoutController
 
     public function deleteOneAlbum()
     {
-        function delTree($albmDir) {
-            $files = array_diff(scandir($albmDir), array('.','..'));
-             foreach ($files as $file) {
-               (is_dir("$albmDir/$file")) ? delTree("$albmDir/$file") : unlink("$albmDir/$file");
-             }
-             return rmdir($albmDir);
-        }
-
         $albmId = $_GET["albm_id"];
         $albmPthName = $_GET["albm_photo"];
         $albmDir = "../assets/img/photos/".$albmId;
-
         $model = new AlbumsModel;
+
+        $this->delTree($albmDir);
         $model->deleteOneAlbum($albmId);
 
-        delTree($albmDir);
         unlink("../assets/img/albm_photos/$albmPthName");
         header("location: index.php?route=albums");
     }
+
+    public function deleteOneCategorie()
+    {
+        $catId = $_GET["cat_id"];
+        $albmModel = new AlbumsModel;
+        $catModel = new CategoriesModel;
+        $albumsList = $albmModel->getAlbumsbyId($catId);
+
+        foreach($albumsList as $album)
+        {
+            $albmId = $album["albm_id"];
+            $albmPthName = $album["albm_photo"];
+            $albmDir = "../assets/img/photos/".$albmId;
+
+            $this->delTree($albmDir);
+            $albmModel->deleteOneAlbum($album["albm_id"]);
+            unlink("../assets/img/albm_photos/".$albmPthName);
+        }
+
+        $catModel->deleteOneCategorie($catId);
+        header("location: index.php?route=albums");
+    }
+    
+    public function delTree($dir)
+        {
+            $files = array_diff(scandir($dir), array('.','..'));
+            foreach ($files as $file) {
+              (is_dir("$dir/$file")) ? $this->delTree("$dir/$file") : unlink("$dir/$file");
+            }
+            return rmdir($dir);
+        }
 }
 
 

@@ -12,12 +12,24 @@ class AlbumsModel extends Database
         return $this->findAll($sqlQuery);
     }
 
+    public function getAlbumsbyId($id)
+    {
+        $sqlQuery = "SELECT * FROM albums WHERE albm_cat_id = ?";
+        return $this->findAll($sqlQuery,[$id]);
+    }
+
     public function getOneAlbum($id)
     {
         $sqlQuery = "SELECT * 
                     FROM albums
                     WHERE albm_id = ?";
         return $this->find($sqlQuery, [$id]);
+    }
+
+    public function getLastAlbum()
+    {
+        $sqlQuery = "SELECT MAX(albm_id) FROM albums";
+        return $this->find($sqlQuery);
     }
 
     public function addOneAlbum($data)

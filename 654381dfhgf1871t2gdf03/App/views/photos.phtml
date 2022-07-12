@@ -1,5 +1,5 @@
 <section>
-    <h2><?=htmlspecialchars($album["albm_title"])?></h2>
+    <h3><?=htmlspecialchars($album["albm_title"])?></h2>
     <p><?=htmlspecialchars($album["albm_description"])?></p>
     <?php foreach($photos as $photo): ?>
         <img src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
@@ -10,4 +10,10 @@
             <button>Supprimer</button>
         </a>
     <?php endforeach; ?>
+    <form action="index.php?route=addPhotos" enctype="multipart/form-data" method="POST">
+        <label id="photos"></label>
+        <input type="file" multiple="true" name="photos[]">
+        <input type="hidden" name="albm_id" value="<?=htmlspecialchars($album["albm_id"])?>">
+        <button>Valider</button>
+    </form>
 </section>

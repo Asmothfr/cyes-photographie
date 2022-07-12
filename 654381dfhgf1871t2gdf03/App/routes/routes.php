@@ -48,6 +48,10 @@ return [
         "controller"=> "App\Controllers\AddController",
         "method"=> "addOneAlbum"
     ],
+    "addPhotos" => [
+        "controller"=> "App\Controllers\AddController",
+        "method"=> "addPhotos"
+    ],
     "deleteMail" => [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOneMail"
@@ -60,12 +64,8 @@ return [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "DeleteOneAlbum"
     ],
-    "test" => [
-        "controller"=> "App\Controllers\TestController",
-        "method"=> "addFiles"
-    ],
-    "validTest" => [
-        "controller"=> "App\Controllers\TestController",
-        "method"=> "validTest"
+    "deleteCategorie" => [
+        "controller"=> "App\Controllers\DeleteController",
+        "method"=> "deleteOneCategorie"
     ],
 ];

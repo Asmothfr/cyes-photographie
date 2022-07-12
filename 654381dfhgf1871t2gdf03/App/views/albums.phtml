@@ -1,47 +1,35 @@
 <section class="Galleries">
-    <?php foreach($albums as $album): ?>
-        <select name="categories">
-            <option value="#">Filtrez par catégorie</option>
-            <option value="<?= htmlspecialchars($album["albm_cat_id"])?>">Mariages</option>
-        </select>
-        <article>
-            <a href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>"><img src="../assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des catégories"></a>
-            <h2><?=htmlspecialchars($album["albm_title"])?></h2>
-            <a href="#">
-                <button>Modifier</button>
-            </a>
-            <a href="index.php?route=deleteAlbum&albm_id=<?=htmlspecialchars($album["albm_id"])?>&albm_photo=<?=htmlspecialchars($album["albm_photo"])?>">
-                <button>Supprimer</button>
-            </a>
-        </article>
-    <?php endforeach ?>
+
     <h3>Ajouter une Catégorie</h3>
     <form action="index.php?route=addCategorie" method="POST">
-
         <label id="catName"></label>
         <input id="catName"type="text" name="catName" placeholder="Nom de la catégorie">
         <?php if( isset($error) && array_key_exists("catError",$error) ): ?>
-                <p><?= htmlspecialchars($error["catError"]) ?></p>
-            <?php endif?>
-
+            <p><?= htmlspecialchars($error["catError"]) ?></p>
+        <?php endif?>
         <button>Valider</button>
     </form>
 
+    <h3>Mes Catégories:</h3>
+    <?php foreach($categories as $categorie): ?>
+            <p><?=htmlspecialchars($categorie["cat_name"])?></p>
+            <a href="index.php?route=deleteCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
+                <button>Supprimer</button>
+            </a>
+    <?php endforeach ?>
+
     <h3>Ajouter un Album :</h3>
-    <form action="index.php?route=addAlbum" method="POST">
-        
+    <form action="index.php?route=addAlbum" enctype="multipart/form-data" method="POST">
         <label id="categories"></label>
-        <select enctype="multipart/form-data" name="categories" id="categories">
-            
+        <select name="categories" id="categories">
             <option value="">Catégorie</option>
             <?php foreach($categories as $categorie):?>
             <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
             <?php endforeach ?>
-            <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
+            <?php if( isset($errors) && array_key_exists("e1",$errors) ):?>
                 <p><?= htmlspecialchars($errors["e1"]) ?></p>
             <?php endif?>
         </select>
-        
         <label id="title"></label>
         <input id="title" type="text" name="title" placeholder="Titre">
         <?php if( isset($errors) && array_key_exists("e2",$errors) ): ?>
@@ -50,19 +38,36 @@
         
         <label id="description"></label>
         <input id="description" type="text" name="description" placeholder="Description">
-        <?php if( isset($errors) && array_key_exists("e3",$errors) ): ?>
+        <?php if( isset($errors) && array_key_exists("e3",$errors) ):?>
             <p><?= htmlspecialchars($errors["e3"]) ?></p>
+        <?php endif?>
+            
+        <label id="photoName"></label>
+        <input id="photoName" type="file" name="photoName">
+        <?php if( isset($errors) && array_key_exists("e4",$errors) ):?>
+            <p><?= htmlspecialchars($errors["e4"]) ?></p>
         <?php endif?>
         <button>Valider</button>
     </form>
-    
-    <form action="index.php?route=addAlbum" method="POST">
-    <label id="photoName"></label>
-    <input id="photoName" type="file" name="photoName">
-    <?php if( isset($errors) && array_key_exists("e4",$errors) ): ?>
-        <p><?= htmlspecialchars($errors["e4"]) ?></p>
-    <?php endif?>
-    <button>Valider</button>
-    </form>
-
+    <?php foreach($albums as $album): ?>
+        <select name="categories">
+            <option value="#">Filtrez par catégorie</option>
+            <option value="<?= htmlspecialchars($album["albm_cat_id"])?>">Mariages</option>
+        </select>
+        <article>
+            <a href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">
+            <img src="../assets/img/albm_photos/<?=htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des catégories">
+            </a>
+            <h2><?=htmlspecialchars($album["albm_title"])?></h2>
+            <a href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">
+                <button>Ajouter des photos à l'album</button>
+            </a>
+            <a href="#">
+                <button>Modifier</button>
+            </a>
+            <a href="index.php?route=deleteAlbum&albm_id=<?=htmlspecialchars($album["albm_id"])?>&albm_photo=<?=htmlspecialchars($album["albm_photo"])?>">
+                <button>Supprimer</button>
+            </a>
+        </article>
+    <?php endforeach ?>
 </section>

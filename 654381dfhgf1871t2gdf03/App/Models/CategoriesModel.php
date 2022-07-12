@@ -16,4 +16,9 @@ class CategoriesModel extends Database
         $sqlQuery = "INSERT INTO categories(cat_name) VALUES (:catName)";
         return $this->processOneTableRow($sqlQuery, $data);
     }
+    public function deleteOneCategorie($id)
+    {
+        $sqlQuery = "DELETE FROM categories WHERE cat_id = ?";
+        return $this->processOneTableRow($sqlQuery, [$id]);
+    }
 }
