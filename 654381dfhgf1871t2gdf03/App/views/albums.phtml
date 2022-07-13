@@ -1,5 +1,4 @@
 <section class="Galleries">
-
     <h3>Ajouter une Catégorie</h3>
     <form action="index.php?route=addCategorie" method="POST">
         <label id="catName"></label>
@@ -20,16 +19,18 @@
 
     <h3>Ajouter un Album :</h3>
     <form action="index.php?route=addAlbum" enctype="multipart/form-data" method="POST">
+
         <label id="categories"></label>
         <select name="categories" id="categories">
             <option value="">Catégorie</option>
             <?php foreach($categories as $categorie):?>
             <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
             <?php endforeach ?>
-            <?php if( isset($errors) && array_key_exists("e1",$errors) ):?>
-                <p><?= htmlspecialchars($errors["e1"]) ?></p>
-            <?php endif?>
         </select>
+            <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
+            <p><?= htmlspecialchars($errors["e1"]) ?></p>
+        <?php endif?>
+
         <label id="title"></label>
         <input id="title" type="text" name="title" placeholder="Titre">
         <?php if( isset($errors) && array_key_exists("e2",$errors) ): ?>
@@ -46,6 +47,9 @@
         <input id="photoName" type="file" name="photoName">
         <?php if( isset($errors) && array_key_exists("e4",$errors) ):?>
             <p><?= htmlspecialchars($errors["e4"]) ?></p>
+        <?php endif?>
+        <?php if( isset($errors) && array_key_exists("e5",$errors) ):?>
+            <p><?= htmlspecialchars($errors["e5"]) ?></p>
         <?php endif?>
         <button>Valider</button>
     </form>

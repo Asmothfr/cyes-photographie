@@ -2,7 +2,7 @@
     <form action= "index.php?route=validation" method="POST">
         <div>
             <label for="lastname"></label>
-            <input id="lastname" type="text" name="lastname" placeholder="lastname" value="<?= htmlspecialchars(@$_POST["lastname"]) ?>">
+            <input id="lastname" type="text" name="lastname" placeholder="lastname" value="<?= htmlspecialchars(@$_POST["lastname"]) ?>"> 
             <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
                 <p><?= $errors["e1"] ?></p>
             <?php endif ?>

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AlbumsModel;
 use App\Models\CategoriesModel;
+use App\Models\PhotosModel;
 use Library\LayoutController;
 
 class AddController extends LayoutController
@@ -49,7 +50,7 @@ class AddController extends LayoutController
         }
         if(!isset($_POST["description"]) || empty($_POST["description"]))
         {
-            $errors["e3"] = "Veuillez renseigner une categorie.";
+            $errors["e3"] = "Veuillez donner une description à l'album.";
         }
         if(!isset($_FILES["photoName"]) || empty($_FILES["photoName"]) || $_FILES["photoName"]["type"] != "image/jpeg")
         {
@@ -61,49 +62,75 @@ class AddController extends LayoutController
         }
         else
         {
-            $origine = $_FILES["photoName"]["tmp_name"];
-            $destination = "../assets/img/albm_photos/".$_FILES["photoName"]["name"];
-            $data = [
-                "categories"=>$_POST["categories"],
-                "title"=>$_POST["title"],
-                "descript"=>$_POST["description"],
-                "photoName"=>$_FILES["photoName"]["name"],
-            ];
-            
-            $albModel->addOneAlbum($data);
-            $lastAlbum = $albModel->getLastAlbum();
-
-            move_uploaded_file($origine,$destination);
-            mkdir("../assets/img/photos/".$lastAlbum["MAX(albm_id)"]);
-
-            header("location: index.php?route=albums");
+            if(mime_content_type($_FILES["photoName"]["tmp_name"]) != "image/jpeg")
+            {
+                $errors["e5"] = "C'est pas gentil de vouloir envoyer des photos qui n'en sont pas. Faut pas refaire ça !";
+                $this->render("albums", ["albums"=>$albums, "categories"=>$cat, "errors"=>$errors]);
+            }
+            else
+            {
+                echo("<pre>");
+                var_dump($_FILES);
+                echo("</pre>");
+                die;
+                $origine = $_FILES["photoName"]["tmp_name"];
+                $destination = "../assets/img/albm_photos/".$_FILES["photoName"]["name"];
+                $data = [
+                    "categories"=>$_POST["categories"],
+                    "title"=>$_POST["title"],
+                    "descript"=>$_POST["description"],
+                    "photoName"=>$_FILES["photoName"]["name"],
+                ];
+                
+                $albModel->addOneAlbum($data);
+                $lastAlbum = $albModel->getLastAlbum();
+                
+                move_uploaded_file($origine,$destination);
+                mkdir("../assets/img/photos/".$lastAlbum["MAX(albm_id)"]);
+                
+                header("location: index.php?route=albums");
+            }
+            die;
         }
     }
 
     public function addPhotos()
     {
-        echo("<pre>");
-        var_dump($_FILES);
-        echo("</pre>");
-        
         $errors = [];
-        
-        if(!isset($_FILES["photos"]) || empty($_FILES["photos"]) || ($_FILES["photos"]["type"] != "image/jpeg"))
-        {
-            $errors["e1"] = "Veuillez selectionner des photos au format .jpeg ou .jpg";
-        }
         if(!isset($_POST["albm_id"]) || empty($_POST["albm_id"]))
         {
-            $errors["critical"] = "Une erreur est survenue lors de l'attribution automatique de l'id de l'album. Veuillez contacter votre admin pour résoudre se problème !";
-        }
-        if(isset($errors) || !empty($errors))
-        {
-            echo("fail");
+            $errors["critical"] = "Une erreur est survenue lors de l'attribution automatique de l'id de l'album. Veuillez contacter votre admin pour résoudre ce problème !";
+            $this->render("photos",["critical"=>$errors]);
+            echo("CRITICAL");
         }
         else
         {
-            echo("success");
+            $photosModel = new PhotosModel;
+            $albumsModel = new AlbumsModel;
+            $albmId = $_POST["albm_id"];
+            $album = $albumsModel->getOneAlbum($albmId);
+            $photos = $photosModel->getAllPhotos($albmId);
+            echo("<pre>");
+            echo("TABLEAU 1");
+            echo("<br>");
+            var_dump($_FILES["photos"]);
+            echo("</pre>");
+            $errors = [];
+            if(!isset($_FILES["photos"]) || empty($_FILES["photos"]) || ($_FILES["photos"]["type"]) != "image/jpeg")
+            {
+                echo("CONDITION FAILED");
+                $errors["e1"] = "Veuillez selectionner une ou plusieurs photo au format .jpg ou .jpeg";
+            }
+            if(isset($errors) && !empty($errors))
+            {
+                $this->render("photos",["album"=>$album, "photos"=>$photos]);
+            }
+            else
+            {
+                header("location: index.php?route=gallery&id=" . $albmId);
+            }
+
         }
-        die;
+            
     }
 }
