@@ -110,27 +110,40 @@ class AddController extends LayoutController
             $albmId = $_POST["albm_id"];
             $album = $albumsModel->getOneAlbum($albmId);
             $photos = $photosModel->getAllPhotos($albmId);
-            echo("<pre>");
-            echo("TABLEAU 1");
-            echo("<br>");
-            var_dump($_FILES["photos"]);
-            echo("</pre>");
+            
             $errors = [];
-            if(!isset($_FILES["photos"]) || empty($_FILES["photos"]) || ($_FILES["photos"]["type"]) != "image/jpeg")
+            if(isset($_FILES["photos"]))
             {
-                echo("CONDITION FAILED");
-                $errors["e1"] = "Veuillez selectionner une ou plusieurs photo au format .jpg ou .jpeg";
-            }
-            if(isset($errors) && !empty($errors))
-            {
-                $this->render("photos",["album"=>$album, "photos"=>$photos]);
+                echo("LE FORMULAIRE A BIEN ÉTÉ REÇU");
+                echo("<br>");
+
+                $uploadedPhoto = $_FILES["photos"];
+                if(in_array(empty([""]),$uploadedPhoto["name"]) && in_array(empty([""]),$uploadedPhoto["type"]) && in_array(empty([""]),$uploadedPhoto["tmp_name"]))
+                {
+                    echo("LE FORMULAIRE REÇU EST VIDE");
+                    echo("<br>");
+                    echo("<br>");
+                    echo("<pre>");
+                    print_r($uploadedPhoto);
+                    echo("</pre>");
+                }
+                else
+                {
+                    echo("LE FORMULAIRE REÇU N'EST PAS VIDE");
+                    echo("<br>");
+                    echo("<pre>");
+                    echo("TABLEAU TYPE");
+                    echo("<br>");
+                    print_r($uploadedPhoto);
+                    echo("</pre>");
+                    echo("<br>");
+                }   
             }
             else
             {
-                header("location: index.php?route=gallery&id=" . $albmId);
+                echo("LE FORMULAIRE N'A PAS ÉTÉ REÇU");
+                echo("<br>");
             }
-
         }
-            
     }
 }
