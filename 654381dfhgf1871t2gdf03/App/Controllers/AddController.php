@@ -105,20 +105,19 @@ class AddController extends LayoutController
         }
         else
         {
+            $albmId = $_POST["albm_id"];
             $photosModel = new PhotosModel;
             $albumsModel = new AlbumsModel;
-            $albmId = $_POST["albm_id"];
             $album = $albumsModel->getOneAlbum($albmId);
             $photos = $photosModel->getAllPhotos($albmId);
             
-            $errors = [];
             if(isset($_FILES["photos"]))
             {
                 echo("LE FORMULAIRE A BIEN ÉTÉ REÇU");
                 echo("<br>");
 
                 $uploadedPhoto = $_FILES["photos"];
-                if(in_array(empty([""]),$uploadedPhoto["name"]) && in_array(empty([""]),$uploadedPhoto["type"]) && in_array(empty([""]),$uploadedPhoto["tmp_name"]))
+                if(in_array(empty([""]),$uploadedPhoto["name"]) && in_array(empty([""]),$uploadedPhoto["tmp_name"]))
                 {
                     echo("LE FORMULAIRE REÇU EST VIDE");
                     echo("<br>");
@@ -131,12 +130,29 @@ class AddController extends LayoutController
                 {
                     echo("LE FORMULAIRE REÇU N'EST PAS VIDE");
                     echo("<br>");
-                    echo("<pre>");
-                    echo("TABLEAU TYPE");
-                    echo("<br>");
-                    print_r($uploadedPhoto);
-                    echo("</pre>");
-                    echo("<br>");
+                    
+                    //Verifier le mime du fichier
+                    $data = [];
+                    foreach($uploadedPhoto["tmp_name"] as $key => $tmpName)
+                    {
+                        echo("BOUCLE");
+                        echo("<br>");
+                        echo("<pre>");
+                        print_r($tmpName);
+                        echo("</pre>");
+                        echo("<br>");
+                        echo(mime_content_type($tmpName));
+                        echo("<br>");
+                        if(mime_content_type($tmpName) != "image/jpeg")
+                        {
+                            echo("Le fichier " . $tmpName . " n'est pas une photo !");
+                        }
+                        else
+                        {
+                            echo("Le fichier " . $tmpName . " est une photo !");
+                            
+                        }
+                    }
                 }   
             }
             else
