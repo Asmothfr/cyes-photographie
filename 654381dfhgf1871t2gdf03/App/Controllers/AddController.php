@@ -69,10 +69,6 @@ class AddController extends LayoutController
             }
             else
             {
-                echo("<pre>");
-                var_dump($_FILES);
-                echo("</pre>");
-                die;
                 $origine = $_FILES["photoName"]["tmp_name"];
                 $destination = "../assets/img/albm_photos/".$_FILES["photoName"]["name"];
                 $data = [
@@ -90,76 +86,56 @@ class AddController extends LayoutController
                 
                 header("location: index.php?route=albums");
             }
-            die;
         }
     }
 
     public function addPhotos()
     {
         $errors = [];
-        if(!isset($_POST["albm_id"]) || empty($_POST["albm_id"]))
+        $albmId = $_GET["albm_id"];
+        $photosModel = new PhotosModel;
+        $albumsModel = new AlbumsModel;
+        $album = $albumsModel->getOneAlbum($albmId);
+        $photos = $photosModel->getAllPhotos($albmId);
+        
+        if(($_FILES["photos"]) && in_array(!empty([""]),$_FILES["photos"]["name"]) && in_array(!empty([""]),$_FILES["photos"]["tmp_name"]))
         {
-            $errors["critical"] = "Une erreur est survenue lors de l'attribution automatique de l'id de l'album. Veuillez contacter votre admin pour résoudre ce problème !";
-            $this->render("photos",["critical"=>$errors]);
-            echo("CRITICAL");
-        }
-        else
-        {
-            $albmId = $_POST["albm_id"];
-            $photosModel = new PhotosModel;
-            $albumsModel = new AlbumsModel;
-            $album = $albumsModel->getOneAlbum($albmId);
-            $photos = $photosModel->getAllPhotos($albmId);
-            
-            if(isset($_FILES["photos"]))
-            {
-                echo("LE FORMULAIRE A BIEN ÉTÉ REÇU");
-                echo("<br>");
+            $validPhotos = [];
+            $refusedPhotos = [];
+            $uploadedPhotos = $_FILES["photos"];
 
-                $uploadedPhoto = $_FILES["photos"];
-                if(in_array(empty([""]),$uploadedPhoto["name"]) && in_array(empty([""]),$uploadedPhoto["tmp_name"]))
+            foreach($uploadedPhotos["tmp_name"] as $uploadedPhoto)
+            {
+                if(mime_content_type($uploadedPhoto) != "image/jpeg")
                 {
-                    echo("LE FORMULAIRE REÇU EST VIDE");
-                    echo("<br>");
-                    echo("<br>");
-                    echo("<pre>");
-                    print_r($uploadedPhoto);
-                    echo("</pre>");
+                    array_push($refusedPhotos, $uploadedPhoto);
                 }
                 else
                 {
-                    echo("LE FORMULAIRE REÇU N'EST PAS VIDE");
-                    echo("<br>");
-                    
-                    //Verifier le mime du fichier
-                    $data = [];
-                    foreach($uploadedPhoto["tmp_name"] as $key => $tmpName)
-                    {
-                        echo("BOUCLE");
-                        echo("<br>");
-                        echo("<pre>");
-                        print_r($tmpName);
-                        echo("</pre>");
-                        echo("<br>");
-                        echo(mime_content_type($tmpName));
-                        echo("<br>");
-                        if(mime_content_type($tmpName) != "image/jpeg")
-                        {
-                            echo("Le fichier " . $tmpName . " n'est pas une photo !");
-                        }
-                        else
-                        {
-                            echo("Le fichier " . $tmpName . " est une photo !");
-                            
-                        }
-                    }
-                }   
-            }
-            else
+                    array_push($validPhotos, $uploadedPhoto);
+                }
+            }            
+            //Comparaison entre les photos envoyés et les photos valides.
+                //Récupération des index des photos valides.
+            $tmpNames = array_intersect($uploadedPhotos["tmp_name"], $validPhotos);
+                //Récupération des noms des photos valides.
+            $phtNames = array_intersect_key($uploadedPhotos["name"], $tmpNames);
+
+            $destination = "../assets/img/photos/$albmId/";
+            $data["albm_id"] = $albmId; 
+            foreach($tmpNames as $key => $TmpName)
             {
-                echo("LE FORMULAIRE N'A PAS ÉTÉ REÇU");
-                echo("<br>");
+                move_uploaded_file($TmpName,$destination . $phtNames[$key]);
+                $data["phtName"] = $phtNames[$key]; 
+                $photosModel->addPhotos($data);
             }
+            header("location: index.php?route=gallery&id=".$albmId);
         }
+        else
+        {
+            $errors["e1"] = "Veuillez selectionner des photos avant de valider le formulaire."; 
+            $this->render("photos",["album"=>$album, "photos"=>$photos, "errors"=>$errors]);
+        }
+        
     }
 }

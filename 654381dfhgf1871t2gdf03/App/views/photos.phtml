@@ -1,14 +1,16 @@
 <section>
     <h3>Ajouter des photos à l'album <?=htmlspecialchars($album["albm_title"]) ?></h3>
-    <form action="index.php?route=addPhotos" enctype="multipart/form-data" method="POST">
+
+    <form action="index.php?route=addPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>" enctype="multipart/form-data" method="POST">
         <label id="photos"></label>
         <input type="file" multiple="true" name="photos[]">
-        <input type="hidden" name="albm_id" value="<?=htmlspecialchars($album["albm_id"])?>">
         <button>Valider</button>
     </form>
+    
     <h3><?=htmlspecialchars($album["albm_title"])?></h2>
     <p><?=htmlspecialchars($album["albm_description"])?></p>
-    <?php foreach($photos as $photo): ?>
+    <?php foreach($photos as $photo): ?>    
+
         <img src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
         <a href="">
             <button>Modifier</button>
