@@ -4,12 +4,15 @@
     <form action="index.php?route=addPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>" enctype="multipart/form-data" method="POST">
         <label id="photos"></label>
         <input type="file" multiple="true" name="photos[]">
+        <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
+            <p><?= htmlspecialchars($errors["e1"]) ?></p>
+        <?php endif?>
         <button>Valider</button>
     </form>
     
     <h3><?=htmlspecialchars($album["albm_title"])?></h2>
     <p><?=htmlspecialchars($album["albm_description"])?></p>
-    <?php foreach($photos as $photo): ?>    
+    <?php foreach($photos as $photo): ?>
 
         <img src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
         <a href="">
