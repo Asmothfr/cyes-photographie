@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ActualitiesModel;
 use Library\LayoutController;
 use App\Models\ContactModel;
 use App\Models\AlbumsModel;
@@ -10,7 +11,7 @@ use App\Models\PhotosModel;
 
 class DeleteController extends LayoutController
 {
-    public function deleteOneMail()
+    public function deleteOneMail():void
     {
         $id = $_GET["id"];
         $model = new ContactModel;
@@ -18,7 +19,7 @@ class DeleteController extends LayoutController
         header("location: index.php?route=mails");
     }
 
-    public function deleteOnePhoto()
+    public function deleteOnePhoto():void
     {
         
         $phtName = $_GET["pht_name"];
@@ -31,7 +32,7 @@ class DeleteController extends LayoutController
         header("location: index.php?route=gallery&id=".$albmId);
     }
 
-    public function deleteOneAlbum()
+    public function deleteOneAlbum():void
     {
         $albmId = $_GET["albm_id"];
         $albmPthName = $_GET["albm_photo"];
@@ -45,7 +46,7 @@ class DeleteController extends LayoutController
         header("location: index.php?route=albums");
     }
 
-    public function deleteOneCategorie()
+    public function deleteOneCategorie():void
     {
         $catId = $_GET["cat_id"];
         $albmModel = new AlbumsModel;
@@ -65,6 +66,16 @@ class DeleteController extends LayoutController
 
         $catModel->deleteOneCategorie($catId);
         header("location: index.php?route=albums");
+    }
+
+    public function deleteOneActualitie():void
+    {
+        $act_id = $_GET["act_id"];
+        $model = new ActualitiesModel;
+        $phtName = $model->getPhtName($act_id);
+        unlink("../assets/img/actu_img/$phtName");
+        $model->deleteActualitieById($act_id);
+        header("location: index.php?route=actualities");
     }
     
     public function delTree($dir)

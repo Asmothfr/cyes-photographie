@@ -20,12 +20,6 @@ class PhotosModel extends Database
         return $this->findAll( $sqlQuery, [$id]);
     }
 
-    public function GetLastNamePhotobyAlbmId($albmId):array
-    {
-        $sqlQuery = "SELECT max(pht_name) from photos where pht_albm_id = ?";
-        return $this->find($sqlQuery,[$albmId]);
-    }
-
     public function addPhotos($data)
     {
         $sqlQuery = "INSERT INTO photos(pht_albm_id,pht_name) VALUES(:albm_id,:phtName)";

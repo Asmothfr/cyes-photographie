@@ -68,4 +68,8 @@ return [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOneCategorie"
     ],
+    "deleteActualitie" => [
+        "controller"=> "App\Controllers\DeleteController",
+        "method"=> "deleteOneActualitie"
+    ],
 ];

@@ -4,8 +4,11 @@
     <form action="index.php?route=addPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>" enctype="multipart/form-data" method="POST">
         <label id="photos"></label>
         <input type="file" multiple="true" name="photos[]">
-        <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
+        <?php if( isset($errors) && array_key_exists("e1",$errors)): ?>
             <p><?= htmlspecialchars($errors["e1"]) ?></p>
+        <?php endif?>
+        <?php if( isset($errors) && array_key_exists("phtExist",$errors)): ?>
+            <p><?= htmlspecialchars($errors["phtExist"]) ?></p>
         <?php endif?>
         <button>Valider</button>
     </form>

@@ -11,4 +11,16 @@ class ActualitiesModel extends Database
         $sqlQuery = "SELECT * FROM actualities";
         return $this->findAll($sqlQuery);
     }
+
+    public function getPhtName($id):array
+    {
+        $sqlQuery = "SELECT act_photo FROM actualities WHERE act_id = ?";
+        return $this->find($sqlQuery,[$id]);
+    }
+
+    public function deleteActualitieById($id):void
+    {
+        $sqlQuery = "DELETE FROM actualities WHERE act_id = ?";
+        $this->processOneTableRow($sqlQuery,[$id]);
+    }
 }

@@ -114,22 +114,26 @@ class AddController extends LayoutController
                 {
                     array_push($validPhotos, $uploadedPhoto);
                 }
-            }            
+            }  
+            
             //Comparaison entre les photos envoyés et les photos valides.
-                //Récupération des index des photos valides.
+            //Récupération des index des photos valides.
             $tmpNames = array_intersect($uploadedPhotos["tmp_name"], $validPhotos);
-                //Récupération des noms des photos valides.
-            $phtNames = array_intersect_key($uploadedPhotos["name"], $tmpNames);
-
+            $phtNames = $uploadedPhotos["name"];
             $destination = "../assets/img/photos/$albmId/";
-            $data["albm_id"] = $albmId; 
+            $data["albm_id"] = $albmId;
+
             foreach($tmpNames as $key => $TmpName)
             {
-                move_uploaded_file($TmpName,$destination . $phtNames[$key]);
-                $data["phtName"] = $phtNames[$key]; 
-                $photosModel->addPhotos($data);
+                if(!in_array($phtNames[$key],scandir($destination)))
+                {
+                    move_uploaded_file($TmpName,$destination . $phtNames[$key]);
+                    $data["phtName"] = $phtNames[$key];
+                    $photosModel->addPhotos($data);
+                    print_r($phtNames[$key]);
+                }
             }
-            header("location: index.php?route=gallery&id=".$albmId);
+                header("location: index.php?route=gallery&id=".$albmId);
         }
         else
         {

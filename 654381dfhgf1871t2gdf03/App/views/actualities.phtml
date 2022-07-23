@@ -5,6 +5,9 @@
         <h2><?=$content["act_title"]?></h2>
         <p><?=$content["act_date"]?></p>
         <p><?=$content["act_content"]?></p>
+        <a href="index.php?route=deleteActualitie&act_id=<?= htmlspecialchars($content["act_id"]) ?>">
+            <button>Supprimer</button>
+        </a>
     </article>
     <?php endforeach ?>
 </section>

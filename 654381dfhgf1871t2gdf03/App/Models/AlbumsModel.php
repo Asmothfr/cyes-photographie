@@ -41,6 +41,6 @@ class AlbumsModel extends Database
     public function deleteOneAlbum($albmId)
     {
         $sqlQuery = "DELETE FROM albums WHERE albm_id = ?";
-        return $this->processOneTableRow($sqlQuery, [$albmId]);
+        $this->processOneTableRow($sqlQuery, [$albmId]);
     }
 }
