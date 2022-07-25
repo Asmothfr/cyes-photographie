@@ -1,6 +1,17 @@
 <section>
     <article>
-        <img src="assets/img/about_img/<?=$about["abt_photo"]?>" alt="Portrait du photographe">
-        <p><?= $about["abt_content"]?></p>
+        <img src="assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
+        <p><?= htmlspecialchars($about["abt_content"])?></p>
     </article>
+    <div>
+        <?php if(!empty($about["abt_facebook"])): ?>
+        <a target="_blank" href="<?= htmlspecialchars($about["abt_facebook"])?>"><i class="fa-brands fa-facebook"></i></a>
+        <?php endif ?>
+        <?php if(!empty($about["abt_instagram"])): ?>
+        <a target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>"><i class="fa-brands fa-instagram"></i></a>
+        <?php endif ?>
+        <?php if(!empty($about["abt_twitter"])): ?>
+        <a target="_blank" href="<?= htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-twitter-square"></i></a>
+        <?php endif ?>
+    </div>
 </section>

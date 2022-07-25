@@ -2,44 +2,50 @@
     <form action= "index.php?route=validation" method="POST">
         <div>
             <label for="lastname"></label>
-            <input id="lastname" type="text" name="lastname" placeholder="lastname" value="<?= htmlspecialchars(@$_POST["lastname"]) ?>"> 
+            <input id="lastname" type="text" name="lastname" placeholder="Nom" value="<?= htmlspecialchars(@$_POST["lastname"]) ?>"> 
             <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
                 <p><?= $errors["e1"] ?></p>
             <?php endif ?>
         </div>
         <div>
             <label for="firstname"></label>
-            <input id="firstname" type="text" name="firstname" placeholder="firstname" value="<?= htmlspecialchars(@$_POST["firstname"]) ?>">
+            <input id="firstname" type="text" name="firstname" placeholder="Prénom" value="<?= htmlspecialchars(@$_POST["firstname"]) ?>">
             <?php if( isset($errors) && array_key_exists("e2",$errors) ) : ?>
                 <p><?= $errors["e2"] ?></p>
             <?php endif ?>
         </div>
         <div>
             <label for="tel"></label>
-            <input id="tel" type="tel" name="tel" placeholder="tel" value="<?= htmlspecialchars(@$_POST["tel"]) ?>">
+            <input id="tel" type="tel" name="tel" placeholder="Téléphone" value="<?= htmlspecialchars(@$_POST["tel"]) ?>">
             <?php if( isset($errors) && array_key_exists("e3",$errors) ) : ?>
                 <p><?= $errors["e3"] ?></p>
             <?php endif ?>
         </div>
         <div>
             <label for="mail"></label>
-            <input id="mail" type="mail" name="mail" placeholder="mail" value="<?= htmlspecialchars(@$_POST["mail"]) ?>">
+            <input id="mail" type="mail" name="mail" placeholder="Email" value="<?= htmlspecialchars(@$_POST["mail"]) ?>">
             <?php if( isset($errors) && array_key_exists("e4",$errors) ) : ?>
                 <p><?= $errors["e4"] ?></p>
             <?php endif ?>
         </div>
         <div>
-            <label for="content"></label>
-            <textarea id="content" name="content" placeholder="content">
-            <?=htmlspecialchars(@$_POST["content"]) ?>
-            </textarea>
+            <label for="subject"></label>
+            <input id="subject" name="subject" placeholder="Objet">
+            <?=htmlspecialchars(@$_POST["subject"]) ?>
+            </input>
             <?php if( isset($errors) && array_key_exists("e5",$errors) ) : ?>
                 <p><?= $errors["e5"] ?></p>
             <?php endif ?>
         </div>
+        <div>
+            <label for="content"></label>
+            <textarea id="content" name="content">
+            <?=htmlspecialchars(@$_POST["content"]) ?>
+            </textarea>
+            <?php if( isset($errors) && array_key_exists("e6",$errors) ) : ?>
+                <p><?= $errors["e6"] ?></p>
+            <?php endif ?>
+        </div>
         <button type="submit">Valider</button>
-        <?php if(isset($valid) && !empty($valid)): ?>
-            <p><?= $valid ?></p>
-        <?php endif ?>
     </form>
 </section>

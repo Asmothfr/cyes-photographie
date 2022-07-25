@@ -1,6 +1,98 @@
 <section>
     <article>
-        <img src="../assets/img/about_img/<?=$about["abt_photo"]?>" alt="Portrait du photographe">
-        <p><?= $about["abt_content"]?></p>
+
+        <form method="POST" enctype="multipart/form-data" action="index.php?route=addAboutContent">
+            <?php if(empty($about["abt_photo"])):?>
+                <label for="abtPhoto">Ajouter une photo de Présentation</label>
+                <input type="file" name="abtPhoto">
+                <?php endif ?>
+            <button>Valider</button>
+            <?php if(isset($errors) && array_key_exists("photo",$errors)): ?>
+                <p><?=htmlspecialchars($errors["photo"])?></p>
+            <?php endif ?>
+            <?php if(isset($errors) && array_key_exists("mime",$errors)): ?>
+                <p><?=htmlspecialchars($errors["mime"])?></p>
+            <?php endif ?>
+        </form>
+        <?php if(!empty($about["abt_photo"])):?>
+            <img src="../assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
+            <button>Modifier la photo de présentation</button>
+            <a href="index.php?route=deleteAboutContent&abt_photo=<?= htmlspecialchars($about["abt_photo"])?>">
+                <button>Supprimer la photo de présentation</button>
+            </a>
+        <?php endif ?>
+
+        <form method="POST" action="index.php?route=addAboutContent">
+            <?php if(empty($about["abt_content"])):?>
+                <label for="abt_content"></label>
+                <input type="text" name="abt_content" placeholder="Votre Présentation">
+            <?php endif ?>
+            <button>Valider</button>
+            <?php if(isset($errors) && array_key_exists("content",$errors)): ?>
+                <p><?=htmlspecialchars($errors["content"])?></p>
+            <?php endif ?>
+        </form>
+        <?php if(!empty($about["abt_content"])):?>
+            <p><?= htmlspecialchars($about["abt_content"])?></p>
+            <button>Modifier le texte de présentation</button>
+            <a href="index.php?route=deleteAboutContent&abt_content=<?= htmlspecialchars($about["abt_content"])?>">
+                <button>Supprimer le texte de présentation</button>
+            </a>
+        <?php endif ?>
+
     </article>
+    <div>
+        <form method="POST" action="index.php?route=addAboutContent">
+            <?php if(empty($about["abt_facebook"])): ?>
+                <input type="text" name="abt_facebook" placeholder="Votre lien facebook">
+                <button>Valider</button>
+                <?php if(isset($errors) && array_key_exists("facebook",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["facebook"])?></p>
+                <?php endif ?>
+            <?php endif ?>
+        </form>
+        <?php if(!empty($about["abt_facebook"])): ?>
+            <a target="_blank" href="<?= htmlspecialchars($about["abt_facebook"])?>"><i class="fa-brands fa-facebook"></i></a>
+            <button>Modifier le lien Facebook</button>
+            <a href="index.php?route=deleteAboutContent&abt_facebook=<?= htmlspecialchars($about["abt_facebook"])?>">
+                <button>Supprimer le lien Facebook</button>
+            </a>
+        <?php endif ?>
+    </div>
+    <div>
+        <form method="POST" action="index.php?route=addAboutContent">
+            <?php if(empty($about["abt_instagram"])): ?>
+                <input type="text" name="abt_instagram" placeholder="Votre lien instagram">
+                <button>Valider</button>
+                <?php if(isset($errors) && array_key_exists("instagram",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["instagram"])?></p>
+                <?php endif ?>
+            <?php endif ?>
+        </form>
+        <?php if(!empty($about["abt_instagram"])): ?>
+            <a target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>"><i class="fa-brands fa-instagram"></i></a>
+            <button>Modifier le lien Instagram</button>
+            <a href="index.php?route=deleteAboutContent&abt_instagram=<?= htmlspecialchars($about["abt_instagram"])?>">
+                <button>Supprimer le lien Instagram</button>
+            </a>
+            <?php endif ?>
+    </div>
+    <div>
+        <form method="POST" action="index.php?route=addAboutContent">
+            <?php if(empty($about["abt_twitter"])): ?>
+                <input type="text" name="abt_twitter" placeholder="Votre lien twitter">
+                <button>Valider</button>
+                <?php if(isset($errors) && array_key_exists("twitter",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["twitter"])?></p>
+                <?php endif ?>
+            <?php endif ?>
+        </form>
+        <?php if(!empty($about["abt_twitter"])): ?>
+            <a target="_blank" href="<?= htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-twitter"></i></a>
+            <button>Modifier le lien Twitter</button>
+            <a href="index.php?route=deleteAboutContent&abt_twitter=<?= htmlspecialchars($about["abt_twitter"])?>">
+                <button>Supprimer le lien Twitter</button>
+            </a>
+        <?php endif ?>
+    </div>
 </section>

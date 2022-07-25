@@ -4,6 +4,7 @@
         <p> le <?= htmlspecialchars($mail["cont_date"])  ?></p>
         <p> <?= htmlspecialchars($mail["cont_usr_mail"])  ?></p>
         <p><?= htmlspecialchars($mail["cont_usr_tel"]) ?></p>
+        <p><?= htmlspecialchars($mail["cont_usr_subject"])  ?></p>
         <p><?= htmlspecialchars($mail["cont_usr_content"])  ?></p>
         <a href="index.php?route=deleteMail&id=<?= htmlspecialchars($mail["cont_id"]) ?>">
             <button>Supprimer</button>

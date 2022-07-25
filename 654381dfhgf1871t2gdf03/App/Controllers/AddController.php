@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\AboutModel;
 use App\Models\AlbumsModel;
 use App\Models\CategoriesModel;
 use App\Models\PhotosModel;
@@ -140,6 +141,95 @@ class AddController extends LayoutController
             $errors["e1"] = "Veuillez selectionner des photos avant de valider le formulaire."; 
             $this->render("photos",["album"=>$album, "photos"=>$photos, "errors"=>$errors]);
         }
-        
+    }
+
+    public function addAboutcontent()
+    {
+        $model = new AboutModel;
+        $abtInfo = $model->getOneContent();
+        $id = $abtInfo["abt_id"];
+        $errors = [];
+        switch($_POST || $_FILES)
+        {
+            case isset($_FILES["abtPhoto"]["name"]):
+                if(!empty($_FILES["abtPhoto"]["name"]))
+                {
+                    if(mime_content_type($_FILES["abtPhoto"]["tmp_name"]) == "image/jpeg")
+                    {
+                        $phtName = $_FILES["abtPhoto"]["name"];
+                        $phtTmpName = $_FILES["abtPhoto"]["tmp_name"];
+                        $column = "abt_photo";
+                        $dir = "../assets/img/about_img/";
+                        move_uploaded_file($phtTmpName, $dir . $phtName);
+                        $model->addAboutcontent($column,$phtName,$id);
+                        header("location: index.php?route=about");
+                    }
+                    else
+                    {
+                        $errors["mime"] = ("Attention, ce fichier n'est pas une photo.");
+                    }
+                }
+                else
+                {
+                    $errors["photo"] = "Veuillez selectionner une photo de présentation.";
+                }
+                break;
+            case isset($_POST["abt_content"]) :
+                if(!empty($_POST["abt_content"]))
+                {
+                    $column = "abt_content";
+                    $data = $_POST["abt_content"];
+                    $model->addAboutcontent($column,$data,$id);
+                    header("location: index.php?route=about");
+                }
+                else
+                {
+                    $errors["content"] = "Veuillez renseigner la description";
+                }
+                break;
+            case isset($_POST["abt_facebook"]):
+                if(!empty($_POST["abt_facebook"]))
+                {
+                    $column = "abt_facebook";
+                    $data = $_POST["abt_facebook"];
+                    $model->addAboutcontent($column,$data,$id);
+                    header("location: index.php?route=about");
+                }
+                else
+                {
+                    $errors["facebook"] = "Veuillez renseigner le lien facebook.";
+                }
+                break;
+            case isset($_POST["abt_instagram"]):
+                if(!empty($_POST["abt_instagram"]))
+                {
+                    $column = "abt_instagram";
+                    $data = $_POST["abt_instagram"];
+                    $model->addAboutcontent($column,$data,$id);
+                    header("location: index.php?route=about");
+                }
+                else
+                {
+                    $errors["instagram"] = "Veuillez renseigner le lien instagram.";
+                }
+                break;
+            case isset($_POST["abt_twitter"]):
+                if(!empty($_POST["abt_twitter"]))
+                {
+                    $column = "abt_twitter";
+                    $data = $_POST["abt_twitter"];
+                    $model->addAboutcontent($column,$data,$id);
+                    header("location: index.php?route=about");
+                }
+                else
+                {
+                    $errors["twitter"] = "Veuillez renseigner le lien twitter.";
+                }
+                break;
+        }
+            if(isset($errors) && !empty($errors))
+            {
+                $this->render("about",["about"=>$abtInfo,"errors"=>$errors]);
+            }
     }
 }

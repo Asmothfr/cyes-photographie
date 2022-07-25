@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\ActualitiesModel;
 use Library\LayoutController;
+use App\Models\AboutModel;
+use App\Models\ActualitiesModel;
 use App\Models\ContactModel;
 use App\Models\AlbumsModel;
 use App\Models\CategoriesModel;
@@ -76,6 +77,43 @@ class DeleteController extends LayoutController
         unlink("../assets/img/actu_img/$phtName");
         $model->deleteActualitieById($act_id);
         header("location: index.php?route=actualities");
+    }
+
+    public function deleteAboutContent():void
+    {
+        //Un case capable de filtrer l'information reçu.
+        //Et d'envoyer vers la bonne data au model.
+        //Qui supprime le contenu en fonction des infos donnés.
+        $model = new AboutModel;
+        if(isset($_GET) && !empty($_GET))
+        {
+            switch($_GET)
+                {
+                    case(isset($_GET["abt_photo"]) && !empty($_GET["abt_photo"])):
+                        $phtName = $_GET["abt_photo"];
+                        $column = "abt_photo";
+                        $model->deleteAboutContent($column);
+                        unlink("../assets/img/about_img/$phtName");
+                        break;
+                    case(isset($_GET["abt_content"]) && !empty($_GET["abt_content"])):
+                        $column = "abt_content";
+                        $model->deleteAboutContent($column);
+                        break;
+                    case(isset($_GET["abt_facebook"]) && !empty($_GET["abt_facebook"])):
+                        $column = "abt_facebook";
+                        $model->deleteAboutContent($column);
+                        break;
+                    case(isset($_GET["abt_instagram"]) && !empty($_GET["abt_instagram"])):
+                        $column = "abt_instagram";
+                        $model->deleteAboutContent($column);
+                        break;
+                    case(isset($_GET["abt_twitter"]) && !empty($_GET["abt_twitter"])):
+                        $column = "abt_twitter";
+                        $model->deleteAboutContent($column);
+                        break;
+                }
+            header("location: index.php?route=about");
+        }
     }
     
     public function delTree($dir)

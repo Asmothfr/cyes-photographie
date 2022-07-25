@@ -20,15 +20,15 @@ class PhotosModel extends Database
         return $this->findAll( $sqlQuery, [$id]);
     }
 
-    public function addPhotos($data)
+    public function addPhotos($data):void
     {
         $sqlQuery = "INSERT INTO photos(pht_albm_id,pht_name) VALUES(:albm_id,:phtName)";
         $this->processOneTableRow($sqlQuery, $data);
     }
 
-    public function deleteOnePhoto($phtName):mixed
+    public function deleteOnePhoto($phtName):void
     {
         $sqlQuery = "DELETE FROM photos WHERE pht_name = ?";
-        return $this->processOneTableRow($sqlQuery, [$phtName]);
+        $this->processOneTableRow($sqlQuery, [$phtName]);
     }
 }

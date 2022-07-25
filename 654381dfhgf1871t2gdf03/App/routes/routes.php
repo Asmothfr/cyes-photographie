@@ -52,6 +52,10 @@ return [
         "controller"=> "App\Controllers\AddController",
         "method"=> "addPhotos"
     ],
+    "addAboutContent" => [
+        "controller"=> "App\Controllers\AddController",
+        "method"=> "addAboutcontent"
+    ],
     "deleteMail" => [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOneMail"
@@ -71,5 +75,9 @@ return [
     "deleteActualitie" => [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOneActualitie"
+    ],
+    "deleteAboutContent" => [
+        "controller"=> "App\Controllers\DeleteController",
+        "method"=> "deleteAboutContent"
     ],
 ];

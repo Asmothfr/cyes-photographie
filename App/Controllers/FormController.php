@@ -12,11 +12,11 @@ class Formcontroller extends LayoutController
         $errors = [];
         if(!isset($_POST["lastname"]) || empty($_POST["lastname"]))
         {
-            $errors["e1"] = "Veuillez renseigner votre prénom.";
+            $errors["e1"] = "Veuillez renseigner votre Nom.";
         }
         if(!isset($_POST["firstname"]) || empty($_POST["firstname"]))
         {
-            $errors["e2"] = "Veuillez renseigner votre nom.";
+            $errors["e2"] = "Veuillez renseigner votre Prénom.";
         }
         if(!isset($_POST["tel"]) || empty($_POST["tel"]))
         {
@@ -26,9 +26,13 @@ class Formcontroller extends LayoutController
         {
             $errors["e4"] = "Veuillez renseigner votre mail.";
         }
-        if(!isset($_POST["content"]) || empty($_POST["content"]))
+        if(!isset($_POST["subject"]) || empty($_POST["subject"]))
         {
-            $errors["e5"] = "Veuillez renseigner votre demande.";
+            $errors["e5"] = "Veuillez renseigner l'objet de votre demande.";
+        }
+        if(!isset($_POST["content"]) || empty(trim(($_POST["content"]))))
+        {
+            $errors["e6"] = "Veuillez renseigner votre demande.";
         }
         if(empty($errors))
         {
@@ -37,11 +41,11 @@ class Formcontroller extends LayoutController
                 "firstname"=>$_POST["firstname"],
                 "tel"=>$_POST["tel"],
                 "mail"=>$_POST["mail"],
+                "usr_subject"=>$_POST["subject"],
                 "content"=>$_POST["content"]
             ];
             $model = new ContactModel();
             $model->contactFormValidation($data);
-            $validation = "Merci, votre message a bien été envoyé.";
             header("location:index.php?route=contact");
         }
         else
