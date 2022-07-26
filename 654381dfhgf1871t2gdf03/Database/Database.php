@@ -48,5 +48,4 @@ class Database
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($params);
     }
-
 }
