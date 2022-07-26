@@ -20,7 +20,7 @@ class AboutModel extends Database
 
     public function deleteAboutContent($column):void
     {
-        $sqlQuery = "UPDATE abouts SET $column = NULL ";
+        $sqlQuery = "UPDATE abouts SET $column = NULL";
         $this->deleteOneColumn($sqlQuery);
     }
 }

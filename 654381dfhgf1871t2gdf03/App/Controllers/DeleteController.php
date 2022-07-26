@@ -73,17 +73,15 @@ class DeleteController extends LayoutController
     {
         $act_id = $_GET["act_id"];
         $model = new ActualitiesModel;
-        $phtName = $model->getPhtName($act_id);
-        unlink("../assets/img/actu_img/$phtName");
+        $dbPhtName = $model->getPhtName($act_id);
+        $phtName = $dbPhtName["act_photo"];
+        unlink("../assets/img/actu_img/". $phtName);
         $model->deleteActualitieById($act_id);
         header("location: index.php?route=actualities");
     }
 
     public function deleteAboutContent():void
     {
-        //Un case capable de filtrer l'information reçu.
-        //Et d'envoyer vers la bonne data au model.
-        //Qui supprime le contenu en fonction des infos donnés.
         $model = new AboutModel;
         if(isset($_GET) && !empty($_GET))
         {

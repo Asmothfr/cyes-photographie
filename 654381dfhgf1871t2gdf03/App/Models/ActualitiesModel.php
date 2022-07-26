@@ -18,6 +18,12 @@ class ActualitiesModel extends Database
         return $this->find($sqlQuery,[$id]);
     }
 
+    public function addActualitie($data):void
+    {
+        $sqlQuery = "INSERT INTO actualities (act_title, act_content, act_date, act_photo) VALUES (?, ?, ?, ?)";
+        $this->processOneTableRow($sqlQuery, $data);
+    }
+
     public function deleteActualitieById($id):void
     {
         $sqlQuery = "DELETE FROM actualities WHERE act_id = ?";

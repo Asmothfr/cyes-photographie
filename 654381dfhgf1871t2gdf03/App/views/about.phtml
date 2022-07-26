@@ -5,8 +5,8 @@
             <?php if(empty($about["abt_photo"])):?>
                 <label for="abtPhoto">Ajouter une photo de Présentation</label>
                 <input type="file" name="abtPhoto">
+                <button>Valider</button>
                 <?php endif ?>
-            <button>Valider</button>
             <?php if(isset($errors) && array_key_exists("photo",$errors)): ?>
                 <p><?=htmlspecialchars($errors["photo"])?></p>
             <?php endif ?>
@@ -26,8 +26,8 @@
             <?php if(empty($about["abt_content"])):?>
                 <label for="abt_content"></label>
                 <input type="text" name="abt_content" placeholder="Votre Présentation">
+                <button>Valider</button>
             <?php endif ?>
-            <button>Valider</button>
             <?php if(isset($errors) && array_key_exists("content",$errors)): ?>
                 <p><?=htmlspecialchars($errors["content"])?></p>
             <?php endif ?>

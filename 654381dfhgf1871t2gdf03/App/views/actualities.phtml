@@ -1,4 +1,20 @@
 <section>
+    <h3>Ajouter un événement</h3>
+    <form method = "POST" enctype="multipart/form-data" action="index.php?route=addActualitie">
+
+        <label for="act_photo"></label>
+        <input id = "act_photo" type="file" name = "act_photo">
+
+        <label for="act_title"></label>
+        <input id = "act_title" type="text" name = "act_title" placeholder="Nom de l'actualité">
+
+        <label for="act_date"></label>
+        <input id = "act_date" type="date" name = "act_date">
+
+        <label for="act_content"></label>
+        <textarea name="act_content" id="act_content"></textarea>
+        <button>Valider</button>
+    </form>
     <?php foreach($contents as $content): ?>
     <article>
         <img src="../assets/img/actu_img/<?=$content["act_photo"] ?>" alt="photo d'illustration de l'article">
