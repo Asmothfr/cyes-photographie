@@ -7,6 +7,7 @@ use App\Models\AlbumsModel;
 use App\Models\PhotosModel;
 use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
+use App\Models\AdminModel;
 use App\Models\ContactModel;
 use App\Models\CategoriesModel;
 
@@ -72,5 +73,12 @@ class DisplayController extends LayoutController
         $model = new ContactModel;
         $mail = $model->getOneMail($id);
         $this->render("mail", ["mail"=>$mail]);
+    }
+
+    public function displayAdmin():void
+    {
+        $model = new AdminModel;
+        $adminInfo = $model->adminInfo();
+        $this->render("administrator",["admin"=>$adminInfo]);
     }
 }

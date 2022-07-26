@@ -1,0 +1,40 @@
+<section>
+    <h3>Mes Informations</h3>
+    
+    <form method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+        <label for="login">Nom d'utilisateur</label>
+        <input id="login" type="text" name="login" value="<?=htmlspecialchars($admin["adm_login"])?>">
+        <?php if(isset($errors)&& array_key_exists("login",$errors)): ?>
+            <p><?=htmlspecialchars($errors["login"])?></p>
+        <?php endif?>
+    <button>Valider</button>
+    </form>
+    <form method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" name="password" value="J'aime la mayooooo !">
+
+    <form method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+        <label for="password_confirmation">Confirmation du mot de passe</label>
+        <input id="password_confirmation" type="password" name="password_confirmation">
+        <?php if(isset($errors)&& array_key_exists("password",$errors)): ?>
+            <p><?=htmlspecialchars($errors["password"])?></p>
+        <?php endif?>
+        <button>Valider</button>
+    </form>
+    <form method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+        <label for="lastname">Nom</label>
+        <input id="lastname" type="text" name="lastname" value="<?=htmlspecialchars($admin["adm_last_name"])?>">
+        <?php if(isset($errors)&& array_key_exists("lastname",$errors)): ?>
+            <p><?=htmlspecialchars($errors["lastname"])?></p>
+        <?php endif?>
+        <button>Valider</button>
+    </form>
+    <form method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+        <label for="firstname">Nom</label>
+        <input id="firstname" type="text" name="firstname" value="<?=htmlspecialchars($admin["adm_first_name"])?>">
+        <?php if(isset($errors)&& array_key_exists("firstname",$errors)): ?>
+            <p><?=htmlspecialchars($errors["firstname"])?></p>
+        <?php endif?>
+        <button>Valider</button>
+    </form>
+</section>

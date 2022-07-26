@@ -239,65 +239,32 @@ class AddController extends LayoutController
         $errors = [];
         $model = new ActualitiesModel;
         $contents = $model->getActuContent();
+       
         if(!isset($_FILES["act_photo"]) || empty($_FILES["act_photo"]["name"]) || empty($_FILES["act_photo"]["tmp_name"]))
         {
-            echo("ECHEC 1");
-            echo("<br>");
             $errors["photo"] = "Veuillez selectionner une photo.";
         }
         else
         {
             if(mime_content_type($_FILES["act_photo"]["tmp_name"]) != "image/jpeg")
             {
-                echo("LE FICHIER N'EST PAS UNE PHOTO");
-                echo("<br>");
                 $errors["mime"] = "LE FICHIER ENVOYÉ N'EST PAS UNE PHOTO.";
             }
         }
         if(!isset($_POST["act_title"]) || empty($_POST["act_title"]))
         {
-            echo("ECHEC 2");
-            echo("<br>");
             $errors["title"] = "Veuillez nommer l'article.";
         }
         if(!isset($_POST["act_date"]) || empty($_POST["act_date"]))
         {
-            echo("ECHEC 3");
-            echo("<br>");
             $errors["date"] = "Veuillez choisir une date.";
         }
         if(!isset($_POST["act_content"]) || empty($_POST["act_content"]))
         {
-            echo("ECHEC 4");
-            echo("<br>");
             $errors["text"] = "Veuillez renseigner une description.";
         }
         if(isset($errors) && !empty($errors))
         {
-            echo("ECHEC FILE || POST");
-            echo("<br>");
-            
-            echo("tableau FILES");
-            echo("<br>");
-            echo("<pre>");
-            print_r($_FILES);
-            echo("<pre>");
-            echo("<br>");
-            
-            echo("tableau POST");
-            echo("<br>");
-            echo("<pre>");
-            var_dump($_POST);
-            echo("<pre>");
-            echo("<br>");
-            
-            echo("tableau des ERREURS");
-            echo("<br>");
-            echo("<pre>");
-            var_dump($errors);
-            echo("<pre>");
-            echo("<br>");
-            die;
             $this->render("actualities",["contents"=>$contents,"errors"=>$errors]);
         }
         else
@@ -306,22 +273,13 @@ class AddController extends LayoutController
             $phtName = $_FILES["act_photo"]["name"];
             $tmpName = $_FILES["act_photo"]["tmp_name"];
             move_uploaded_file($tmpName, $dir . $phtName);
-            
             $data = [
                 $_POST["act_title"],
                 $_POST["act_content"],
                 $_POST["act_date"],
                 $_FILES["act_photo"]["name"]
             ];
-
             $model->addActualitie($data);
-
-            echo("tableau DATA");
-            echo("<br>");
-            echo("<pre>");
-            var_dump($data);
-            echo("<pre>");
-            echo("<br>");
             header("location:index.php?route=actualities");
         }
     }

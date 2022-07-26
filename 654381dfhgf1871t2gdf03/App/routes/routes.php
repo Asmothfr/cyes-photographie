@@ -40,6 +40,10 @@ return [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayOneMail"
     ],
+    "admin" => [
+        "controller"=> "App\Controllers\DisplayController",
+        "method"=> "displayAdmin"
+    ],
     "addCategorie" => [
         "controller"=> "App\Controllers\AddController",
         "method"=> "addOneCategorie"
@@ -59,6 +63,10 @@ return [
     "addActualitie" => [
         "controller"=> "App\Controllers\AddController",
         "method"=> "addActualities"
+    ],
+    "updateAdmin" => [
+        "controller"=> "App\Controllers\UpdateController",
+        "method"=> "AdminInfoUpdate"
     ],
     "deleteMail" => [
         "controller"=> "App\Controllers\DeleteController",

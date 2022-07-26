@@ -1,19 +1,34 @@
 <section>
     <h3>Ajouter un événement</h3>
     <form method = "POST" enctype="multipart/form-data" action="index.php?route=addActualitie">
-
-        <label for="act_photo"></label>
-        <input id = "act_photo" type="file" name = "act_photo">
-
-        <label for="act_title"></label>
-        <input id = "act_title" type="text" name = "act_title" placeholder="Nom de l'actualité">
-
-        <label for="act_date"></label>
-        <input id = "act_date" type="date" name = "act_date">
-
-        <label for="act_content"></label>
-        <textarea name="act_content" id="act_content"></textarea>
-        <button>Valider</button>
+        
+        <div>
+            <label for="act_photo"></label>
+            <input id = "act_photo" type="file" name = "act_photo">
+            <?php if(isset($errors) && array_key_exists("photo", $errors)):?>
+                <?= htmlspecialchars($errors["photo"])?>
+            <?php endif?>
+        </div>
+            <label for="act_title"></label>
+            <input id = "act_title" type="text" name = "act_title" placeholder="Nom de l'actualité">
+            <?php if(isset($errors) && array_key_exists("title", $errors)):?>
+                <?= htmlspecialchars($errors["title"])?>
+            <?php endif?>
+        <div>
+            <label for="act_date"></label>
+            <input id = "act_date" type="date" name = "act_date">
+            <?php if(isset($errors) && array_key_exists("date", $errors)):?>
+                <?= htmlspecialchars($errors["date"])?>
+            <?php endif?>
+        </div>
+        <div>
+            <label for="act_content"></label>
+            <textarea name="act_content" id="act_content"></textarea>
+            <?php if(isset($errors) && array_key_exists("text", $errors)):?>
+                <?= htmlspecialchars($errors["text"])?>
+            <?php endif?>
+        </div>
+            <button>Valider</button>
     </form>
     <?php foreach($contents as $content): ?>
     <article>
