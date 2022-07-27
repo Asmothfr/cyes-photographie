@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
 use App\Models\AdminModel;
 use Library\LayoutController;
@@ -94,39 +95,41 @@ class UpdateController extends LayoutController
         $id = $_GET["act_id"];
         $model = new ActualitiesModel;
         $findPhtName = $model->getPhtName($id);
+        $actu = $model->getActuContent();
         $phtDbName = $findPhtName["act_photo"];
         $phtTmpName = $_FILES["act_photo"]["tmp_name"];
         $phtNewName = $_FILES["act_photo"]["name"];
         $dir = "../assets/img/actu_img/";
 
-        echo("<pre>");
-        print_r($_FILES);
-        echo("</pre>");
-        echo("<br>");
-
-
+        //Bug lorsque le formulaire est vide.
         if(isset($_POST["act_title"]) && !empty($_POST["act_title"]) &&
         isset($_POST["act_date"]) && !empty($_POST["act_date"]) &&
         isset($_POST["act_content"]) && !empty($_POST["act_content"]))
         {
             if(isset($_FILES["act_photo"]) && !empty($_FILES["act_photo"]["name"]))
             {
-                echo("condition photo ok");
-                $data = [
-                    "title"=>$_POST['act_title'],
-                    "content"=>$_POST["act_content"],
-                    "dat"=>$_POST["act_date"],
-                    "photo"=>$_FILES["act_photo"]["name"],
-                    "id"=>$id
-                ];
-                unlink($dir . $phtDbName);
-                move_uploaded_file($phtTmpName, $dir . $phtNewName);
-                $model->updateActualitie($data);
-                header("location:index.php?route=actualities");
+                if(mime_content_type($_FILES["act_photo"]["tmp_name"])=="image/jpeg")
+                {
+                    $data = [
+                        "title"=>$_POST['act_title'],
+                        "content"=>$_POST["act_content"],
+                        "dat"=>$_POST["act_date"],
+                        "photo"=>$_FILES["act_photo"]["name"],
+                        "id"=>$id
+                    ];
+                    unlink($dir . $phtDbName);
+                    move_uploaded_file($phtTmpName, $dir . $phtNewName);
+                    $model->updateActualitie($data);
+                    header("location:index.php?route=actualities");
+                }
+                else
+                {
+                    $errors["updatePhoto"] = "Attention, ce fichier n'est pas une photo";
+                    $this->render("actualities",["contents"=>$actu,"errors"=>$errors]);
+                }
             }
             else
             {
-                echo("condition photo vide");
                 $data = [
                     "title"=>$_POST['act_title'],
                     "content"=>$_POST["act_content"],
@@ -137,6 +140,67 @@ class UpdateController extends LayoutController
                 $model->updateActualitie($data);
                 header("location:index.php?route=actualities");
             }
+        }
+        else
+        {
+            header("location:index.php?route=actualities");
+        }
+    }
+
+    public function updateAboutContent()
+    {
+        echo("<pre>");
+        print_r($_POST);
+        echo("<br>");
+
+        print_r($_FILES);
+        echo("<br>");
+
+        print_r($_GET);
+        echo("<br>");
+        echo("</pre>");
+
+        $id = $_GET["abt_id"];
+        $model = new AboutModel;
+        $phtfind = $model->getOnepht($id);
+        $phtOldName = $phtfind["abt_photo"];
+
+        switch($_FILES || $_POST)
+        {
+            case(isset($_FILES["abt_photo"])):
+                if(!empty($_FILES["abt_photo"]["name"]) && !empty($_FILES["abt_photo"]["tmp_name"]))
+                {   
+                    if(mime_content_type($_FILES["abt_photo"]["tmp_name"]) == "image/jpeg")
+                    {
+                        echo("PHOTO OK");
+                        echo("<br>");
+                        $phtTmpName = $_FILES["abt_photo"]["tmp_name"];
+                        $phtNewName = $_FILES["abt_photo"]["name"];
+                        $dir ="../assets/img/about_img/";
+
+                        $column = "abt_photo";
+                        $data = [
+                            "newData"=>$phtNewName,
+                            "id"=>$id
+                        ];
+                        unlink($dir . $phtOldName);
+                        move_uploaded_file($phtTmpName, $dir . $phtNewName);
+                        $model->addAboutcontent($column,$data);
+                        header("location:index.php?route=about");
+                    }
+                    else
+                    {
+                        echo("PAS PHOTO");
+                        echo("<br>");
+                        $errors = ["Attention, ce fichier n'est pas une photo."];
+                    }
+                }
+                else
+                {
+                    echo("VIDE");
+                    echo("<br>");
+                }
+                break;
         }
     }
 }

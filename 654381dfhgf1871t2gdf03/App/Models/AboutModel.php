@@ -12,8 +12,11 @@ class AboutModel extends Database
         return $this->find($sqlQuery);
     }
 
-
-    // !!!!!! INJECTION SQL !!!!!!
+    public function getOnepht($id):array
+    {
+        $sqlQuery = "SELECT abt_photo FROM abouts WHERE abt_id = ?";
+        return $this->find($sqlQuery,[$id]);
+    }
     public function addAboutcontent($column,$data):void
     {
         $sqlQuery = "UPDATE abouts SET $column = :newData WHERE abt_id = :id";

@@ -39,9 +39,7 @@
         </div>
         <div>
             <label for="content"></label>
-            <textarea id="content" name="content">
-            <?=htmlspecialchars(@$_POST["content"]) ?>
-            </textarea>
+            <textarea id="content" name="content"><?=htmlspecialchars(@$_POST["content"]) ?></textarea>
             <?php if( isset($errors) && array_key_exists("e6",$errors) ) : ?>
                 <p><?= $errors["e6"] ?></p>
             <?php endif ?>

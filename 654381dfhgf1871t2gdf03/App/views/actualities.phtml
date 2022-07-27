@@ -44,10 +44,13 @@
                 <p>Photo Actuelle: <?=htmlspecialchars($content["act_photo"])?></p>
                 <label for="act_photo"></label>
                 <input id="act_photo" type="file" name="act_photo">
+                <?php if(isset($errors) && array_key_exists("updatePhoto", $errors)):?>
+                    <?= htmlspecialchars($errors["updatePhoto"])?>
+                <?php endif?>
                 
 
-                <label for="act_photo"></label>
-                <input id="act_photo" type="text" name="act_title" value="<?=htmlspecialchars($content["act_title"])?>">
+                <label for="act_title"></label>
+                <input id="act_title" type="text" name="act_title" value="<?=htmlspecialchars($content["act_title"])?>">
 
                 <label for="act_date"></label>
                 <input id="act_date" type="date" name="act_date" value="<?=htmlspecialchars($content["act_date"])?>">

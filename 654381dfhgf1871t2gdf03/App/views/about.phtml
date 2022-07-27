@@ -15,8 +15,14 @@
             <?php endif ?>
         </form>
         <?php if(!empty($about["abt_photo"])):?>
+
             <img src="../assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
-            <button>Modifier la photo de présentation</button>
+            <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                <label for="abt_photo">Modifier la photo</label>
+                <input id="abt_photo" type="file" name="abt_photo">
+                <button>Modifier la photo de présentation</button>
+            </form>
+
             <a href="index.php?route=deleteAboutContent&abt_photo=<?= htmlspecialchars($about["abt_photo"])?>">
                 <button>Supprimer la photo de présentation</button>
             </a>

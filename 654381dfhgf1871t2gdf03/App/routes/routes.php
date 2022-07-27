@@ -72,6 +72,10 @@ return [
         "controller"=> "App\Controllers\UpdateController",
         "method"=> "AdminInfoUpdate"
     ],
+    "updateAboutcontent" => [
+        "controller"=> "App\Controllers\UpdateController",
+        "method"=> "updateAboutContent"
+    ],
     "deleteMail" => [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOneMail"
