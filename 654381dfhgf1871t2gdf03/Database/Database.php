@@ -36,16 +36,4 @@ class Database
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($data);
     }
-
-    public function addOnecolumn($sqlQuery, $id):void
-    {
-        $dbQuery = $this->db->prepare($sqlQuery);
-        $dbQuery->execute($id);
-    }
-
-    public function deleteOneColumn($sqlQuery, $params =[]):void
-    {
-        $dbQuery = $this->db->prepare($sqlQuery);
-        $dbQuery->execute($params);
-    }
 }

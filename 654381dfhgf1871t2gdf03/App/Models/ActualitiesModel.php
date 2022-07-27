@@ -24,6 +24,13 @@ class ActualitiesModel extends Database
         $this->processOneTableRow($sqlQuery, $data);
     }
 
+    public function updateActualitie($data):void
+    {
+        $sqlQuery = "UPDATE actualities 
+                        SET act_title = :title, act_content = :content, act_date = :dat, act_photo = :photo WHERE act_id = :id";
+        $this->processOneTableRow($sqlQuery,$data);
+    }
+
     public function deleteActualitieById($id):void
     {
         $sqlQuery = "DELETE FROM actualities WHERE act_id = ?";

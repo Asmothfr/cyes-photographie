@@ -90,24 +90,29 @@ class DeleteController extends LayoutController
                     case(isset($_GET["abt_photo"]) && !empty($_GET["abt_photo"])):
                         $phtName = $_GET["abt_photo"];
                         $column = "abt_photo";
-                        $model->deleteAboutContent($column);
+                        $data = ["newData"=>null];
+                        $model->deleteAboutContent($column,$data);
                         unlink("../assets/img/about_img/$phtName");
                         break;
                     case(isset($_GET["abt_content"]) && !empty($_GET["abt_content"])):
                         $column = "abt_content";
-                        $model->deleteAboutContent($column);
+                        $data = ["newData"=>null];
+                        $model->deleteAboutContent($column,$data);
                         break;
                     case(isset($_GET["abt_facebook"]) && !empty($_GET["abt_facebook"])):
                         $column = "abt_facebook";
-                        $model->deleteAboutContent($column);
+                        $data = ["newData"=>null];
+                        $model->deleteAboutContent($column,$data);
                         break;
                     case(isset($_GET["abt_instagram"]) && !empty($_GET["abt_instagram"])):
                         $column = "abt_instagram";
-                        $model->deleteAboutContent($column);
+                        $data = ["newData"=>null];
+                        $model->deleteAboutContent($column,$data);
                         break;
                     case(isset($_GET["abt_twitter"]) && !empty($_GET["abt_twitter"])):
                         $column = "abt_twitter";
-                        $model->deleteAboutContent($column);
+                        $data = ["newData"=>null];
+                        $model->deleteAboutContent($column,$data);
                         break;
                 }
             header("location: index.php?route=about");

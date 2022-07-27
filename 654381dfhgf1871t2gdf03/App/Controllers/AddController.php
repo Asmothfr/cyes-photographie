@@ -162,7 +162,11 @@ class AddController extends LayoutController
                         $column = "abt_photo";
                         $dir = "../assets/img/about_img/";
                         move_uploaded_file($phtTmpName, $dir . $phtName);
-                        $model->addAboutcontent($column,$phtName,$id);
+                        $data = [
+                            "newData" => $phtName,
+                            "id" => $id
+                        ];
+                        $model->addAboutcontent($column,$data);
                         header("location: index.php?route=about");
                     }
                     else
@@ -179,8 +183,11 @@ class AddController extends LayoutController
                 if(!empty($_POST["abt_content"]))
                 {
                     $column = "abt_content";
-                    $data = $_POST["abt_content"];
-                    $model->addAboutcontent($column,$data,$id);
+                    $data = [
+                        "newData" => $_POST["abt_content"],
+                        "id" => $id
+                    ];
+                    $model->addAboutcontent($column,$data);
                     header("location: index.php?route=about");
                 }
                 else
@@ -192,8 +199,11 @@ class AddController extends LayoutController
                 if(!empty($_POST["abt_facebook"]))
                 {
                     $column = "abt_facebook";
-                    $data = $_POST["abt_facebook"];
-                    $model->addAboutcontent($column,$data,$id);
+                    $data = [
+                        "newData" => $_POST["abt_facebook"],
+                        "id" => $id
+                    ];
+                    $model->addAboutcontent($column,$data);
                     header("location: index.php?route=about");
                 }
                 else
@@ -205,8 +215,11 @@ class AddController extends LayoutController
                 if(!empty($_POST["abt_instagram"]))
                 {
                     $column = "abt_instagram";
-                    $data = $_POST["abt_instagram"];
-                    $model->addAboutcontent($column,$data,$id);
+                    $data = [
+                        "newData" => $_POST["abt_instagram"],
+                        "id" => $id
+                    ];
+                    $model->addAboutcontent($column,$data);
                     header("location: index.php?route=about");
                 }
                 else
@@ -218,8 +231,11 @@ class AddController extends LayoutController
                 if(!empty($_POST["abt_twitter"]))
                 {
                     $column = "abt_twitter";
-                    $data = $_POST["abt_twitter"];
-                    $model->addAboutcontent($column,$data,$id);
+                    $data = [
+                        "newData" => $_POST["abt_twitter"],
+                        "id" => $id
+                    ];
+                    $model->addAboutcontent($column,$data);
                     header("location: index.php?route=about");
                 }
                 else

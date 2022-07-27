@@ -12,9 +12,12 @@ class AdminModel extends Database
         return $this->find($sqlQuery);
     }
 
-    public function adminUpdate($column, $data, $id)
+    public function adminUpdate($column,$data)
     {
-        $sqlQuery = "UPDATE admins SET $column = '$data' WHERE adm_id = ?";
-        $this->addOnecolumn($sqlQuery, [$id]);
+        $sqlQuery = "UPDATE admins SET $column =:newData WHERE adm_id=:id ";
+        echo($sqlQuery);
+        echo("<br>");
+        print_r($data);
+        $this->processOneTableRow($sqlQuery, $data);
     }
 }

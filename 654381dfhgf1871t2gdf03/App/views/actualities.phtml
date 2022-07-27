@@ -1,7 +1,6 @@
 <section>
-    <h3>Ajouter un événement</h3>
+    <h3>Ajouter une actualité</h3>
     <form method = "POST" enctype="multipart/form-data" action="index.php?route=addActualitie">
-        
         <div>
             <label for="act_photo"></label>
             <input id = "act_photo" type="file" name = "act_photo">
@@ -32,13 +31,36 @@
     </form>
     <?php foreach($contents as $content): ?>
     <article>
-        <img src="../assets/img/actu_img/<?=$content["act_photo"] ?>" alt="photo d'illustration de l'article">
-        <h2><?=$content["act_title"]?></h2>
-        <p><?=$content["act_date"]?></p>
-        <p><?=$content["act_content"]?></p>
+        <div>
+            <img src="../assets/img/actu_img/<?=htmlspecialchars($content["act_photo"])?>" alt="photo d'illustration de l'article">
+            <h4><?=htmlspecialchars($content["act_title"])?></h4>
+            <p><?=htmlspecialchars($content["act_date"])?></p>
+            <p><?=htmlspecialchars($content["act_content"])?></p>
+        </div>
+        <div>
+            <h5>Modification de l'actualité</h5>
+            <form method ="POST" enctype="multipart/form-data" action="index.php?route=updateActualitie&act_id=<?=htmlspecialchars($content["act_id"])?>">
+
+                <p>Photo Actuelle: <?=htmlspecialchars($content["act_photo"])?></p>
+                <label for="act_photo"></label>
+                <input id="act_photo" type="file" name="act_photo">
+                
+
+                <label for="act_photo"></label>
+                <input id="act_photo" type="text" name="act_title" value="<?=htmlspecialchars($content["act_title"])?>">
+
+                <label for="act_date"></label>
+                <input id="act_date" type="date" name="act_date" value="<?=htmlspecialchars($content["act_date"])?>">
+
+                <label for="act_content"></label>
+                <textarea id="act_content" type="text" name="act_content"><?=htmlspecialchars($content["act_content"])?></textarea>
+                <button>Modifier</button>
+            </form>
+        </div>
         <a href="index.php?route=deleteActualitie&act_id=<?= htmlspecialchars($content["act_id"]) ?>">
             <button>Supprimer</button>
         </a>
+
     </article>
     <?php endforeach ?>
 </section>

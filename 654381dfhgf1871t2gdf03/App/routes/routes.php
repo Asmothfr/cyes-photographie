@@ -64,6 +64,10 @@ return [
         "controller"=> "App\Controllers\AddController",
         "method"=> "addActualities"
     ],
+    "updateActualitie" => [
+        "controller"=> "App\Controllers\UpdateController",
+        "method"=> "updateActualitie"
+    ],
     "updateAdmin" => [
         "controller"=> "App\Controllers\UpdateController",
         "method"=> "AdminInfoUpdate"

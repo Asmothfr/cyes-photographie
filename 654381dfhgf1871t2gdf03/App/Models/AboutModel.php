@@ -12,15 +12,17 @@ class AboutModel extends Database
         return $this->find($sqlQuery);
     }
 
-    public function addAboutcontent($column,$data,$id):void
+
+    // !!!!!! INJECTION SQL !!!!!!
+    public function addAboutcontent($column,$data):void
     {
-        $sqlQuery = "UPDATE abouts SET $column = '$data' WHERE abt_id = ?";
-        $this->addOnecolumn($sqlQuery,[$id]);
+        $sqlQuery = "UPDATE abouts SET $column = :newData WHERE abt_id = :id";
+        $this->processOneTableRow($sqlQuery,$data);
     }
 
-    public function deleteAboutContent($column):void
+    public function deleteAboutContent($column,$data):void
     {
-        $sqlQuery = "UPDATE abouts SET $column = NULL";
-        $this->deleteOneColumn($sqlQuery);
+        $sqlQuery = "UPDATE abouts SET $column = :newData";
+        $this->processOneTableRow($sqlQuery,$data);
     }
 }
