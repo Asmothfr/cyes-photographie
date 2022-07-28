@@ -12,7 +12,7 @@ class ActualitiesModel extends Database
         return $this->findAll($sqlQuery);
     }
 
-    public function getPhtName(array $id):array
+    public function getPhtName(string $id):array
     {
         $sqlQuery = "SELECT act_photo FROM actualities WHERE act_id = ?";
         return $this->find($sqlQuery,[$id]);
@@ -31,7 +31,7 @@ class ActualitiesModel extends Database
         $this->processOneTableRow($sqlQuery,$data);
     }
 
-    public function deleteActualitieById(array $id):void
+    public function deleteActualitieById(string $id):void
     {
         $sqlQuery = "DELETE FROM actualities WHERE act_id = ?";
         $this->processOneTableRow($sqlQuery,[$id]);

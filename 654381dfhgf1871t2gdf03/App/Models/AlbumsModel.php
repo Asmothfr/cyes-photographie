@@ -18,7 +18,7 @@ class AlbumsModel extends Database
         return $this->findAll($sqlQuery,[$id]);
     }
 
-    public function getOneAlbum(array $id):array
+    public function getOneAlbum(string $id):array
     {
         $sqlQuery = "SELECT * 
                     FROM albums

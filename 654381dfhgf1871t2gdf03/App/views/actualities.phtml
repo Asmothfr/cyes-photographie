@@ -40,8 +40,6 @@
         <div>
             <h5>Modification de l'actualité</h5>
             <form method ="POST" enctype="multipart/form-data" action="index.php?route=updateActualitie&act_id=<?=htmlspecialchars($content["act_id"])?>">
-
-                <p>Photo Actuelle: <?=htmlspecialchars($content["act_photo"])?></p>
                 <label for="act_photo"></label>
                 <input id="act_photo" type="file" name="act_photo">
                 <?php if(isset($errors) && array_key_exists("updatePhoto", $errors)):?>
