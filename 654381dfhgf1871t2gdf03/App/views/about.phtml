@@ -1,6 +1,5 @@
 <section>
     <article>
-
         <form method="POST" enctype="multipart/form-data" action="index.php?route=addAboutContent">
             <?php if(empty($about["abt_photo"])):?>
                 <label for="abtPhoto">Ajouter une photo de Présentation</label>
@@ -20,6 +19,12 @@
             <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
                 <label for="abt_photo">Modifier la photo</label>
                 <input id="abt_photo" type="file" name="abt_photo">
+                <?php if(isset($errors) && array_key_exists("update_photo",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["update_photo"])?></p>
+                <?php endif ?>
+                <?php if(isset($errors) && array_key_exists("update_mime",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["update_mime"])?></p>
+                <?php endif ?>
                 <button>Modifier la photo de présentation</button>
             </form>
 
@@ -30,8 +35,8 @@
 
         <form method="POST" action="index.php?route=addAboutContent">
             <?php if(empty($about["abt_content"])):?>
-                <label for="abt_content"></label>
-                <input type="text" name="abt_content" placeholder="Votre Présentation">
+                <label for="abt_content">Votre Présentation</label>
+                <textarea name="abt_content" id="text" cols="30" rows="10"></textarea>
                 <button>Valider</button>
             <?php endif ?>
             <?php if(isset($errors) && array_key_exists("content",$errors)): ?>
@@ -39,8 +44,14 @@
             <?php endif ?>
         </form>
         <?php if(!empty($about["abt_content"])):?>
-            <p><?= htmlspecialchars($about["abt_content"])?></p>
-            <button>Modifier le texte de présentation</button>
+            <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                <label for="abt_content"></label>
+                <textarea name="abt_content" id="text"><?=htmlspecialchars($about["abt_content"])?></textarea>
+                <?php if(isset($errors) && array_key_exists("update_content",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["update_content"])?></p>
+                <?php endif ?>
+                <button>Modifier le texte de présentation</button>
+            </form>
             <a href="index.php?route=deleteAboutContent&abt_content=<?= htmlspecialchars($about["abt_content"])?>">
                 <button>Supprimer le texte de présentation</button>
             </a>
@@ -58,8 +69,17 @@
             <?php endif ?>
         </form>
         <?php if(!empty($about["abt_facebook"])): ?>
-            <a target="_blank" href="<?= htmlspecialchars($about["abt_facebook"])?>"><i class="fa-brands fa-facebook"></i></a>
-            <button>Modifier le lien Facebook</button>
+            <a target="_blank" href="<?=htmlspecialchars($about["abt_facebook"])?>"><i class="fa-brands fa-facebook"></i></a>
+
+            <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                <label for="abt_facebook"></label>
+                <input id="abt_facebook" type="link" name="abt_facebook" value="<?=htmlspecialchars($about["abt_facebook"])?>">
+                <?php if(isset($errors) && array_key_exists("update_facebook",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["update_facebook"])?></p>
+                <?php endif ?>
+                <button>Modifier le lien facebook</button>
+            </form>
+
             <a href="index.php?route=deleteAboutContent&abt_facebook=<?= htmlspecialchars($about["abt_facebook"])?>">
                 <button>Supprimer le lien Facebook</button>
             </a>
@@ -68,17 +88,26 @@
     <div>
         <form method="POST" action="index.php?route=addAboutContent">
             <?php if(empty($about["abt_instagram"])): ?>
-                <input type="text" name="abt_instagram" placeholder="Votre lien instagram">
-                <button>Valider</button>
+                <input type="link" name="abt_instagram" placeholder="Votre lien instagram">
                 <?php if(isset($errors) && array_key_exists("instagram",$errors)): ?>
                     <p><?=htmlspecialchars($errors["instagram"])?></p>
                 <?php endif ?>
+                    <button>Valider</button>
             <?php endif ?>
         </form>
         <?php if(!empty($about["abt_instagram"])): ?>
             <a target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>"><i class="fa-brands fa-instagram"></i></a>
-            <button>Modifier le lien Instagram</button>
-            <a href="index.php?route=deleteAboutContent&abt_instagram=<?= htmlspecialchars($about["abt_instagram"])?>">
+
+            <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                <label for="abt_instagram"></label>
+                <input id="abt_instagram" type="link" name="abt_instagram" value="<?= htmlspecialchars($about["abt_instagram"])?>">
+                <?php if(isset($errors) && array_key_exists("update_instagram",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["update_instagram"])?></p>
+                <?php endif ?>
+                <button>Modifier le lien Instagram</button>
+            </form>
+
+            <a href="index.php?route=deleteAboutContent&abt_instagram=<?=htmlspecialchars($about["abt_instagram"])?>">
                 <button>Supprimer le lien Instagram</button>
             </a>
             <?php endif ?>
@@ -95,7 +124,16 @@
         </form>
         <?php if(!empty($about["abt_twitter"])): ?>
             <a target="_blank" href="<?= htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-twitter"></i></a>
-            <button>Modifier le lien Twitter</button>
+
+            <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                <label for="abt_twitter"></label>
+                <input id="abt_twitter" type="link" name="abt_twitter" value="<?= htmlspecialchars($about["abt_twitter"])?>">
+                <?php if(isset($errors) && array_key_exists("update_twitter",$errors)): ?>
+                    <p><?=htmlspecialchars($errors["update_twitter"])?></p>
+                <?php endif ?>
+                <button>Modifier le lien Twitter</button>
+            </form>
+
             <a href="index.php?route=deleteAboutContent&abt_twitter=<?= htmlspecialchars($about["abt_twitter"])?>">
                 <button>Supprimer le lien Twitter</button>
             </a>

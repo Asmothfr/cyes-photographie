@@ -101,7 +101,6 @@ class UpdateController extends LayoutController
         $phtNewName = $_FILES["act_photo"]["name"];
         $dir = "../assets/img/actu_img/";
 
-        //Bug lorsque le formulaire est vide.
         if(isset($_POST["act_title"]) && !empty($_POST["act_title"]) &&
         isset($_POST["act_date"]) && !empty($_POST["act_date"]) &&
         isset($_POST["act_content"]) && !empty($_POST["act_content"]))
@@ -147,24 +146,13 @@ class UpdateController extends LayoutController
         }
     }
 
-    public function updateAboutContent()
+    public function updateAboutContent():void
     {
-        echo("<pre>");
-        print_r($_POST);
-        echo("<br>");
-
-        print_r($_FILES);
-        echo("<br>");
-
-        print_r($_GET);
-        echo("<br>");
-        echo("</pre>");
-
         $id = $_GET["abt_id"];
         $model = new AboutModel;
         $phtfind = $model->getOnepht($id);
         $phtOldName = $phtfind["abt_photo"];
-
+        $errors= [];
         switch($_FILES || $_POST)
         {
             case(isset($_FILES["abt_photo"])):
@@ -172,8 +160,6 @@ class UpdateController extends LayoutController
                 {   
                     if(mime_content_type($_FILES["abt_photo"]["tmp_name"]) == "image/jpeg")
                     {
-                        echo("PHOTO OK");
-                        echo("<br>");
                         $phtTmpName = $_FILES["abt_photo"]["tmp_name"];
                         $phtNewName = $_FILES["abt_photo"]["name"];
                         $dir ="../assets/img/about_img/";
@@ -186,21 +172,91 @@ class UpdateController extends LayoutController
                         unlink($dir . $phtOldName);
                         move_uploaded_file($phtTmpName, $dir . $phtNewName);
                         $model->addAboutcontent($column,$data);
-                        header("location:index.php?route=about");
                     }
                     else
                     {
-                        echo("PAS PHOTO");
-                        echo("<br>");
-                        $errors = ["Attention, ce fichier n'est pas une photo."];
+                        $errors["update_mime"] = "Attention, ce fichier n'est pas une photo.";
                     }
                 }
                 else
                 {
-                    echo("VIDE");
-                    echo("<br>");
+                    $errors["update_photo"] = "Veuillez selectionner une photo avant de valider la modification.";
+                }
+                break;
+            case(isset($_POST["abt_content"])):
+                if(!empty($_POST["abt_content"]))
+                {
+                    $column = "abt_content";
+                    $data = [
+                        "newData"=>$_POST["abt_content"],
+                        "id"=>$id
+                    ];
+                    $model->addAboutcontent($column,$data);
+                }
+                else
+                {
+                    $errors["update_content"] = "Veuillez renseigner la présentation avant de valider la modification.";
+                }
+                break;
+            case(isset($_POST["abt_facebook"])):
+                if(!empty($_POST["abt_facebook"]))
+                {
+                    $column = "abt_facebook";
+                    $data = [
+                        "newData"=>$_POST["abt_facebook"],
+                        "id"=>$id
+                    ];
+                    $model->addAboutcontent($column,$data);
+                }
+                else
+                {
+                    $errors["update_facebook"] = "Veuillez renseigner le lien facebook avant de valider la modification.";
+                }
+                break;
+            case(isset($_POST["abt_instagram"])):
+                if(!empty($_POST["abt_instagram"]))
+                {
+                    $column = "abt_instagram";
+                    $data = [
+                        "newData"=>$_POST["abt_instagram"],
+                        "id"=>$id
+                    ];
+                    $model->addAboutcontent($column,$data);
+                }
+                else
+                {
+                    $errors["update_instagram"] = "Veuillez renseigner le lien instagram avant de valider la modification.";
+                }
+                break;
+            case(isset($_POST["abt_twitter"])):
+                if(!empty($_POST["abt_twitter"]))
+                {
+                    $column = "abt_twitter";
+                    $data = [
+                        "newData"=>$_POST["abt_twitter"],
+                        "id"=>$id
+                    ];
+                    $model->addAboutcontent($column,$data);
+                }
+                else
+                {
+                    $errors["update_twitter"] = "Veuillez renseigner le lien twitter avant de valider la modification.";
                 }
                 break;
         }
+        if(isset($errors)&& !empty($errors))
+        {
+            $about = $model->getOneContent();
+            $this->render("about",["about"=>$about,"errors"=>$errors]);
+        }
+        else
+        {
+            header("location:index.php?route=about");
+        }
+    }
+
+    public function updateAlbum():void
+    {
+        
     }
 }

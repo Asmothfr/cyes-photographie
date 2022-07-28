@@ -12,26 +12,26 @@ class ActualitiesModel extends Database
         return $this->findAll($sqlQuery);
     }
 
-    public function getPhtName($id):array
+    public function getPhtName(array $id):array
     {
         $sqlQuery = "SELECT act_photo FROM actualities WHERE act_id = ?";
         return $this->find($sqlQuery,[$id]);
     }
 
-    public function addActualitie($data):void
+    public function addActualitie(array $data):void
     {
         $sqlQuery = "INSERT INTO actualities (act_title, act_content, act_date, act_photo) VALUES (?, ?, ?, ?)";
         $this->processOneTableRow($sqlQuery, $data);
     }
 
-    public function updateActualitie($data):void
+    public function updateActualitie(array $data):void
     {
         $sqlQuery = "UPDATE actualities 
                         SET act_title = :title, act_content = :content, act_date = :dat, act_photo = :photo WHERE act_id = :id";
         $this->processOneTableRow($sqlQuery,$data);
     }
 
-    public function deleteActualitieById($id):void
+    public function deleteActualitieById(array $id):void
     {
         $sqlQuery = "DELETE FROM actualities WHERE act_id = ?";
         $this->processOneTableRow($sqlQuery,[$id]);

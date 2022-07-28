@@ -31,7 +31,7 @@ class Database
         return $dbResult;
     }
 
-    public function processOneTableRow( string $sqlQuery, array $data):void
+    public function processOneTableRow(string $sqlQuery, array $data):void
     {
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($data);
