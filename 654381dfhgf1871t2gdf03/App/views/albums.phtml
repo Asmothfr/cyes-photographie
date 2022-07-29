@@ -11,10 +11,17 @@
 
     <h3>Mes Catégories:</h3>
     <?php foreach($categories as $categorie): ?>
-            <p><?=htmlspecialchars($categorie["cat_name"])?></p>
-            <a href="index.php?route=deleteCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
-                <button>Supprimer</button>
-            </a>
+        <form method="POST" action="index.php?route=updateCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
+        <label for="cat_name"></label>
+        <input id="cat_name" type="text" name="cat_name" value="<?=htmlspecialchars($categorie["cat_name"])?>">
+        <?php if( isset($error) && array_key_exists("update_categories",$error) ): ?>
+            <p><?= htmlspecialchars($error["update_categories"]) ?></p>
+        <?php endif?>
+        <button>Valider Modification</button>
+        </form>
+        <a href="index.php?route=deleteCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
+            <button>Supprimer</button>
+        </a>
     <?php endforeach ?>
 
     <h3>Ajouter un Album :</h3>
@@ -54,9 +61,12 @@
         <button>Valider</button>
     </form>
     <?php foreach($albums as $album): ?>
-        <select name="categories">
-            <option value="#">Filtrez par catégorie</option>
-            <option value="<?= htmlspecialchars($album["albm_cat_id"])?>">Mariages</option>
+        <label id="categories"></label>
+        <select name="categories" id="categories">
+            <option value="">Filtrer les albums par Themes</option>
+            <?php foreach($categories as $categorie):?>
+            <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
+            <?php endforeach ?>
         </select>
         <article>
             <a href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">

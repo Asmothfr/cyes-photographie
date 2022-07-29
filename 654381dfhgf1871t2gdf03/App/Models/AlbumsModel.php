@@ -12,7 +12,7 @@ class AlbumsModel extends Database
         return $this->findAll($sqlQuery);
     }
 
-    public function getAlbumsbyId(array $id):array
+    public function getAlbumsbyId(string $id):array
     {
         $sqlQuery = "SELECT * FROM albums WHERE albm_cat_id = ?";
         return $this->findAll($sqlQuery,[$id]);
@@ -44,7 +44,7 @@ class AlbumsModel extends Database
         $this->processOneTableRow($sqlQuery,$data);
     }
 
-    public function deleteOneAlbum(array $albmId):void
+    public function deleteOneAlbum(string $albmId):void
     {
         $sqlQuery = "DELETE FROM albums WHERE albm_id = ?";
         $this->processOneTableRow($sqlQuery, [$albmId]);

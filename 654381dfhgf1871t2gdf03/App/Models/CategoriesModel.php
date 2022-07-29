@@ -6,19 +6,26 @@ use Database\Database;
 
 class CategoriesModel extends Database
 {
-    public function getCategories()
+    public function getCategories():array
     {
         $sqlQuery = "SELECT * FROM categories";
         return $this->findAll($sqlQuery);
     }
-    public function addOneCategorie($data)
+    public function addOneCategorie(array $data):void
     {
         $sqlQuery = "INSERT INTO categories(cat_name) VALUES (:catName)";
-        return $this->processOneTableRow($sqlQuery, $data);
+        $this->processOneTableRow($sqlQuery, $data);
     }
-    public function deleteOneCategorie($id)
+
+    public function updateCatName(array $data):void
+    {
+        $sqlQuery = "UPDATE categories SET cat_name =:cat_name WHERE cat_id=:id";
+        $this->processOneTableRow($sqlQuery, $data);
+    }
+
+    public function deleteOneCategorie(string $id):void
     {
         $sqlQuery = "DELETE FROM categories WHERE cat_id = ?";
-        return $this->processOneTableRow($sqlQuery, [$id]);
+        $this->processOneTableRow($sqlQuery, [$id]);
     }
 }

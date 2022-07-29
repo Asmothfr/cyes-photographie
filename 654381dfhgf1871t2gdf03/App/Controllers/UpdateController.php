@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
 use App\Models\AdminModel;
+use App\Models\AlbumsModel;
+use App\Models\CategoriesModel;
 use Library\LayoutController;
 
 class UpdateController extends LayoutController
@@ -252,6 +254,30 @@ class UpdateController extends LayoutController
         else
         {
             header("location:index.php?route=about");
+        }
+    }
+
+    public function updateCategorie():void
+    {
+        print_r($_POST);
+        $catModel = new CategoriesModel;
+        if(isset($_POST["cat_name"])&&!empty($_POST["cat_name"]))
+        {
+            $data = [
+                "cat_name"=>$_POST["cat_name"],
+                "id"=>$_GET["cat_id"]
+            ];
+            
+            $catModel->updateCatName($data);
+            header("location:index.php?route=albums");
+        }
+        else
+        {
+            $model = new AlbumsModel;
+            $categories = $catModel->getCategories();
+            $albums = $model->getAlbums();
+            $error["update_categories"] = "Veuillez définir un nom à la catégorie avant de valider la modification.";
+            $this->render("albums",["categories"=>$categories,"albums"=>$albums,"error"=>$error]);
         }
     }
 
