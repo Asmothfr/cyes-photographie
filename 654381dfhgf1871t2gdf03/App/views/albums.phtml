@@ -60,14 +60,16 @@
         <?php endif?>
         <button>Valider</button>
     </form>
+
+    <label id="categories"></label>
+    <select name="categories" id="categories">
+        <option value="">Filtrer les albums par Themes</option>
+        <?php foreach($categories as $categorie):?>
+        <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
+        <?php endforeach ?>
+    </select>
+    
     <?php foreach($albums as $album): ?>
-        <label id="categories"></label>
-        <select name="categories" id="categories">
-            <option value="">Filtrer les albums par Themes</option>
-            <?php foreach($categories as $categorie):?>
-            <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
-            <?php endforeach ?>
-        </select>
         <article>
             <a href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">
             <img src="../assets/img/albm_photos/<?=htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des catégories">
@@ -76,9 +78,34 @@
             <a href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">
                 <button>Ajouter des photos à l'album</button>
             </a>
-            <a href="#">
-                <button>Modifier</button>
-            </a>
+
+            <h3>Modifier l'album <?=htmlspecialchars($album["albm_title"])?></h3>
+            <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAlbum&albm_id=<?=htmlspecialchars($album["albm_id"])?>">
+
+                <label for="categories">Modifier la catégorie</label>
+
+                <select name="categories" id="categories">
+                    <option value="<?=htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
+                    <?php foreach($categories as $categorie):?>
+                    <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
+                    <?php endforeach ?>
+                </select>
+
+                <label for="albm_title">Modifier le titre</label>
+                <input id="albm_title" name="albm_title" type="text" value="<?=htmlspecialchars($album["albm_title"])?>">
+                <label for="albm_description">Modifier la description</label>
+                <input id="albm_description" name="albm_description" type="text" value= "<?=htmlspecialchars($album["albm_description"])?>">
+                <label for="albm_pht">Modifier la photo</label>
+                <input id="albm_pht" name="albm_pht" type="file">
+                <?php if(isset($error) && array_key_exists("update_mime",$error)):?>
+                    <p><?=htmlspecialchars($error["update_mime"])?></p>
+                <?php endif ?>
+                <?php if(isset($error) && array_key_exists("update_empty",$error)):?>
+                    <p><?=htmlspecialchars($error["update_empty"])?></p>
+                <?php endif ?>
+                <button>Valider Modification</button>
+            </form>
+
             <a href="index.php?route=deleteAlbum&albm_id=<?=htmlspecialchars($album["albm_id"])?>&albm_photo=<?=htmlspecialchars($album["albm_photo"])?>">
                 <button>Supprimer</button>
             </a>

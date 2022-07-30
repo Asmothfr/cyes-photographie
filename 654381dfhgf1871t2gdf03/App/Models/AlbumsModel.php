@@ -32,6 +32,12 @@ class AlbumsModel extends Database
         return $this->find($sqlQuery);
     }
 
+    public function getPhtAlbm(string $id):array
+    {
+        $sqlQuery = "SELECT albm_photo FROM albums WHERE albm_id = ?";
+        return $this->find($sqlQuery, [$id]);
+    }
+
     public function addOneAlbum(array $data):void
     {
         $sqlQuery = "INSERT INTO albums (albm_cat_id,albm_title,albm_description,albm_photo) VALUES (:categories,:title,:descript,:photoName)";

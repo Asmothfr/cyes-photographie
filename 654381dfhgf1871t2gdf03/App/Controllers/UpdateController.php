@@ -283,6 +283,61 @@ class UpdateController extends LayoutController
 
     public function updateAlbum():void
     {
-        
+        $model = new AlbumsModel;
+        $catModel= new CategoriesModel;
+        $albums = $model->getAlbums();
+        $categories = $catModel->getCategories();
+
+        if(isset($_POST["categories"]) && !empty($_POST["categories"]) &&
+            isset($_POST["albm_title"]) && !empty($_POST["albm_title"]) &&
+            isset($_POST["albm_description"]) && !empty($_POST["albm_description"]))
+        {
+            $id = $_GET["albm_id"];
+            $oldPhotoRequest = $model->getPhtAlbm($id);
+            $oldPhoto = $oldPhotoRequest["albm_photo"];
+            if(isset($_FILES["albm_pht"]) && !empty($_FILES["albm_pht"]["name"]))
+            {
+                if(mime_content_type($_FILES["albm_pht"]["tmp_name"])=="image/jpeg")
+                {
+                    $phtNewName = $_FILES["albm_pht"]["name"];
+                    $tmpName = $_FILES["albm_pht"]["tmp_name"];
+                    $dir = "../assets/img/albm_photos/";
+                    unlink($dir.$oldPhoto);
+                    move_uploaded_file($tmpName, $dir . $phtNewName);
+                    $data = [
+                        "cat_id"=>$_POST["categories"],
+                        "title"=>$_POST["albm_title"],
+                        "descrip"=>$_POST["albm_description"],
+                        "photo"=>$phtNewName,
+                        "id"=>$id
+                    ];
+                    $model->updateAlbum($data);
+                    header("location:index.php?route=albums");
+                }
+                else
+                {
+                    $error["update_mime"]="Attention, ce fichier n'est pas une photo.";
+                    $this->render("albums",["albums"=>$albums,"categories"=>$categories,"error"=>$error]);
+                }
+            }
+            else
+            {
+                $data = [
+                    "cat_id"=>$_POST["categories"],
+                    "title"=>$_POST["albm_title"],
+                    "descrip"=>$_POST["albm_description"],
+                    "photo"=>$oldPhoto,
+                    "id"=>$id
+                ];
+                $model->updateAlbum($data);
+                header("location:index.php?route=albums");
+            }
+        }
+        else
+        {
+            $error["update_empty"]="Veuillez renseigner tous les champs avant de valider le formulaire.";
+            $this->render("albums",["albums"=>$albums,"categories"=>$categories,"error"=>$error]);
+        }
+
     }
 }

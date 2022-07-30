@@ -64,6 +64,10 @@ return [
         "controller"=> "App\Controllers\AddController",
         "method"=> "addActualities"
     ],
+    "updateAlbum" => [
+        "controller"=> "App\Controllers\UpdateController",
+        "method"=> "updateAlbum"
+    ],
     "updateCategorie" => [
         "controller"=> "App\Controllers\UpdateController",
         "method"=> "updateCategorie"
