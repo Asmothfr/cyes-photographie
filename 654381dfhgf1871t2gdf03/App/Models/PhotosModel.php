@@ -12,7 +12,7 @@ class PhotosModel extends Database
         return $this->findAll($sqlQuery);
     }
 
-    public function getAllPhotos($id): array
+    public function getAllPhotos(string $id): array
     {
         $sqlQuery = "SELECT * 
                     FROM photos
@@ -20,15 +20,21 @@ class PhotosModel extends Database
         return $this->findAll( $sqlQuery, [$id]);
     }
 
-    public function addPhotos($data):void
+    public function addPhotos(array $data):void
     {
         $sqlQuery = "INSERT INTO photos(pht_albm_id,pht_name) VALUES(:albm_id,:phtName)";
         $this->processOneTableRow($sqlQuery, $data);
     }
 
-    public function deleteOnePhoto($phtName):void
+    public function deleteOnePhoto( string $phtName):void
     {
         $sqlQuery = "DELETE FROM photos WHERE pht_name = ?";
         $this->processOneTableRow($sqlQuery, [$phtName]);
+    }
+
+    public function deleteAllphotos(string $id):void
+    {
+        $sqlQuery = "DELETE FROM photos WHERE pht_albm_id = ?";
+        $this->processOneTableRow($sqlQuery, [$id]);
     }
 }

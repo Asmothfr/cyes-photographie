@@ -92,6 +92,10 @@ return [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "deleteOnePhoto"
     ],
+    "deleteAllPhotos" => [
+        "controller"=> "App\Controllers\DeleteController",
+        "method"=> "deleteAllPhotos"
+    ],
     "deleteAlbum" => [
         "controller"=> "App\Controllers\DeleteController",
         "method"=> "DeleteOneAlbum"

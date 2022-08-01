@@ -17,6 +17,14 @@ class CategoriesModel extends Database
         $this->processOneTableRow($sqlQuery, $data);
     }
 
+    public function catAndAlbmJoin():array
+    {
+        $sqlQuery = "SELECT * FROM categories
+                    INNER JOIN albums 
+                    ON albums.albm_cat_id = categories.cat_id";
+        return $this->findAll($sqlQuery);
+    }
+
     public function updateCatName(array $data):void
     {
         $sqlQuery = "UPDATE categories SET cat_name =:cat_name WHERE cat_id=:id";

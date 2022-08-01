@@ -18,13 +18,13 @@ class Formcontroller extends LayoutController
         {
             $errors["e2"] = "Veuillez renseigner votre Prénom.";
         }
-        if(!isset($_POST["tel"]) || empty($_POST["tel"]))
+        if(!isset($_POST["tel"]) || empty($_POST["tel"]) || !preg_match('/^[0-9]{10}+$/', $_POST["tel"]))
         {
-            $errors["e3"] = "Veuillez renseigner votre numéro de téléphone.";
+            $errors["e3"] = "Veuillez renseigner un numéro de téléphone valide.";
         }
-        if(!isset($_POST["mail"]) || empty($_POST["mail"]))
+        if(!isset($_POST["mail"]) || empty($_POST["mail"]) || !filter_var($_POST["mail"],FILTER_VALIDATE_EMAIL ))
         {
-            $errors["e4"] = "Veuillez renseigner votre mail.";
+            $errors["e4"] = "Veuillez renseigner un email valide.";
         }
         if(!isset($_POST["subject"]) || empty($_POST["subject"]))
         {

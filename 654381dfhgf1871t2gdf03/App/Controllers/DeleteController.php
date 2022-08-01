@@ -33,6 +33,21 @@ class DeleteController extends LayoutController
         header("location: index.php?route=gallery&id=".$albmId);
     }
 
+    public function deleteAllPhotos():void
+    {
+        $id = $_GET["albm_id"];
+        $dir = "../assets/img/photos/". $id ."/";
+        $scandir = scandir($dir);
+        $photos = array_diff($scandir,array('.','..'));
+        foreach ($photos as $photo)
+        {
+            unlink($dir.$photo);
+        }
+        $model = new PhotosModel;
+        $model -> deleteAllPhotos($id);
+        header("location:index.php?route=gallery&id=".$id);
+    }
+
     public function deleteOneAlbum():void
     {
         $albmId = $_GET["albm_id"];

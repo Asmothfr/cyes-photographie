@@ -50,13 +50,12 @@ Une page d'acceuil:
 
 Note :
 
-*automatiser connection data base avec un construct*
-
 
 filter_var = vérifie si il y a @ et . pour un email
 
 strlen = vérifie longueur d'une string dans un formulaire
 
-trim ?
+trim  = supprime les espaces ien début et fin de chaine de caractère.
 
 capchat dans le formulaire pour vérifier bot.
+

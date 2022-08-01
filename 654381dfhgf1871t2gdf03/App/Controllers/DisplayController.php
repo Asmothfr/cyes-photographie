@@ -27,10 +27,8 @@ class DisplayController extends LayoutController
     {
         $catModel = new CategoriesModel;
         $cat = $catModel->getCategories();
-
-        $albModel = new AlbumsModel;
-        $albums = $albModel->getAlbums();
-        $this->render("albums", ["albums"=>$albums, "categories"=>$cat]);
+        $albmCatContents = $catModel->catAndAlbmJoin();
+        $this->render("albums", ["categories"=>$cat,"contents"=>$albmCatContents]);
     }
 
     public function displayPhotos(): void

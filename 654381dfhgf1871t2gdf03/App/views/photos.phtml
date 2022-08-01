@@ -12,16 +12,19 @@
         <?php endif?>
         <button>Valider</button>
     </form>
+    <div>
+        <h3>Supprimer toutes les photos de l'album</h3>
+        <a href="index.php?route=deleteAllPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>">
+        <button>Supprimer </button>
+        </a>
+    </div>
     
     <h3><?=htmlspecialchars($album["albm_title"])?></h2>
     <p><?=htmlspecialchars($album["albm_description"])?></p>
     <?php foreach($photos as $photo): ?>
 
         <img src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
-        <a href="">
-            <button>Modifier</button>
-        </a>
-        <a href="index.php?route=deletePhoto&albm_id=<?= htmlspecialchars($album["albm_id"]) ?>&pht_name=<?= htmlspecialchars($photo["pht_name"]) ?>">
+        <a href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
             <button>Supprimer</button>
         </a>
     <?php endforeach; ?>

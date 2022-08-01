@@ -30,9 +30,7 @@
         </div>
         <div>
             <label for="subject"></label>
-            <input id="subject" name="subject" placeholder="Objet">
-            <?=htmlspecialchars(@$_POST["subject"]) ?>
-            </input>
+            <input id="subject" name="subject" placeholder="Objet" value="<?=htmlspecialchars(@$_POST["subject"]) ?>">
             <?php if( isset($errors) && array_key_exists("e5",$errors) ) : ?>
                 <p><?= $errors["e5"] ?></p>
             <?php endif ?>
