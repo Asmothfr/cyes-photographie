@@ -39,9 +39,10 @@ class AddController extends LayoutController
         $errors = [];
         $catModel = new CategoriesModel;
         $albModel = new AlbumsModel;
+        $albmCatContents = $catModel->catAndAlbmJoin();
         $cat = $catModel->getCategories();
         $albums = $albModel->getAlbums();
-        
+
         if(!isset($_POST["categories"]) || empty($_POST["categories"]))
         {
             $errors["e1"] = "Veuillez choisir une categorie.";
@@ -60,14 +61,14 @@ class AddController extends LayoutController
         }
         if(isset($errors) && !empty($errors))
         {
-            $this->render("albums", ["albums"=>$albums, "categories"=>$cat, "errors"=>$errors]);
+            $this->render("albums", ["contents"=>$albmCatContents, "categories"=>$cat, "errors"=>$errors]);
         }
         else
         {
             if(mime_content_type($_FILES["photoName"]["tmp_name"]) != "image/jpeg")
             {
                 $errors["e5"] = "C'est pas gentil de vouloir envoyer des photos qui n'en sont pas. Faut pas refaire ça !";
-                $this->render("albums", ["albums"=>$albums, "categories"=>$cat, "errors"=>$errors]);
+                $this->render("albums", ["contents"=>$albmCatContents, "categories"=>$cat, "errors"=>$errors]);
             }
             else
             {
@@ -116,8 +117,7 @@ class AddController extends LayoutController
                 {
                     array_push($validPhotos, $uploadedPhoto);
                 }
-            }  
-            
+            }              
             //Comparaison entre les photos envoyés et les photos valides.
             //Récupération des index des photos valides.
             $tmpNames = array_intersect($uploadedPhotos["tmp_name"], $validPhotos);

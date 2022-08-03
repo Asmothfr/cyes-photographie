@@ -25,7 +25,7 @@ class DisplayController extends LayoutController
     {
         $model = new GalleriesModel;
         $albums = $model->getAlbums();
-        $this->render("galleries", ["albums"=>$albums]);
+        $this->render("albums", ["albums"=>$albums]);
     }
 
     public function displayPhotos(): void

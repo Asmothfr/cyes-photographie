@@ -1,0 +1,19 @@
+/* Public */
+.albums_article_img{
+    width:250px;
+    display: block;
+    margin: 0 auto;
+}
+
+.albums_select{
+    display: block;
+    padding: 0.5rem;
+    margin: 2rem;
+    /* text-align: center; */
+    margin: 0 auto;
+}
+.albums_article_title{
+    text-align: center;
+    font-weight: 300;
+    font-style: italic;
+}

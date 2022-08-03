@@ -1,0 +1,15 @@
+<section class="albums">
+    <select class="albums_select" name="categories">
+        <option class="albums_select_option" value="#">Filtrez par catégorie</option>
+        <option class="albums_select_option" value="<?= htmlspecialchars($album["albm_cat_id"])?>">Mariages</option>
+    </select>
+    
+    <?php foreach($albums as $album): ?>
+    <article class="albums_article">
+            <a class="albums_article_link" href="index.php?route=photos&id=<?=htmlspecialchars($album["albm_id"])?>">
+                <img class="albums_article_img" src="assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des catégories">
+            </a>
+            <h2 class="albums_article_title"><?=htmlspecialchars($album["albm_title"])?></h2>
+        </article>
+    <?php endforeach ?>
+</section>

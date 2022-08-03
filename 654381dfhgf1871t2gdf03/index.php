@@ -3,7 +3,7 @@ use App\Controllers\LoginController;
 use Library\Router;
 
 spl_autoload_register(function ($className) {
-    require lcfirst(str_replace('\\', '/', $className)) . '.php';
+    require (str_replace('\\', '/', $className)) . '.php';
 });
 
 session_start();

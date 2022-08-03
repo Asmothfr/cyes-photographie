@@ -1,0 +1,29 @@
+/* public */
+.generalities{
+    font-size : 62.5%;
+    font-family: "work sans";
+    background-color: #000;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.nav__element__link{
+    text-decoration: none;
+    color: #fff;
+}
+.nav__element{
+    list-style-type: none;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0.4rem;
+}
+
+.nav{
+    padding: 0;
+}
+
+.nav__element_title{
+    font-family: "dancing script";
+    font-size: 3rem;
+    margin: 25vh 0 20vh 0;
+}
