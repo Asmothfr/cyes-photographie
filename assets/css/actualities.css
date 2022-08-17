@@ -1,0 +1,28 @@
+:root{
+    --fontColor: #262626;
+    --backgroundColor: #ffffff;
+}
+
+.actualities__article {
+ text-align: center;
+}
+.actualities__img {
+    width: 100vw;
+}
+.actualities__title{
+
+}
+.actualities__date{
+    font-weight: 600;
+}
+.actualities__content{
+    text-align: justify;
+    line-height: 1rem;
+    font-weight: 500;
+    margin: 1rem;
+}
+.actualities__decoration{
+    margin: 2rem auto;
+    border-top: 1px solid var(--fontColor);
+    width: 30vw;
+}

@@ -1,19 +1,40 @@
-/* Public */
-.albums_article_img{
-    width:250px;
-    display: block;
-    margin: 0 auto;
+:root{
+    --fontColor: #262626;
+    --backgroundColor: #ffffff;
 }
 
 .albums_select{
     display: block;
+    text-align: center;
     padding: 0.5rem;
     margin: 2rem;
-    /* text-align: center; */
     margin: 0 auto;
 }
-.albums_article_title{
+
+.albums_article{
     text-align: center;
+    margin: 2rem;
+}
+
+/* .albums_article_img{
+    border: 0.5rem solid #797979;
+    border-radius: 10px;
+} */
+
+.albums_article_title{
+    margin: 0.5rem auto 0;
+}
+
+.albums_article_underline-title{
+    margin: 1rem auto 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--fontColor);
+    width: 11.5rem;
+}
+
+.albums_article_title{
     font-weight: 300;
     font-style: italic;
 }
+
+/* BACK OFFICE */

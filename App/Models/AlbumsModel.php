@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Database\Database;
 
-class GalleriesModel extends Database
+class AlbumsModel extends Database
 {
     public function getAlbums()
     {

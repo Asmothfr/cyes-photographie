@@ -8,13 +8,13 @@ return [
         "controller"=>"App\Controllers\DisplayController",
         "method"=>"displayHome"
     ],
-    "galleries" => [
+    "albums" => [
         "controller"=> "App\Controllers\DisplayController",
         "method"=> "displayAlbums"
     ],
-    "photos" => [
+    "gallery" => [
         "controller"=> "App\Controllers\DisplayController",
-        "method"=> "displayPhotos"
+        "method"=> "displayGallery"
     ],
     "about" => [
         "controller"=> "App\Controllers\DisplayController",

@@ -3,11 +3,10 @@
 namespace App\Controllers;
 
 use Library\LayoutController;
-use App\Models\GalleriesModel;
 use App\Models\PhotosModel;
 use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
-use App\Models\TestModel;
+use App\Models\AlbumsModel;
 
 class DisplayController extends LayoutController
 {
@@ -23,22 +22,22 @@ class DisplayController extends LayoutController
 
     public function displayAlbums(): void
     {
-        $model = new GalleriesModel;
-        $albums = $model->getAlbums();
+        $albmModel = new AlbumsModel;
+        $albums = $albmModel->getAlbums();
         $this->render("albums", ["albums"=>$albums]);
     }
 
-    public function displayPhotos(): void
+    public function displayGallery(): void
     {   
         $id= $_GET["id"];
 
-        $model = new GalleriesModel;
+        $model = new AlbumsModel;
         $album = $model->getOneAlbum($id);
 
         $secondModel = new PhotosModel;
         $photos = $secondModel->getAllPhotos($id);
 
-        $this->render("photos", ["album"=>$album, "photos"=>$photos]);
+        $this->render("gallery", ["album"=>$album, "photos"=>$photos]);
     }
 
     public function displayAbout(): void

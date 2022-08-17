@@ -1,17 +1,31 @@
 /* public */
+
+:root{
+    --fontColor: #262626;
+    --backgroundColor: #ffffff;
+}
+:root.dark-mode{
+    --fontColor: #f1f1f1;
+    --backgroundColor: #262626;
+}
 .generalities{
     font-size : 62.5%;
     font-family: "work sans";
-    background-color: #000;
-    color: #fff;
     font-size: 0.8rem;
+    box-sizing: border-box;
+    color: var(--fontColor);
+    background-color: var(--backgroundColor);
 }
 
-.nav__element__link{
+.nav__title__link, 
+.nav__menu__element__link{
     text-decoration: none;
-    color: #fff;
+    color: var(--fontColor);
 }
-.nav__element{
+
+.nav__menu,
+.nav__menu__element,
+.nav__title{
     list-style-type: none;
     font-size: 1.6rem;
     text-align: center;
@@ -21,9 +35,17 @@
 .nav{
     padding: 0;
 }
+/* Nav title page acceuil: */
 
-.nav__element_title{
+.nav__title{
     font-family: "dancing script";
     font-size: 3rem;
-    margin: 25vh 0 20vh 0;
+}
+
+/* swap the class according to the selected pages  */
+.nav__title--home{
+    margin: 25vh 0 15vh 0;
+}
+.nav__title--page{
+    margin: 5vh 0 5vh 0;
 }

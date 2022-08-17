@@ -22,7 +22,7 @@ class Formcontroller extends LayoutController
         {
             $errors["e3"] = "Veuillez renseigner un numéro de téléphone valide.";
         }
-        if(!isset($_POST["mail"]) || empty($_POST["mail"]) || !filter_var($_POST["mail"],FILTER_VALIDATE_EMAIL ))
+        if(!isset($_POST["mail"]) || empty($_POST["mail"]) || !filter_var($_POST["mail"],FILTER_VALIDATE_EMAIL))
         {
             $errors["e4"] = "Veuillez renseigner un email valide.";
         }
@@ -55,3 +55,5 @@ class Formcontroller extends LayoutController
         }
     }
 }
+
+

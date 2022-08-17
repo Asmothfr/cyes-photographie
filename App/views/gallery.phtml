@@ -1,0 +1,9 @@
+<section class="gallery">
+    <hr class="gallery__decoration">
+    <h2 class="gallery__title"><?= htmlspecialchars($album["albm_title"]) ?></h2>
+    <p class="gallery__desc"><?= htmlspecialchars($album["albm_description"]) ?></p>
+    <hr class="gallery__decoration">
+    <?php foreach ($photos as $photo) : ?>
+        <img class="gallery__img" src="assets/img/photos/<?= htmlspecialchars($photo["pht_albm_id"]) ?>/<?= htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
+    <?php endforeach; ?>
+</section>
