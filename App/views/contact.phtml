@@ -1,47 +1,47 @@
-<section>
-    <form action= "index.php?route=validation" method="POST">
-        <div>
-            <label for="lastname"></label>
-            <input id="lastname" type="text" name="lastname" placeholder="Nom" value="<?= htmlspecialchars(@$_POST["lastname"]) ?>"> 
+<section class="contact">
+    <form class="contact__form" action= "index.php?route=validation" method="POST">
+        <div class="contact__form__lastname">
+            <label class="contact__form__lastname__label" for="lastname">Nom :</label>
             <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
-                <p><?= $errors["e1"] ?></p>
+                <p class="form__error"><?= $errors["e1"] ?></p>
             <?php endif ?>
+            <input class="contact__form__lastname__input" id="lastname" type="text" name="lastname" value="<?= htmlspecialchars(@$_POST["lastname"]) ?>"> 
         </div>
-        <div>
-            <label for="firstname"></label>
-            <input id="firstname" type="text" name="firstname" placeholder="Prénom" value="<?= htmlspecialchars(@$_POST["firstname"]) ?>">
+        <div class="contact__form__firstname">
+            <label class="contact__form__firstname__label" for="firstname">Prénom :</label>
             <?php if( isset($errors) && array_key_exists("e2",$errors) ) : ?>
-                <p><?= $errors["e2"] ?></p>
+                <p class="form__error"><?= $errors["e2"] ?></p>
             <?php endif ?>
+            <input class="contact__form__firstname__input" id="firstname" type="text" name="firstname" value="<?= htmlspecialchars(@$_POST["firstname"]) ?>">
         </div>
-        <div>
-            <label for="tel"></label>
-            <input id="tel" type="tel" name="tel" placeholder="Téléphone" value="<?= htmlspecialchars(@$_POST["tel"]) ?>">
+        <div  class="contact__form__tel">
+            <label class="contact__form__tel__label" for="tel">Téléphone :</label>
             <?php if( isset($errors) && array_key_exists("e3",$errors) ) : ?>
-                <p><?= $errors["e3"] ?></p>
+                <p class="form__error"><?= $errors["e3"] ?></p>
             <?php endif ?>
+            <input class="contact__form__tel__input" id="tel" type="tel" name="tel" value="<?= htmlspecialchars(@$_POST["tel"]) ?>">
         </div>
-        <div>
-            <label for="mail"></label>
-            <input id="mail" type="mail" name="mail" placeholder="Email" value="<?= htmlspecialchars(@$_POST["mail"]) ?>">
+        <div class="contact__form__email">
+            <label class="contact__form__email__label" for="mail">Email :</label>
             <?php if( isset($errors) && array_key_exists("e4",$errors) ) : ?>
-                <p><?= $errors["e4"] ?></p>
+                <p class="form__error"><?= $errors["e4"] ?></p>
             <?php endif ?>
+            <input class="contact__form__email__input" id="mail" type="mail" name="mail" value="<?= htmlspecialchars(@$_POST["mail"]) ?>">
         </div>
-        <div>
-            <label for="subject"></label>
-            <input id="subject" name="subject" placeholder="Objet" value="<?=htmlspecialchars(@$_POST["subject"]) ?>">
+        <div class="contact__form__subject">
+            <label class="contact__form__subject__label" for="subject">Objet :</label>
             <?php if( isset($errors) && array_key_exists("e5",$errors) ) : ?>
-                <p><?= $errors["e5"] ?></p>
+                <p class="form__error"><?= $errors["e5"] ?></p>
             <?php endif ?>
+            <input class="contact__form__subject__input" id="subject" name="subject" value="<?=htmlspecialchars(@$_POST["subject"]) ?>">
         </div>
-        <div>
-            <label for="content"></label>
-            <textarea id="content" name="content"><?=htmlspecialchars(@$_POST["content"]) ?></textarea>
+        <div class="contact__form__content">
+            <label class="contact__form__content__label" for="content">Votre demande :</label>
             <?php if( isset($errors) && array_key_exists("e6",$errors) ) : ?>
-                <p><?= $errors["e6"] ?></p>
+                <p class="form__error"><?= $errors["e6"] ?></p>
             <?php endif ?>
+            <textarea class="contact__form__content__input" id="content" name="content"><?=htmlspecialchars(@$_POST["content"]) ?></textarea>
         </div>
-        <button type="submit">Valider</button>
+        <button class="contact__form__button" type="submit">Envoyer</button>
     </form>
 </section>

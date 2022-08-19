@@ -1,4 +1,4 @@
-<section class="Galleries">
+<section class="albums">
     <h3>Ajouter une Catégorie</h3>
     <form action="index.php?route=addCategorie" method="POST">
         <label for="catName"></label>
@@ -70,11 +70,11 @@
     </select>
     
     <?php foreach($contents as $content): ?>
-        <article>
-            <a href="index.php?route=gallery&id=<?=htmlspecialchars($content["albm_id"])?>">
-            <img src="../assets/img/albm_photos/<?=htmlspecialchars($content["albm_photo"])?>" alt="Photo de présentation des catégories">
+        <article class="albums_article">
+            <a class="albums_article_link" href="index.php?route=gallery&id=<?=htmlspecialchars($content["albm_id"])?>">
+            <img class="albums_article_img" src="../assets/img/albm_photos/<?=htmlspecialchars($content["albm_photo"])?>" alt="Photo de présentation des catégories">
             </a>
-            <h2><?=htmlspecialchars($content["albm_title"])?></h2>
+            <h2 class="albums_article_title"><?=htmlspecialchars($content["albm_title"])?></h2>
             <a href="index.php?route=gallery&id=<?=htmlspecialchars($content["albm_id"])?>">
                 <button>Ajouter des photos à l'album</button>
             </a>

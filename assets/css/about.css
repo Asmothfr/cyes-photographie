@@ -8,7 +8,6 @@
 }
 
 .about__article{
-
 }
 
 .about__article__img{
@@ -17,17 +16,16 @@
 
 .about__article__content{
 text-align: justify;
-margin: 2rem 1rem;
+margin: 2rem;
 }
 
 .about__socialNetwork{
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     text-align: center;
 }
 
 .fa-brands{
     font-size: 3rem;
-    margin: 0 1rem;
 }
 
 .fa-facebook{

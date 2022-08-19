@@ -1,4 +1,4 @@
-<section>
+<section class="actualities">
     <h3>Ajouter une actualité</h3>
     <form method = "POST" enctype="multipart/form-data" action="index.php?route=addActualitie">
         <div>
@@ -30,12 +30,13 @@
             <button>Valider</button>
     </form>
     <?php foreach($contents as $content): ?>
-    <article>
+    <article class="actualities__article">
         <div>
-            <img src="../assets/img/actu_img/<?=htmlspecialchars($content["act_photo"])?>" alt="photo d'illustration de l'article">
-            <h4><?=htmlspecialchars($content["act_title"])?></h4>
-            <p><?=htmlspecialchars($content["act_date"])?></p>
-            <p><?=htmlspecialchars($content["act_content"])?></p>
+            <img class="actualities__img" src="../assets/img/actu_img/<?=htmlspecialchars($content["act_photo"])?>" alt="photo d'illustration de l'article">
+            <h4 class="actualities__title"><?=htmlspecialchars($content["act_title"])?></h4>
+            <p class="actualities__date"><?=htmlspecialchars($content["act_date"])?></p>
+            <p class="actualities__content"><?=htmlspecialchars($content["act_content"])?></p>
+            <hr class="actualities__decoration">
         </div>
         <div>
             <h5>Modification de l'actualité</h5>
