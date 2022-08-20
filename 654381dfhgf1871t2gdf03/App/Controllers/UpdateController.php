@@ -273,11 +273,11 @@ class UpdateController extends LayoutController
         }
         else
         {
-            $model = new AlbumsModel;
             $categories = $catModel->getCategories();
-            $albums = $model->getAlbums();
+            $albmCatContents = $catModel->catAndAlbmJoin();
+
             $error["update_categories"] = "Veuillez définir un nom à la catégorie avant de valider la modification.";
-            $this->render("albums",["categories"=>$categories,"albums"=>$albums,"error"=>$error]);
+            $this->render("albums",["categories"=>$categories,"contents"=>$albmCatContents,"error"=>$error]);
         }
     }
 
@@ -285,7 +285,7 @@ class UpdateController extends LayoutController
     {
         $model = new AlbumsModel;
         $catModel= new CategoriesModel;
-        $albums = $model->getAlbums();
+        $albmCatContents = $catModel->catAndAlbmJoin();
         $categories = $catModel->getCategories();
 
         if(isset($_POST["categories"]) && !empty($_POST["categories"]) &&
@@ -317,7 +317,7 @@ class UpdateController extends LayoutController
                 else
                 {
                     $error["update_mime"]="Attention, ce fichier n'est pas une photo.";
-                    $this->render("albums",["albums"=>$albums,"categories"=>$categories,"error"=>$error]);
+                    $this->render("albums",["contents"=>$albmCatContents,"categories"=>$categories,"error"=>$error]);
                 }
             }
             else
@@ -336,7 +336,7 @@ class UpdateController extends LayoutController
         else
         {
             $error["update_empty"]="Veuillez renseigner tous les champs avant de valider le formulaire.";
-            $this->render("albums",["albums"=>$albums,"categories"=>$categories,"error"=>$error]);
+            $this->render("albums",["contents"=>$albmCatContents,"categories"=>$categories,"error"=>$error]);
         }
 
     }

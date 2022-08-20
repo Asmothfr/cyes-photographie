@@ -16,10 +16,9 @@
     margin: 2rem;
 }
 
-/* .albums_article_img{
-    border: 0.5rem solid #797979;
-    border-radius: 10px;
-} */
+.albums_article_img{
+    width: 250px;
+}
 
 .albums_article_title{
     margin: 0.5rem auto 0;
@@ -27,7 +26,6 @@
 
 .albums_article_underline-title{
     margin: 1rem auto 2.5rem;
-    padding-bottom: 1rem;
     border-bottom: 1px solid var(--fontColor);
     width: 11.5rem;
 }
@@ -38,3 +36,112 @@
 }
 
 /* BACK OFFICE */
+
+/*
+Albums, Actualities, Gallery And About Form.
+*/
+.albums__form,
+.actualities__form,
+.about__form{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.albums__formTitle,
+.actualities__Formtitle,
+.gallery__Formtitle,
+.about__Formtitle{
+    text-align: center;
+    margin: 1.5rem auto;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    width: fit-content;
+    border-bottom: 1px solid var(--fontColor);
+}
+.albums__form__label,
+.gallery__form__label,
+.actualities__form__label,
+.about__form__label{
+    margin: 1rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.albums__form__input,
+.gallery__form__input,
+.actualities__form__input,
+.about__form__input{
+    margin: 0 0 2rem 0;
+    padding: 1rem 0 0.5rem 0;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    border-bottom:1px solid var(--fontColor);
+    color: var(--fontColor);
+    background-color: var(--backgroundColor);
+}
+.actualities__form__input--update{
+    text-align: left;
+}
+.albums__form__textArea,
+.actualities__form__textArea,
+.about__form__textarea{
+    height: 20vh;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--fontColor);
+    border-radius: 0.5rem;
+    color: var(--fontColor);
+    background-color: var(--backgroundColor);
+}
+.actualities__form__date{
+    margin: 1rem 0 1rem 0;
+}
+.albums__Button,
+.gallery__Button,
+.actualities__Button,
+.about__button{
+    margin: 0.5rem auto;
+    min-width: 150px;
+    max-width: fit-content;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--backgroundColor);
+}
+.albums__Button--neutral{
+    border: 3px solid var(--fontColor);
+    color: var(--fontColor);
+}
+.albums__Button--validate,
+.gallery__Button--validate,
+.actualities__Button--validate,
+.about__button--validate{
+    border: 3px solid #0f7e00;
+    color: #0f7e00;
+}
+.albums__Button--delete,
+.gallery__Button--delete,
+.actualities__Button--delete{
+    display: block;
+    margin: 1rem auto;
+    border: 3px solid #da0000;
+    color: #da0000;
+}
+.Button--link{
+    text-decoration: none;
+}
+
+.albums__formError,
+.gallery__form__error,
+.about__form__error{
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color:#da0000;
+    font-weight: 600;
+}
+
+
+
+/* Lien insta : https://instagram.com/cyes_photographie?igshid=YmMyMTAMAY= */

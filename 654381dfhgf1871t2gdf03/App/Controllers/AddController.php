@@ -15,9 +15,8 @@ class AddController extends LayoutController
     {
         $error=[];
         $catModel = new CategoriesModel;
-        $albModel = new AlbumsModel;
         $cat = $catModel->getCategories();
-        $albums = $albModel->getAlbums();
+        $albmCatContents = $catModel->catAndAlbmJoin();
 
         if(!isset($_POST["catName"])||empty($_POST["catName"]))
         {
@@ -25,7 +24,7 @@ class AddController extends LayoutController
         }
         if(isset($error)&&!empty($error))
         {
-            $this->render("albums", ["albums"=>$albums, "categories"=>$cat, "error"=>$error]);
+            $this->render("albums", ["contents"=>$albmCatContents, "categories"=>$cat, "error"=>$error]);
         }
         else
         {
@@ -41,8 +40,6 @@ class AddController extends LayoutController
         $albModel = new AlbumsModel;
         $albmCatContents = $catModel->catAndAlbmJoin();
         $cat = $catModel->getCategories();
-        $albums = $albModel->getAlbums();
-
         if(!isset($_POST["categories"]) || empty($_POST["categories"]))
         {
             $errors["e1"] = "Veuillez choisir une categorie.";
@@ -132,7 +129,6 @@ class AddController extends LayoutController
                     move_uploaded_file($TmpName,$destination . $phtNames[$key]);
                     $data["phtName"] = $phtNames[$key];
                     $photosModel->addPhotos($data);
-                    print_r($phtNames[$key]);
                 }
             }
                 header("location: index.php?route=gallery&id=".$albmId);

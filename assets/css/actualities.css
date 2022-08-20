@@ -10,14 +10,20 @@
     width: 100vw;
 }
 .actualities__title{
-
+    font-size: 1.4rem;
 }
+/* .actualities__Subtitle{
+    font-size: 1.2rem;
+    border-bottom: ;
+} */
 .actualities__date{
     font-weight: 600;
+    font-size: 1rem;
 }
 .actualities__content{
     text-align: justify;
-    line-height: 1rem;
+    line-height: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     margin: 1rem;
 }

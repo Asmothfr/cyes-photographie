@@ -1,114 +1,107 @@
 <section class="albums">
-    <h3>Ajouter une Catégorie</h3>
-    <form action="index.php?route=addCategorie" method="POST">
-        <label for="catName"></label>
-        <input id="catName" type="text" name="catName" placeholder="Nom de la catégorie">
+    <h3 class="albums__formTitle">Ajouter une Catégorie :</h3>
+    <form class="albums__form" action="index.php?route=addCategorie" method="POST">
+        <label class="albums__form__label" for="catName">Nom de la catégorie :</label>
         <?php if( isset($error) && array_key_exists("catError",$error) ): ?>
-            <p><?= htmlspecialchars($error["catError"]) ?></p>
+            <p class="albums__formError"><?= htmlspecialchars($error["catError"]) ?></p>
         <?php endif?>
-        <button>Valider</button>
+        <input class="albums__form__input"id="catName" type="text" name="catName" placeholder="Entrez le nom de la categorie">
+        <button class="albums__Button albums__Button--validate">Valider</button>
     </form>
 
-    <h3>Mes Catégories:</h3>
+    <h3 class="albums__formTitle">Mes Catégories :</h3>
     <?php foreach($categories as $categorie): ?>
-        <form method="POST" action="index.php?route=updateCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
-        <label for="cat_name"></label>
-        <input id="cat_name" type="text" name="cat_name" value="<?=htmlspecialchars($categorie["cat_name"])?>">
+        <form class="albums__form" method="POST" action="index.php?route=updateCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
+        <label class="albums__form__label" for="cat_name"></label>
         <?php if( isset($error) && array_key_exists("update_categories",$error) ): ?>
-            <p><?= htmlspecialchars($error["update_categories"]) ?></p>
+            <p class="albums__formError"><?= htmlspecialchars($error["update_categories"]) ?></p>
         <?php endif?>
-        <button>Valider Modification</button>
+        <input class="albums__form__input" id="cat_name" type="text" name="cat_name" value="<?=htmlspecialchars($categorie["cat_name"])?>">
+        <button class="albums__Button albums__Button--validate">Valider Modification</button>
         </form>
-        <a href="index.php?route=deleteCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
-            <button>Supprimer</button>
+        <a class="Button--link"href="index.php?route=deleteCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
+            <button class="albums__Button albums__Button--delete">Supprimer</button>
         </a>
     <?php endforeach ?>
 
-    <h3>Ajouter un Album :</h3>
-    <form action="index.php?route=addAlbum" enctype="multipart/form-data" method="POST">
+    <h3 class="albums__formTitle">Ajouter un Album :</h3>
+    <form class="albums__form" action="index.php?route=addAlbum" enctype="multipart/form-data" method="POST">
 
-        <label for="categories"></label>
-        <select name="categories" id="categories">
+        <label class="albums__form__label" for="categories">Catégorie de l'album :</label>
+        <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
+            <p class="albums__formError"><?= htmlspecialchars($errors["e1"]) ?></p>
+        <?php endif?>
+        <select class="albums__form__input" name="categories" id="categories">
             <option value="">Catégorie</option>
             <?php foreach($categories as $categorie):?>
             <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
             <?php endforeach ?>
         </select>
-            <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
-            <p><?= htmlspecialchars($errors["e1"]) ?></p>
-        <?php endif?>
 
-        <label for="title"></label>
-        <input id="title" type="text" name="title" placeholder="Titre">
+        <label class="albums__form__label" for="title">Titre de l'album :</label>
         <?php if( isset($errors) && array_key_exists("e2",$errors) ): ?>
-            <p><?= htmlspecialchars($errors["e2"]) ?></p>
+            <p class="albums__formError"><?= htmlspecialchars($errors["e2"]) ?></p>
         <?php endif?>
+        <input class="albums__form__input" id="title" type="text" name="title" placeholder="Titre">
         
-        <label for="description"></label>
-        <input id="description" type="text" name="description" placeholder="Description">
+        <label class="albums__form__label" for="description">Description de l'album :</label>
         <?php if( isset($errors) && array_key_exists("e3",$errors) ):?>
-            <p><?= htmlspecialchars($errors["e3"]) ?></p>
+            <p class="albums__formError"><?= htmlspecialchars($errors["e3"]) ?></p>
         <?php endif?>
+        <textarea class="albums__form__textArea" id="description" type="text" name="description" placeholder="Description"></textarea>
             
-        <label for="photoName"></label>
-        <input id="photoName" type="file" name="photoName">
+        <label class="albums__form__label" for="photoName">Photo de présentation de l'album :</label>
         <?php if( isset($errors) && array_key_exists("e4",$errors) ):?>
-            <p><?= htmlspecialchars($errors["e4"]) ?></p>
+            <p class="albums__formError"><?= htmlspecialchars($errors["e4"]) ?></p>
         <?php endif?>
         <?php if( isset($errors) && array_key_exists("e5",$errors) ):?>
-            <p><?= htmlspecialchars($errors["e5"]) ?></p>
+            <p class="albums__formError"><?= htmlspecialchars($errors["e5"]) ?></p>
         <?php endif?>
-        <button>Valider</button>
+        <input class="albums__form__input"id="photoName" type="file" name="photoName">
+        <button class="albums__Button albums__Button--validate">Valider</button>
     </form>
-
-    <label for="categories"></label>
-    <select name="categories" id="categories">
-        <option value="">Filtrer les albums par Themes</option>
-        <?php foreach($categories as $categorie):?>
-        <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
-        <?php endforeach ?>
-    </select>
     
     <?php foreach($contents as $content): ?>
+        <hr class="albums_article_underline-title">
         <article class="albums_article">
             <a class="albums_article_link" href="index.php?route=gallery&id=<?=htmlspecialchars($content["albm_id"])?>">
             <img class="albums_article_img" src="../assets/img/albm_photos/<?=htmlspecialchars($content["albm_photo"])?>" alt="Photo de présentation des catégories">
             </a>
             <h2 class="albums_article_title"><?=htmlspecialchars($content["albm_title"])?></h2>
             <a href="index.php?route=gallery&id=<?=htmlspecialchars($content["albm_id"])?>">
-                <button>Ajouter des photos à l'album</button>
+                <button class="albums__Button albums__Button--neutral">Ajouter des photos à l'album</button>
             </a>
 
-            <h3>Modifier l'album <?=htmlspecialchars($content["albm_title"])?></h3>
-            <form method="POST" enctype="multipart/form-data" action="index.php?route=updateAlbum&albm_id=<?=htmlspecialchars($content["albm_id"])?>">
+            <h3 class="albums__formTitle">Modifier l'album : <?=htmlspecialchars($content["albm_title"])?></h3>
+            <form class="albums__form" method="POST" enctype="multipart/form-data" action="index.php?route=updateAlbum&albm_id=<?=htmlspecialchars($content["albm_id"])?>"><?php if(isset($error) && array_key_exists("update_mime",$error)):?>
+                    <p class="albums__formError"><?=htmlspecialchars($error["update_mime"])?></p>
+                <?php endif ?>
+                <?php if(isset($error) && array_key_exists("update_empty",$error)):?>
+                    <p class="albums__formError"><?=htmlspecialchars($error["update_empty"])?></p>
+                <?php endif ?>
 
-                <label for="categories">Modifier la catégorie</label>
-
-                <select name="categories" id="categories">
+                <label class="albums__form__label" for="categories">Modifier la catégorie :</label>
+                <select class="albums__form__input" name="categories" id="categories">
                     <option value="<?=htmlspecialchars($content["albm_cat_id"])?>"><?= htmlspecialchars($content["cat_name"])?></option>
                     <?php foreach($categories as $categorie):?>
                     <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>
                     <?php endforeach ?>
                 </select>
 
-                <label for="albm_title">Modifier le titre</label>
-                <input id="albm_title" name="albm_title" type="text" value="<?=htmlspecialchars($content["albm_title"])?>">
-                <label for="albm_description">Modifier la description</label>
-                <input id="albm_description" name="albm_description" type="text" value= "<?=htmlspecialchars($content["albm_description"])?>">
-                <label for="albm_pht">Modifier la photo</label>
-                <input id="albm_pht" name="albm_pht" type="file">
-                <?php if(isset($error) && array_key_exists("update_mime",$error)):?>
-                    <p><?=htmlspecialchars($error["update_mime"])?></p>
-                <?php endif ?>
-                <?php if(isset($error) && array_key_exists("update_empty",$error)):?>
-                    <p><?=htmlspecialchars($error["update_empty"])?></p>
-                <?php endif ?>
-                <button>Valider Modification</button>
+                <label class="albums__form__label" for="albm_title">Modifier le titre :</label>
+                <input class="albums__form__input" id="albm_title" name="albm_title" type="text" value="<?=htmlspecialchars($content["albm_title"])?>">
+                <label class="albums__form__label" for="albm_description">Modifier la description :</label>
+                <textarea class="albums__form__textArea" id="albm_description" name="albm_description" type="text"><?=htmlspecialchars($content["albm_description"])?></textarea>
+                <label class="albums__form__label" for="albm_pht">Modifier la photo :</label>
+                <input class="albums__form__input" id="albm_pht" name="albm_pht" type="file">
+                <button class="albums__Button albums__Button--validate">Valider Modification</button>
             </form>
 
-            <a href="index.php?route=deleteAlbum&albm_id=<?=htmlspecialchars($content["albm_id"])?>&albm_photo=<?=htmlspecialchars($content["albm_photo"])?>">
-                <button>Supprimer</button>
+            <a class="Button--link" href="index.php?route=deleteAlbum&albm_id=<?=htmlspecialchars($content["albm_id"])?>&albm_photo=<?=htmlspecialchars($content["albm_photo"])?>">
+                <button class="albums__Button albums__Button--delete">Supprimer</button>
             </a>
         </article>
+        <!-- <hr class="albums_article_underline-title"> -->
+
     <?php endforeach ?>
 </section>

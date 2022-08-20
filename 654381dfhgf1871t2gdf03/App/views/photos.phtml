@@ -1,31 +1,32 @@
-<section>
-    <h3>Ajouter des photos à l'album <?=htmlspecialchars($album["albm_title"]) ?></h3>
+<section class="gallery">
+    <h3 class="gallery__Formtitle">Ajouter des photos à l'album <?=htmlspecialchars($album["albm_title"]) ?> :</h3>
 
-    <form action="index.php?route=addPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>" enctype="multipart/form-data" method="POST">
+    <form class="gallery__form" action="index.php?route=addPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>" enctype="multipart/form-data" method="POST">
         <label id="photos"></label>
-        <input type="file" multiple="true" name="photos[]">
         <?php if( isset($errors) && array_key_exists("e1",$errors)): ?>
-            <p><?= htmlspecialchars($errors["e1"]) ?></p>
+            <p class="gallery__form__error"><?= htmlspecialchars($errors["e1"]) ?></p>
         <?php endif?>
+        <input class="gallery__form__input" type="file" multiple="true" name="photos[]">
         <?php if( isset($errors) && array_key_exists("phtExist",$errors)): ?>
             <p><?= htmlspecialchars($errors["phtExist"]) ?></p>
         <?php endif?>
-        <button>Valider</button>
+        <button class="gallery__Button gallery__Button--validate">Valider</button>
     </form>
     <div>
-        <h3>Supprimer toutes les photos de l'album</h3>
-        <a href="index.php?route=deleteAllPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>">
-        <button>Supprimer </button>
+        <h3 class="gallery__Formtitle">Supprimer toutes les photos de l'album :</h3>
+        <a class="Button--link" href="index.php?route=deleteAllPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>">
+        <button class="gallery__Button gallery__Button--delete">Supprimer </button>
         </a>
     </div>
-    
-    <h3><?=htmlspecialchars($album["albm_title"])?></h2>
-    <p><?=htmlspecialchars($album["albm_description"])?></p>
+    <hr class="gallery__decoration gallery__decoration--admin">
+    <h3 class="gallery__title"><?=htmlspecialchars($album["albm_title"])?></h2>
+    <p class="gallery__desc"><?=htmlspecialchars($album["albm_description"])?></p>
+    <hr class="gallery__decoration">
     <?php foreach($photos as $photo): ?>
 
-        <img src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
-        <a href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
-            <button>Supprimer</button>
+        <img class="gallery__img" src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
+        <a class="Button--link" href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
+            <button class="gallery__Button gallery__Button--delete">Supprimer</button>
         </a>
     <?php endforeach; ?>
 </section>
