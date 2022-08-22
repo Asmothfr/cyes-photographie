@@ -143,6 +143,3 @@ class DeleteController extends LayoutController
             return rmdir($dir);
         }
 }
-
-
-

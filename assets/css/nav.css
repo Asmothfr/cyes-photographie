@@ -16,6 +16,10 @@
     color: var(--fontColor);
     background-color: var(--backgroundColor);
 }
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
 .nav__title__link, 
 .nav__menu__element__link{

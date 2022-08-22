@@ -20,8 +20,12 @@ margin: 2rem;
 }
 
 .about__socialNetwork{
-    margin-bottom: 1rem;
+    margin: 1rem;
     text-align: center;
+}
+
+.about__socialNetwork--updateMobile{
+    margin: 2rem auto;
 }
 
 .fa-brands{
