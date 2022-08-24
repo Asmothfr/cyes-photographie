@@ -1,13 +1,1 @@
 <div class="bgc"></div>
-
-<section class="adminLogin">
-    <?php if(!isset($_SESSION["connected"])): ?>
-    <form class="adminLogin__form"action="index.php?route=login" method="POST">
-        <label class="adminLogin__Label" for="login">Identifiant</label>
-        <input class="adminLogin__input" id="login"type="text" name="login" autocomplete="off">
-        <label class="adminLogin__Label" for="password">Mot de Passe</label>
-        <input class="adminLogin__input" id="password"type="password" name="password" autocomplete="off">
-        <button class="adminLogin__ValidateButton">Valider</button>
-    </form>
-    <?php endif ?>
-</section>

@@ -1,13 +1,13 @@
 <section>
-    <article>
-        <h3> <?= htmlspecialchars($mail["cont_usr_firstname"])  ?> <?= htmlspecialchars($mail["cont_usr_lastname"])  ?></h3>
-        <p> le <?= htmlspecialchars($mail["cont_date"])  ?></p>
-        <p> <?= htmlspecialchars($mail["cont_usr_mail"])  ?></p>
-        <p><?= htmlspecialchars($mail["cont_usr_tel"]) ?></p>
-        <p><?= htmlspecialchars($mail["cont_usr_subject"])  ?></p>
-        <p><?= htmlspecialchars($mail["cont_usr_content"])  ?></p>
-        <a href="index.php?route=deleteMail&id=<?= htmlspecialchars($mail["cont_id"]) ?>">
-            <button>Supprimer</button>
+    <article class="mail__article mail__article--display">
+        <h3 class="mail__article__title"><?= htmlspecialchars($mail["cont_usr_firstname"])?> <?= htmlspecialchars($mail["cont_usr_lastname"])?></h3>
+        <p class="mail__article__content mail__article__content--margin"> le <?= htmlspecialchars($mail["cont_date"])?></p>
+        <p class="mail__article__content mail__article__content--margin"><?= htmlspecialchars($mail["cont_usr_mail"])?></p>
+        <p class="mail__article__content mail__article__content--margin"><?= htmlspecialchars($mail["cont_usr_tel"])?></p>
+        <p class="mail__article__content mail__article__content--margin"><?= htmlspecialchars($mail["cont_usr_subject"])?></p>
+        <p class="mail__article__content mail__article__content--margin"><?= htmlspecialchars($mail["cont_usr_content"])?></p>
+        <a class="Button--link" href="index.php?route=deleteMail&id=<?= htmlspecialchars($mail["cont_id"])?>">
+            <button class="mail__button mail__button--delete">Supprimer</button>
         </a>
     </article>
 </section>

@@ -39,7 +39,6 @@
 .nav{
     padding: 0;
 }
-/* Nav title page acceuil: */
 
 .nav__title{
     font-family: "dancing script";
@@ -79,3 +78,5 @@
     background-color: transparent;
     color: var(--fontColor);
 }
+
+/* Responsive mobile to desktop */

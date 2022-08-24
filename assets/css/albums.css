@@ -55,9 +55,10 @@ Albums, Actualities, Gallery And About Form.
 .actualities__Formtitle,
 .gallery__Formtitle,
 .about__Formtitle,
-.admin_Formtitle{
+.admin_Formtitle,
+.mails__Formtitle{
     text-align: center;
-    margin: 1.5rem auto;
+    margin: 0 auto 1.5rem auto;
     font-size: 1.2rem;
     padding: 0.5rem;
     width: fit-content;
@@ -109,7 +110,8 @@ Albums, Actualities, Gallery And About Form.
 .gallery__Button,
 .actualities__Button,
 .about__button,
-.admin__button{
+.admin__button,
+.mail__button{
     display: block;
     margin: 0.5rem auto;
     min-width: 150px;
@@ -135,7 +137,8 @@ Albums, Actualities, Gallery And About Form.
 .albums__Button--delete,
 .gallery__Button--delete,
 .actualities__Button--delete,
-.about__button--delete{
+.about__button--delete,
+.mail__button--delete{
     /* display: block; */
     margin: 1rem auto;
     border: 3px solid #da0000;

@@ -22,7 +22,6 @@ class DeleteController extends LayoutController
 
     public function deleteOnePhoto():void
     {
-        
         $phtName = $_GET["pht_name"];
         $albmId = $_GET["albm_id"];
         $model = new PhotosModel;
