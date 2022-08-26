@@ -1,11 +1,13 @@
-<section class="albums container">    
+<section class="container">    
+    <div class="previews__group-card">
     <?php foreach($albums as $album): ?>
-        <article class="albums_article">
-            <a class="albums_article_link" href="index.php?route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">
-                <img class="albums_article_img" src="assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des catégories">
-            </a>
-            <h2 class="albums_article_title"><?=htmlspecialchars($album["albm_title"])?></h2>
-            <hr class="albums_article_underline-title">
-        </article>
-    <?php endforeach ?>
+            <article class="previews__card">
+                <a class="previews__link-img"href="index.php?  route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">
+                    <img class="previews__img" src="assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des albums">
+                </a>
+                <h2 class="previews__title"><?=htmlspecialchars($album ["albm_title"])?></h2>
+                <div class="underline-decoration"></div>
+            </article>
+        <?php endforeach ?>
+    </div>
 </section>

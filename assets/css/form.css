@@ -1,0 +1,16 @@
+:root{
+  --fontColor: #262626;
+  --backgroundColor: #ffffff;
+}
+
+.form__element{
+    max-width: 80vw;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+.form__label{
+
+}
+.form__input{
+
+}

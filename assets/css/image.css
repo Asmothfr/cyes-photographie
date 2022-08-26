@@ -1,0 +1,19 @@
+.image__large{
+    width: 100vw;
+}
+
+.image__large--about{
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width:500px) {
+    .image__large{
+        width: 500px;
+    }
+}
+
+@media screen and (min-width:500px) {
+    .image__large--about{
+        margin-right: 1rem;
+    }
+}

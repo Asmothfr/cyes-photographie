@@ -1,17 +1,17 @@
-<section class="about container">
-    <article class="about__article">
-        <img class="about__article__img"src="assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
-        <p class="about__article__content"><?= htmlspecialchars($about["abt_content"])?></p>
+<section>
+    <article class="about__card">
+        <img class="image__large image__large--about" src="assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
+        <p class="text__article"><?= htmlspecialchars($about["abt_content"])?></p>
     </article>
-    <div class="about__socialNetwork">
+    <div class="social-media__groups">
         <?php if(!empty($about["abt_facebook"])): ?>
-        <a class="about__socialNetwork__link" target="_blank" href="<?= htmlspecialchars($about["abt_facebook"])?>"><i class="fa-brands fa-facebook"></i></a>
+        <a class="link__style" target="_blank" href="<?= htmlspecialchars($about["abt_facebook"])?>"><i class="fa-brands fa-facebook"></i></a>
         <?php endif ?>
         <?php if(!empty($about["abt_instagram"])): ?>
-        <a class="about__socialNetwork__link" target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>"><i class="fa-brands fa-instagram"></i></a>
+        <a class="link__style" target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>"><i class="fa-brands fa-instagram"></i></a>
         <?php endif ?>
         <?php if(!empty($about["abt_twitter"])): ?>
-        <a class="about__socialNetwork__link" target="_blank" href="<?= htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-twitter-square"></i></a>
+        <a class="link__style" target="_blank" href="<?= htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-twitter-square"></i></a>
         <?php endif ?>
     </div>
 </section>

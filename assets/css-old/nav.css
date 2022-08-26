@@ -1,0 +1,121 @@
+/* public */
+/* .nav__title__link, 
+.nav__menu__element__link{
+    text-decoration: none;
+    color: var(--fontColor);
+}
+.nav__title__link:hover,
+.nav__menu__element__link:hover{
+    text-decoration: 1px solid underline;
+}
+
+.nav__menu,
+.nav__menu__element,
+.nav__title{
+    list-style-type: none;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0.4rem;
+}
+
+.nav{
+    padding: 0;
+}
+
+.nav__title{
+    font-family: "dancing script";
+    font-size: 3rem;
+} */
+
+/* swap the class according to the selected pages  */
+/* .nav__title--home{
+    margin: 25vh 0 15vh 0;
+} */
+
+.nav__title--homeAdmin{
+    margin: 25vh 0 2vh 0;
+}
+.nav__adminSubTitle{
+    text-align: center;
+    margin: 0 0 13vh 0;
+}
+.nav__title--page{
+    margin: 5vh 0 5vh 0;
+}
+
+/* Responsive mobile to desktop */
+
+@media screen and (min-width: 1024px) {
+    .nav__menu{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .nav__title--home{
+        margin: 40vh 0 35vh 0;
+    }
+    .nav__title--homeAdmin{
+        margin: 40vh 0 2vh 0;
+    }
+    .nav__adminSubTitle{
+        text-align: center;
+        margin: 0 0 5vh 0;
+    }
+    .adminLogin.albums__form,
+    .actualities__form,
+    .about__form,
+    .admin__form,
+    .albums__form__label,
+    .albums__form__input,
+    .contact__form{
+        /* width: fit-content; */
+        text-align: center;
+        margin: 0,5rem auto;
+    }
+    .albums__form__textArea{
+        width: 50vw;
+        margin: 2rem auto;
+    }
+    .albums,
+    .actualities{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+    }
+    .albums--admin,
+    .albums__categorie{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .albums__categorieList__element{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .albums__categorieList__button
+    .gallery__desc{
+        width: 50vw;
+    }
+    .about__article{
+        display: flex;
+        align-items: center;
+    }
+    .about__socialNetwork{
+        margin: 5rem;
+    }
+    .about__article,
+    .contact{
+        margin-top: 4rem;
+    }
+}
+
+@media screen and (min-width: 500px){
+    .gallery__img,
+    .about__article__img{
+        max-width: 500px;
+        display: block;
+        margin: 0 auto;
+    }
+}

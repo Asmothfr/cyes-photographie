@@ -6,7 +6,7 @@ function toggleDarkMode() {
 
 function refreshTheme() {
     const darkMode = localStorage.getItem('theme') === 'true'
-    const backgroundImage = document.querySelector('.bgc')
+    const backgroundImage = document.querySelector('.background')
 
     if (backgroundImage)
         backgroundImage.classList.toggle('dark-mode', darkMode)

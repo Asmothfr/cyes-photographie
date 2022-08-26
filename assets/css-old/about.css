@@ -1,0 +1,25 @@
+:root{
+    --fontColor: #262626;
+    --backgroundColor: #ffffff;
+}
+.about__article__img{
+    width: 100vw;
+}
+
+.about__article__content{
+text-align: justify;
+margin: 2rem;
+}
+
+.about__socialNetwork{
+    margin: 1rem;
+    text-align: center;
+}
+
+.about__socialNetwork__link{
+    text-decoration: none;
+}
+
+.about__socialNetwork--updateMobile{
+    margin: 2rem auto;
+}

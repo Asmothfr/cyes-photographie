@@ -1,0 +1,32 @@
+:root{
+    --fontColor: #262626;
+    --backgroundColor: #ffffff;
+}
+:root.dark-mode{
+    --fontColor: #f1f1f1;
+    --backgroundColor: #262626;
+}
+.generalities{
+    font-size : 62.5%;
+    font-family: "work sans";
+    box-sizing: border-box;
+    color: var(--fontColor);
+    background-color: var(--backgroundColor);
+}
+.container{
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.underline-decoration{
+    width: 20vw;
+    margin: 1rem auto;
+    border-top: 1px solid var(--fontColor);
+}
+
+@media screen and (min-width:1024px) {
+    .underline-decoration{
+        width: 250px;
+    }
+}

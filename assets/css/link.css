@@ -1,0 +1,8 @@
+:root{
+    --fontColor: #262626;
+    --backgroundColor: #ffffff;
+}
+.link__style{
+    text-decoration: none;
+    color: var(--fontColor);
+}

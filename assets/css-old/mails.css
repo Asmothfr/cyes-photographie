@@ -24,7 +24,7 @@ display: inline-block;
 }
 .mails__article__link{
     text-decoration-line: none;
-    color: rgb(82, 82, 253);
+    color: #5252fd;
 }
 .mails__article__link--visited:visited{
     color: var(--fontColor);

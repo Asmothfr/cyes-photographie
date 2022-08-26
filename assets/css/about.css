@@ -1,48 +1,18 @@
-:root{
-    --fontColor: #262626;
-    --backgroundColor: #ffffff;
-}
-
-.about{
-
-}
-
-.about__article{
-}
-
-.about__article__img{
-    width: 100vw;
-}
-
-.about__article__content{
-text-align: justify;
-margin: 2rem;
-}
-
-.about__socialNetwork{
-    margin: 1rem;
-    text-align: center;
-}
-
-.about__socialNetwork__link{
-    text-decoration: none;
-}
-
-.about__socialNetwork--updateMobile{
+.about__card{
     margin: 2rem auto;
 }
 
-.fa-brands{
-    font-size: 3rem;
-    margin: auto 1rem auto 1rem;
+@media screen and (min-width:500px) {
+    .about__card{
+        width: 500px;
+    }
 }
-
-.fa-facebook{
-    color : #4267B2;
-}
-.fa-instagram{
-    color:#cc2366;
-}
-.fa-twitter-square{
-    color : #1DA1F2;
+@media screen and (min-width:1024px) {
+    .about__card{
+        width: 500px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: fit-content;
+    }
 }

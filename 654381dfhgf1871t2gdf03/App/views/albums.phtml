@@ -1,29 +1,38 @@
-<section class="albums">
-    <h3 class="albums__formTitle">Ajouter une Catégorie :</h3>
-    <form class="albums__form" action="index.php?route=addCategorie" method="POST">
-        <label class="albums__form__label" for="catName">Nom de la catégorie :</label>
-        <?php if( isset($error) && array_key_exists("catError",$error) ): ?>
-            <p class="albums__formError"><?= htmlspecialchars($error["catError"]) ?></p>
-        <?php endif?>
-        <input class="albums__form__input"id="catName" type="text" name="catName" placeholder="Entrez le nom de la categorie">
-        <button class="albums__Button albums__Button--validate">Valider</button>
-    </form>
-
-    <h3 class="albums__formTitle">Mes Catégories :</h3>
-    <?php foreach($categories as $categorie): ?>
-        <form class="albums__form" method="POST" action="index.php?route=updateCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
-        <label class="albums__form__label" for="cat_name"></label>
-        <?php if( isset($error) && array_key_exists("update_categories",$error) ): ?>
-            <p class="albums__formError"><?= htmlspecialchars($error["update_categories"]) ?></p>
-        <?php endif?>
-        <input class="albums__form__input" id="cat_name" type="text" name="cat_name" value="<?=htmlspecialchars($categorie["cat_name"])?>">
-        <button class="albums__Button albums__Button--validate">Valider Modification</button>
-        </form>
-        <a class="Button--link"href="index.php?route=deleteCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
-            <button class="albums__Button albums__Button--delete">Supprimer</button>
-        </a>
-    <?php endforeach ?>
-
+<section class="albums albums--admin container">
+    <div class="albums__categorie">
+        <div class="albums__categorieAdd">
+            <h3 class="albums__formTitle">Ajouter un Thème :</h3>
+            <form class="albums__form" action="index.php?route=addCategorie" method="POST">
+                <label class="albums__form__label" for="catName">Nom du Thème :</label>
+                <?php if( isset($error) && array_key_exists("catError",$error) ): ?>
+                    <p class="albums__formError"><?= htmlspecialchars($error["catError"]) ?></p>
+                <?php endif?>
+                <input class="albums__form__input"id="catName" type="text" name="catName">
+                <button class="albums__Button albums__Button--validate">Valider</button>
+            </form>
+        </div>
+        <div class="albums__categorieList">
+            <h3 class="albums__formTitle">Mes Thèmes :</h3>
+            <div class="albums__categorieList__element">
+                <?php foreach($categories as $categorie): ?>
+                    <form class="albums__form" method="POST" action="index.php?route=updateCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
+                    <label class="albums__form__label" for="cat_name"></label>
+                    <?php if( isset($error) && array_key_exists("update_categories",$error) ): ?>
+                        <p class="form-error"><?= htmlspecialchars($error["update_categories"]) ?></p>
+                    <?php endif?>
+                    <input class="albums__form__input" id="cat_name" type="text" name="cat_name" value="<?=htmlspecialchars($categorie["cat_name"])?>">
+                    <div class="albums__categorieList__button">
+                        <button class="button button--validate">Valider Modification</button>
+                        </form>
+                        <a class="Button--link"href="index.php?route=deleteCategorie&cat_id=<?=htmlspecialchars($categorie["cat_id"])?>">
+                            <button class="albums__Button albums__Button--delete">Supprimer</button>
+                        </a>
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+    <div>
     <h3 class="albums__formTitle">Ajouter un Album :</h3>
     <form class="albums__form" action="index.php?route=addAlbum" enctype="multipart/form-data" method="POST">
 
@@ -60,7 +69,7 @@
         <input class="albums__form__input"id="photoName" type="file" name="photoName">
         <button class="albums__Button albums__Button--validate">Valider</button>
     </form>
-    
+    </div>
     <?php foreach($contents as $content): ?>
         <hr class="albums_article_underline-title">
         <article class="albums_article">

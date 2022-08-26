@@ -1,0 +1,16 @@
+.text__article{
+    text-align: justify;
+    padding: 1rem;
+    font-size: 1rem;
+    max-width: 500px;
+}
+
+.text__alb-title{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.text__alb-content{
+    text-align: justify;
+    font-size: 1rem;
+}
