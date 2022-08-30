@@ -60,26 +60,5 @@
     background-color: var(--backgroundColor);
 }
 
-.contact__form__button,
-.adminLogin__ValidateButton{
-    font-weight: 500;
-    font-size: 1.2rem;
-    display: block;
-    margin: 0.5rem auto;
-    width: 10rem;
-    height: 50px;
-    border: 2px solid var(--fontColor);
-    border-radius: 0.5rem;
-    color: var(--fontColor);
-    background-color: var(--backgroundColor);
-}
 
-.adminLogin__ValidateButton{
-    background-color: transparent;
-}
 
-.form__error{
-    margin-top: 0;
-    color:#da0000;
-    font-weight: 600;
-}

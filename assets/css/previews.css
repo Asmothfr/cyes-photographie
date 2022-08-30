@@ -30,6 +30,12 @@
         width: 250px;
         margin: 0 3rem;
     }
+    .previews__card-form-group{
+        display: flex;
+        flex: wrap;
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
     .previews__group-card{
         display: flex;
         flex-wrap: wrap;

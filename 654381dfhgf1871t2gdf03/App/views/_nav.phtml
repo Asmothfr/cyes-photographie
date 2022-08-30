@@ -1,37 +1,43 @@
 <div class="nav">
-    <h1 class ="nav__title nav__title--homeAdmin">
-        <a class="nav__title__link" href="index.php?route=home">CYES PHOTOGRAPHIE</a>
+    <h1 class ="nav__title-admin nav__title-admin--home">
+        <a class="link__style" href="index.php?route=home">CYES PHOTOGRAPHIE</a>
     </h1>
-    <h2 class="nav__adminSubTitle">BACK OFFICE</h2>
+    <h2 class="nav__admin-subtitle">BACK OFFICE</h2>
     <?php if(isset($_SESSION["connected"])): ?>
-    <ul class="nav__menu">
-        <li class="nav__menu__element">
-            <a class="nav__menu__element__link" href="index.php?route=albums">Albums Management</a>
+    <ul class="nav__list">
+        <li class="nav__element">
+            <a class="link__style" href="index.php?route=albums">Albums Management</a>
         </li>
-        <li class="nav__menu__element">
-            <a class="nav__menu__element__link" href="index.php?route=about">About Management</a>
+        <li class="nav__element">
+            <a class="link__style" href="index.php?route=about">About Management</a>
         </li>
-        <li class="nav__menu__element">
-            <a class="nav__menu__element__link" href="index.php?route=actualities">Actualities Management</a>
+        <li class="nav__element">
+            <a class="link__style" href="index.php?route=actualities">Actualities Management</a>
         </li>
-        <li class="nav__menu__element">
-            <a class="nav__menu__element__link" href="index.php?route=mails">Messagerie</a>
+        <li class="nav__element">
+            <a class="link__style" href="index.php?route=mails">Messagerie</a>
         </li>
-        <li class="nav__menu__element">
-            <a class="nav__menu__element__link" href="index.php?route=admin">Mes infos administrateur</a>
+        <li class="nav__element">
+            <a class="link__style" href="index.php?route=admin">Mes infos administrateur</a>
         </li>
     </ul>
     <?php endif ?>
 </div>
 
-<div class="adminLogin">
+<div>
     <?php if(!isset($_SESSION["connected"])): ?>
-    <form class="adminLogin__form"action="index.php?route=login" method="POST">
-        <label class="adminLogin__Label" for="login">Identifiant</label>
-        <input class="adminLogin__input" id="login"type="text" name="login" autocomplete="off">
-        <label class="adminLogin__Label" for="password">Mot de Passe</label>
-        <input class="adminLogin__input" id="password"type="password" name="password" autocomplete="off">
-        <button class="adminLogin__ValidateButton">Valider</button>
+    <form class="form__card form__card--admin-connect" action="index.php?route=login" method="POST">
+        <div class="form__fields">
+            <label class="form__label" for="login">Identifiant</label>
+            <input class="form__input" id="login" type="text" name="login" autocomplete="off">
+        </div>
+        <div class="form__fields">
+            <label class="form__label" for="password">Mot de Passe</label>
+            <input class="form__input" id="password" type="password" name="password" autocomplete="off">
+        </div>
+        <div class="button__group">
+            <button class="button button--neutral">Valider</button>
+        </div>
     </form>
     <?php endif ?>
 </div>

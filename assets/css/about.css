@@ -15,4 +15,7 @@
         align-items: center;
         width: fit-content;
     }
+    .about__photo-form{
+        margin-right: 2rem;
+    }
 }

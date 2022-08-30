@@ -2,9 +2,19 @@
     text-align: center;
     margin: 1rem 0 1rem 0;
 }
+.social-media__form-group{
+    margin-bottom: 2rem;
+}
+.social-media__div{
+    margin: 4rem 0;
+}
 .fa-brands{
     font-size: 3rem;
     margin: 0 1rem;
+}
+.fa-brands--admin{
+    display: block;
+    text-align: center;
 }
 .fa-facebook{
     color : #4267B2;
@@ -14,4 +24,11 @@
 }
 .fa-twitter-square{
     color : #1DA1F2;
+}
+
+@media screen and (min-width:1024px){
+    .social-media__all-form{
+        display: flex;
+        justify-content: space-evenly;
+    }
 }

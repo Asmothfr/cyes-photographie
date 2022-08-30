@@ -1,38 +1,49 @@
 <section>
-    <h3 class="admin_Formtitle">Mes Informations Administrateur :</h3>
-    <form class="admin__form" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
-        <label class="admin__form__label" for="login">Nom d'utilisateur :</label>
-        <?php if(isset($errors)&& array_key_exists("login",$errors)): ?>
-            <p class="admin__form__error"><?=htmlspecialchars($errors["login"])?></p>
-        <?php endif?>
-        <input class="admin__form__input" id="login" type="text" name="login" value="<?=htmlspecialchars($admin["adm_login"])?>">
-    <button class="admin__button admin__button--validate">Valider</button>
+    <h3 class="form__title">Mes Informations Administrateur :</h3>
+    <div class="form__similar-form-block">
+    <form class="form__card" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+        <div class="form__fields">
+            <label class="form__label" for="login">Nom d'utilisateur :</label>
+            <?php if(isset($errors)&& array_key_exists("login",$errors)): ?>
+                <p class="form__error"><?=htmlspecialchars($errors["login"])?></p>
+            <?php endif?>
+            <input class="form__input" id="login" type="text" name="login" value="<?=htmlspecialchars($admin["adm_login"])?>">
+        </div>
+    <button class="button button--validate">Valider</button>
     </form>
-    <form class="admin__form" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
-        <label class="admin__form__label" for="password">Mot de passe :</label>
-        <?php if(isset($errors)&& array_key_exists("password",$errors)): ?>
-            <p class="admin__form__error"><?=htmlspecialchars($errors["password"])?></p>
-        <?php endif?>
-        <input class="admin__form__input" id="password" type="password" name="password" value="J'aime la mayooooo !">
-    <form method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
-        <label lass="admin__form__label" for="password_confirmation">Confirmation du mot de passe :</label>
-        <input class="admin__form__input" id="password_confirmation" type="password" name="password_confirmation">
-        <button class="admin__button admin__button--validate">Valider</button>
+    <form class="form__card" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+        <div class="form__fields">
+            <label class="form__label" for="password">Mot de passe :</label>
+            <?php if(isset($errors)&& array_key_exists("password",$errors)): ?>
+                <p class="form__error"><?=htmlspecialchars($errors["password"])?></p>
+            <?php endif?>
+            <input class="form__input" id="password" type="password" name="password" value="J'aime la mayooooo !">
+            <label class="form__label form__label--margin" for="password_confirmation ">Confirmation du mot de passe :</label>
+            <input class="form__input" id="password_confirmation" type="password" name="password_confirmation">
+        </div>
+            <button class="button button--validate">Valider</button>
     </form>
-    <form class="admin__form" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
-        <label class="admin__form__label" for="lastname">Nom :</label>
+    <form class="form__card" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+    <div class="form__fields">
+        <label class="form__label" for="lastname">Nom :</label>
         <?php if(isset($errors)&& array_key_exists("lastname",$errors)): ?>
-            <p class="admin__form__error"><?=htmlspecialchars($errors["lastname"])?></p>
+            <p class="form__error"><?=htmlspecialchars($errors["lastname"])?></p>
         <?php endif?>
-        <input class="admin__form__input" id="lastname" type="text" name="lastname" value="<?=htmlspecialchars($admin["adm_last_name"])?>">
-        <button class="admin__button admin__button--validate">Valider</button>
+        <input class="form__input" id="lastname" type="text" name="lastname" value="<?=htmlspecialchars($admin["adm_last_name"])?>">
+        </div>
+        <button class="button button--validate">Valider</button>
     </form>
-    <form class="admin__form" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
-        <label class="admin__form__label" for="firstname">Prénom :</label>
-        <input class="admin__form__input" id="firstname" type="text" name="firstname" value="<?=htmlspecialchars($admin["adm_first_name"])?>">
+    <form class="form__card" method="POST" action="index.php?route=updateAdmin&adm_id=<?=htmlspecialchars($admin["adm_id"])?>">
+    <div class="form__fields">
+
+        <label class="form__label" for="firstname">Prénom :</label>
         <?php if(isset($errors)&& array_key_exists("firstname",$errors)): ?>
-            <p class="admin__form__error"><?=htmlspecialchars($errors["firstname"])?></p>
+            <p class="form__error"><?=htmlspecialchars($errors["firstname"])?></p>
         <?php endif?>
-        <button class="admin__button admin__button--validate">Valider</button>
+        <input class="form__input" id="firstname" type="text" name="firstname" value="<?=htmlspecialchars($admin["adm_first_name"])?>">
+        
+        </div>
+        <button class="button button--validate">Valider</button>
     </form>
+    </div>
 </section>

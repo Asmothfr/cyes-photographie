@@ -1,140 +1,172 @@
-<section class="about">
-<h3 class="about__Formtitle">Ajouter ou modifier la présentation :</h3>
-    <article class="about__article">
+<section>
+<h3 class="form__title">Ajouter ou modifier la présentation :</h3>
+    <article class="about__card">
+    <div class="about__photo-form">
         <?php if(empty($about["abt_photo"])):?>
-            <form class="about__form" method="POST" enctype="multipart/form-data"   action="index.php?route=addAboutContent">
-                <label class="about__form__label" for="abtPhoto">Ajouter une photo de présentation :</label>
-                <?php if(isset($errors) && array_key_exists("photo",$errors)): ?>
-                <p class="about__form__error"><?=htmlspecialchars($errors["photo"])?></p>
-                <?php endif ?>
-                <?php if(isset($errors) && array_key_exists("mime",$errors)): ?>
-                <p class="about__form__error"><?=htmlspecialchars($errors["mime"])?></p>
-                <?php endif ?>
-                <input class="about__form__input" type="file" name="abtPhoto">
-                <button class="about__button about__button--validate">Valider</button>
+            <form class="form__card" method="POST" enctype="multipart/form-data"   action="index.php?route=addAboutContent">
+                <div class="form__fields">
+                    <label class="form__label" for="abtPhoto">Ajouter une photo de présentation :</label>
+                    <?php if(isset($errors) && array_key_exists("photo",$errors)): ?>
+                        <p class="form__error"><?=htmlspecialchars($errors["photo"])?></p>
+                    <?php endif ?>
+                    <?php if(isset($errors) && array_key_exists("mime",$errors)): ?>
+                        <p class="form__error"><?=htmlspecialchars($errors["mime"])?></p>
+                    <?php endif ?>
+                    <input class="form__input" type="file" name="abtPhoto">
+                </div>
+                <button class="button button--validate">Valider</button>
             </form>
         <?php endif ?>
+
         <?php if(!empty($about["abt_photo"])):?>
-            <img class="about__article__img" src="../assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
-            <form class="about__form" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
-                <label class="about__form__label" for="abt_photo">Modifier ou supprimer la photo :</label>
+            <img class="image__large image__large--about" src="../assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
+            <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+            <div class="form__fields">
+                <label class="form__label" for="abt_photo">Modifier ou supprimer la photo :</label>
                 <?php if(isset($errors) && array_key_exists("update_photo",$errors)): ?>
-                    <p class="about__form__error"><?=htmlspecialchars($errors["update_photo"])?></p>
+                    <p class="form__label"><?=htmlspecialchars($errors["update_photo"])?></p>
                 <?php endif ?>
                 <?php if(isset($errors) && array_key_exists("update_mime",$errors)): ?>
-                    <p class="about__form__error"><?=htmlspecialchars($errors["update_mime"])?></p>
+                    <p class="form__error"><?=htmlspecialchars($errors["update_mime"])?></p>
                 <?php endif ?>
-                <input class="about__form__input" id="abt_photo" type="file" name="abt_photo">
-                <button class="about__button about__button--validate">Valider</button>
+                <input class="form__input" id="abt_photo" type="file" name="abt_photo">
+                </div>
+                <button class="button button--validate">Valider</button>
             </form>
-            <a class="Button--link" href="index.php?route=deleteAboutContent&abt_photo=<?= htmlspecialchars($about["abt_photo"])?>">
-                <button class="about__button about__button--delete">Supprimer</button>
+            <a class="link__style" href="index.php?route=deleteAboutContent&abt_photo=<?= htmlspecialchars($about["abt_photo"])?>">
+                <button class="button button--delete">Supprimer</button>
             </a>
         <?php endif ?>
+        </div>
+        <div class="about__text_form">
         <?php if(empty($about["abt_content"])):?>
-            <form class="about__form" method="POST" action="index.php?route=addAboutContent">
-                <label class="about__form__label" for="abt_content">Ajouter un texte de présentation :</label>
+            <form class="form__card" method="POST" action="index.php?route=addAboutContent">
+            <div class="form__fields">
+                <label class="form__label" for="abt_content">Ajouter un texte de présentation :</label>
                 <?php if(isset($errors) && array_key_exists("content",$errors)): ?>
-                <p class="about__form__error"><?=htmlspecialchars($errors["content"])?></p>
+                <p class="form__error"><?=htmlspecialchars($errors["content"])?></p>
                 <?php endif ?>
-                <textarea class="about__form__textarea" name="abt_content" id="text"></textarea>
-                <button class="about__button about__button--validate">Valider</button>
+                <textarea class="form__text-arrea" name="abt_content" id="text"></textarea>
+                </div>
+                <button class="button button--validate">Valider</button>
             <?php endif ?>
             </form>
-        <?php if(!empty($about["abt_content"])):?>
-            <form class="about__form" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
-                <label class="about__form__label" for="abt_content">Modifier ou supprimer la présentation</label>
-                <?php if(isset($errors) && array_key_exists("update_content",$errors)): ?>
-                    <p class="about__form__error"><?=htmlspecialchars($errors["update_content"])?></p>
-                <?php endif ?>
-                <textarea class="about__form__textarea" name="abt_content" id="text"><?=htmlspecialchars($about["abt_content"])?></textarea>
-                <button class="about__button about__button--validate">Valider</button>
-            </form>
-            <a class="Button--link" href="index.php?route=deleteAboutContent&abt_content=<?= htmlspecialchars($about["abt_content"])?>">
-                <button class="about__button about__button--delete">Supprimer</button>
-            </a>
-        <?php endif ?>
-    </article>
-    <div class="about__socialNetwork">
-        <h4 class="about__Formtitle">Réseaux Sociaux :</h4>
-        <?php if(empty($about["abt_facebook"])): ?>
-            <form class="about__form" method="POST" action="index.php?route=addAboutContent">
-                <label class="about__form__label" for="abt_facebook">Votre lien Facebook :</label>
-                <?php if(isset($errors) && array_key_exists("facebook",$errors)): ?>
-                    <p class="about__form__error"><?=htmlspecialchars($errors["facebook"])?></p>
-                <?php endif ?>
-                <input class="about__form__input" type="text" id="abt_facebook" name="abt_facebook">
-                <button class="about__button about__button--validate">Valider</button>
-            </form>
-        <?php endif ?>
-        <div class="about__socialNetwork--updateMobile">
-            <?php if(!empty($about["abt_facebook"])): ?>
-                <a class="about__socialNetwork__link" target="_blank" href="<?=htmlspecialchars($about["abt_facebook"])?>"><i class="fa-brands     fa-facebook"></i></a>
 
-                <form class="about__form" method="POST" enctype="multipart/form-data" action="index.php?    route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
-                    <label class="about__form__label" for="abt_facebook">Modifier ou     supprimer lien Facebook :</label>
-                    <?php if(isset($errors) && array_key_exists("update_facebook",$errors)): ?>
-                        <p class="about__form__error"><?=htmlspecialchars($errors["update_facebook"])?></p>
-                    <?php endif ?>
-                    <input class="about__form__input" id="abt_facebook" type="link" name="abt_facebook" value="<?=htmlspecialchars($about["abt_facebook"])?>">
-                    <button class="about__button about__button--validate">Modifier le lien facebook</button>
-                </form>
-                <a class="Button--link" href="index.php?route=deleteAboutContent&abt_facebook=<?= htmlspecialchars  ($about["abt_facebook"])?>">
-                    <button class="about__button about__button--delete">Supprimer le lien Facebook</button>
-                </a>
-            <?php endif ?>
-        </div>
-        <?php if(empty($about["abt_instagram"])): ?>
-            <form class="about__form" method="POST" action="index.php?route=addAboutContent">
-                <label class="about__form__label" for="abt_instagram">Votre lien Instagram :</label>
-                <?php if(isset($errors) && array_key_exists("instagram",$errors)): ?>
-                    <p class="about__form__error"><?=htmlspecialchars($errors["instagram"])?></p>
+        <?php if(!empty($about["abt_content"])):?>
+            <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+            <div class="form__fields">
+                <label class="form__label" for="abt_content">Modifier ou supprimer la présentation :</label>
+                <?php if(isset($errors) && array_key_exists("update_content",$errors)): ?>
+                    <p class="form__error"><?=htmlspecialchars($errors["update_content"])?></p>
                 <?php endif ?>
-                <input class="about__form__input" type="link" id="abt_instagram" name="abt_instagram">
-                <button class="about__button about__button--validate">Valider</button>
+                <textarea class="form__text-arrea" name="abt_content" id="text"><?=htmlspecialchars($about["abt_content"])?></textarea>
+                </div>
+                <button class="button button--validate">Valider</button>
             </form>
-        <?php endif ?>
-        <div class="about__socialNetwork--updateMobile">
-        <?php if(!empty($about["abt_instagram"])): ?>
-            <a class="about__socialNetwork__link" target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>"><i class="fa-brands fa-instagram"></i></a>
-            <form class="about__form" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
-                <label class="about__form__label" for="abt_instagram">Modifier ou supprimer lien Instagram :</label>
-                <?php if(isset($errors) && array_key_exists("update_instagram",$errors)): ?>
-                    <p class="about__form__error"><?=htmlspecialchars($errors["update_instagram"])?></p>
-                <?php endif ?>
-                <input class="about__form__input" id="abt_instagram" type="link" name="abt_instagram" value="<?= htmlspecialchars($about["abt_instagram"])?>">
-                <button class="about__button about__button--validate">Modifier le lien Instagram</button>
-            </form>
-            <a class="Button--link" href="index.php?route=deleteAboutContent&abt_instagram=<?=htmlspecialchars($about["abt_instagram"])?>">
-                <button class="about__button about__button--delete">Supprimer le lien Instagram</button>
+            <a class="link__style" href="index.php?route=deleteAboutContent&abt_content=<?= htmlspecialchars($about["abt_content"])?>">
+                <button class="button button--delete">Supprimer</button>
             </a>
-            <?php endif ?>
-            </div>
-            <?php if(empty($about["abt_twitter"])): ?>
-                <form class="about__form" method="POST" action="index.php?route=addAboutContent">
-                    <label class="about__form__label" for="abt_twitter">Votre lien Twitter :</label>
-                    <?php if(isset($errors) && array_key_exists("twitter",$errors)): ?>
-                        <p class="about__form__error"><?=htmlspecialchars($errors["twitter"])?></p>
-                    <?php endif ?>
-                    <input class="about__form__input" type="text" id="abt_twitter" name="abt_twitter">
-                    <button class="about__button about__button--validate">Valider</button>
+        <?php endif ?>
+        </div>
+    </article>
+
+    <div class="social-media__div">
+        <h4 class="form__title">Réseaux Sociaux :</h4>
+    <div class="social-media__all-form">
+        <div class="social-media__form-group">
+            <?php if(empty($about["abt_facebook"])): ?>
+                <form class="form__card" method="POST" action="index.php?route=addAboutContent">
+                    <div class="form__fields">
+                        <label class="form__label" for="abt_facebook">Lien Facebook :</label>
+                        <?php if(isset($errors) && array_key_exists("facebook",$errors)): ?>
+                            <p class="form__error"><?=htmlspecialchars($errors["facebook"])?></p>
+                        <?php endif ?>
+                        <input class="form__input" type="text" id="abt_facebook" name="abt_facebook">
+                    </div>
+                    <button class="button button--validate">Valider</button>
                 </form>
             <?php endif ?>
-        <div class="about__socialNetwork--updateMobile">
-            <?php if(!empty($about["abt_twitter"])): ?>
-                <a class="about__socialNetwork__link" target="_blank" href="<?=htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-twitter-square"></i></a>
-                <form class="about__form" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
-                    <label class="about__form__label" for="abt_twitter">Modifier ou supprimer lien Twitter :</label>
-                    <?php if(isset($errors) && array_key_exists("update_twitter",$errors)): ?>
-                        <p class="about__form__error"><?=htmlspecialchars($errors["update_twitter"])?></p>
-                    <?php endif ?>
-                    <input class="about__form__input" id="abt_twitter" type="link"name="abt_twitter" value="<?=htmlspecialchars($about["abt_twitter"])?>">
-                    <button class="about__button about__button--validate">Modifier le lien Twitter</button>
+            <?php if(!empty($about["abt_facebook"])): ?>
+                <a class="link__style" target="_blank" href="<?=htmlspecialchars($about["abt_facebook"])?>">
+                    <i class="fa-brands fa-brands--admin fa-facebook"></i>
+                </a>
+                <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?    route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                    <div class="form__fields">
+                        <label class="form__label" for="abt_facebook">Modifier ou supprimer lien Facebook :</label>
+                        <?php if(isset($errors) && array_key_exists("update_facebook",$errors)): ?>
+                            <p class="form__error"><?=htmlspecialchars($errors["update_facebook"])?></p>
+                        <?php endif ?>
+                        <input class="form__input" id="abt_facebook" type="link" name="abt_facebook" value="<?=htmlspecialchars($about["abt_facebook"])?>">
+                    </div>
+                    <button class="button button--validate">Valider</button>
                 </form>
-                <a class="Button--link" href="index.php?route=deleteAboutContent&abt_twitter=<?=htmlspecialchars($about["abt_twitter"])?>">
-                    <button class="about__button about__button--delete">Supprimer le lien Twitter</button>
+                <a class="link__style" href="index.php?route=deleteAboutContent&abt_facebook=<?= htmlspecialchars  ($about["abt_facebook"])?>">
+                    <button class="button button--delete">Supprimer</button>
                 </a>
             <?php endif ?>
         </div>
+        <div class="social-media__form-group">
+            <?php if(empty($about["abt_instagram"])): ?>
+                <form class="form__card" method="POST" action="index.php?route=addAboutContent">
+                    <div class="form__fields">
+                        <label class="form__label" for="abt_instagram">Lien Instagram :</label>
+                        <?php if(isset($errors) && array_key_exists("instagram",$errors)): ?>
+                            <p class="form__error"><?=htmlspecialchars($errors["instagram"])?></p>
+                        <?php endif ?>
+                        <input class="form__input" type="link" id="abt_instagram" name="abt_instagram">
+                    </div>
+                <button class="button button--validate">Valider</button>
+                </form>
+            <?php endif ?>
+            <?php if(!empty($about["abt_instagram"])): ?>
+                <a class="link__style" target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>">
+                    <i class="fa-brands fa-brands--admin fa-instagram"></i>
+                </a>
+                <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                    <div class="form__fields">
+                        <label class="form__label" for="abt_instagram">Modifier ou supprimer lien Instagram :</label>
+                        <?php if(isset($errors) && array_key_exists("update_instagram",$errors)): ?>
+                            <p class="form__error"><?=htmlspecialchars($errors["update_instagram"])?></p>
+                        <?php endif ?>
+                        <input class="form__input" id="abt_instagram" type="text" name="abt_instagram" value="<?= htmlspecialchars($about["abt_instagram"])?>">
+                    </div>
+                    <button class="button button--validate">Valider</button>
+                </form>
+                <a class="link__style" href="index.php?route=deleteAboutContent&abt_instagram=<?=htmlspecialchars($about["abt_instagram"])?>">
+                    <button class="button button--delete">Supprimer</button>
+                </a>
+            <?php endif ?>
+        </div>
+        <div class="social-media__form-group">
+            <?php if(empty($about["abt_twitter"])): ?>
+                <form class="form__card" method="POST" action="index.php?route=addAboutContent">
+                	<div class="form__fields">
+                        <label class="form__label" for="abt_twitter">Votre lien Twitter :</label>
+                        <?php if(isset($errors) && array_key_exists("twitter",$errors)): ?>
+                            <p class="form__error"><?=htmlspecialchars($errors["twitter"])?></p>
+                        <?php endif ?>
+                        <input class="form__input" type="text" id="abt_twitter" name="abt_twitter">
+                    </div>
+                    <button class="button button--validate">Valider</button>
+                </form>
+            <?php endif ?>
+            <?php if(!empty($about["abt_twitter"])): ?>
+                <a class="link__style" target="_blank" href="<?=htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-brands--admin fa-twitter-square"></i></a>
+                <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
+                    <div class="form__fields">
+                        <label class="form__label" for="abt_twitter">Modifier ou supprimer lien Twitter :</label>
+                        <?php if(isset($errors) && array_key_exists("update_twitter",$errors)): ?>
+                            <p class="form__error"><?=htmlspecialchars($errors["update_twitter"])?></p>
+                        <?php endif ?>
+                        <input class="form__input" id="abt_twitter" type="link"name="abt_twitter" value="<?=htmlspecialchars($about["abt_twitter"])?>">
+                    </div>
+                    <button class="button button--validate">Valider</button>
+                </form>
+                <a class="link__style" href="index.php?route=deleteAboutContent&abt_twitter=<?=htmlspecialchars($about["abt_twitter"])?>">
+                    <button class="button button--delete">Supprimer</button>
+                </a>
+            <?php endif ?>
+        </div>
+    </div>
     </div>
 </section>
