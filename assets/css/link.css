@@ -6,3 +6,6 @@
     text-decoration: none;
     color: var(--fontColor);
 }
+.link__nav-hover:hover{
+    border-bottom: 1px solid var(--fontColor);
+}

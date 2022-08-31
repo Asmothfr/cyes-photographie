@@ -1,67 +1,67 @@
-<section class="actualities">
-    <h3 class="actualities__Formtitle">Ajouter une actualité :</h3>
-    <form class="actualities__form"method = "POST" enctype="multipart/form-data" action="index.php?route=addActualitie">
-    
-            <label class="actualities__form__label" for="act_photo">Photo de présentation : </label>
+<section class="container">
+    <h3 class="form__title">Ajouter une actualité :</h3>
+    <form class="form__card"method = "POST" enctype="multipart/form-data" action="index.php?route=addActualitie">
+        <div class="form__fields">
+            <label class="form__label" for="act_photo">Photo de présentation : </label>
             <?php if(isset($errors) && array_key_exists("photo", $errors)):?>
                 <?= htmlspecialchars($errors["photo"])?>
             <?php endif?>
-            <input class="actualities__form__input" id = "act_photo" type="file" name = "act_photo">
-    
-            <label class="actualities__form__label" for="act_title">Nom de l'actualité :</label>
+            <input class="form__input" id = "act_photo" type="file" name = "act_photo">
+        </div>
+        <div class="form__fields">
+            <label class="form__label" for="act_title">Nom de l'actualité :</label>
             <?php if(isset($errors) && array_key_exists("title", $errors)):?>
-                <?= htmlspecialchars($errors["title"])?>
+                <p class="form__error"><?= htmlspecialchars($errors["title"])?></p>
             <?php endif?>
-            <input class="actualities__form__input" id = "act_title" type="text" name = "act_title">
-    
-            <label class="actualities__form__label" for="act_date">Date :</label>
+            <input class="form__input" id = "act_title" type="text" name = "act_title">
+        </div>
+        <div class="form__fields">
+            <label class="form__label" for="act_date">Date :</label>
             <?php if(isset($errors) && array_key_exists("date", $errors)):?>
-                <?= htmlspecialchars($errors["date"])?>
+                <p class="form__error"><?= htmlspecialchars($errors["date"])?></p>
             <?php endif?>
-            <input class="actualities__form__input" id = "act_date" type="date" name = "act_date">
-
-    
+            <input class="form__input" id = "act_date" type="date" name = "act_date">
+        </div>
+        <div class="form__fields">
             <label class="actualities__form__label" for="act_content">Description :</label>
-            <textarea class="actualities__form__textArea"name="act_content" id="act_content"></textarea>
             <?php if(isset($errors) && array_key_exists("text", $errors)):?>
-                <?= htmlspecialchars($errors["text"])?>
+                <p class="form__error"><?= htmlspecialchars($errors["text"])?></p>
             <?php endif?>
-        
-            <button class="actualities__Button actualities__Button--validate">Valider</button>
+            <textarea class="form__text-arrea"name="act_content" id="act_content"></textarea>
+        </div>
+            <button class="button button--validate">Valider</button>
     </form>
-    <?php foreach($contents as $content): ?>
-    <article class="actualities__article">
-        <!-- <div> -->
-            <hr class="actualities__decoration">
-            <img class="actualities__img" src="../assets/img/actu_img/<?=htmlspecialchars($content["act_photo"])?>" alt="photo d'illustration de l'article">
-            <h4 class="actualities__title"><?=htmlspecialchars($content["act_title"])?></h4>
-            <p class="actualities__date"><?=htmlspecialchars($content["act_date"])?></p>
-            <p class="actualities__content"><?=htmlspecialchars($content["act_content"])?></p>
-        <!-- </div> -->
-        <!-- <div> -->
-            <h5 class="actualities__Formtitle">Modification de l'actualité :</h5>
-            <form class="actualities__form" method ="POST" enctype="multipart/form-data" action="index.php?route=updateActualitie&act_id=<?=htmlspecialchars($content["act_id"])?>">
-                <label class="actualities__form__label actualities__form__input--update" for="act_photo">Modifier la photo :</label>
-                <?php if(isset($errors) && array_key_exists("updatePhoto", $errors)):?>
-                    <?= htmlspecialchars($errors["updatePhoto"])?>
-                <?php endif?>
-                <input class="actualities__form__input" id="act_photo" type="file" name="act_photo">
-
-                <label class="actualities__form__label actualities__form__input--update" for="act_title">Modifier le titre :</label>
-                <input class="actualities__form__input" id="act_title" type="text" name="act_title" value="<?=htmlspecialchars($content["act_title"])?>">
-
-                <label class="actualities__form__label actualities__form__input--update" for="act_date">Modifier la date :</label>
-                <input class="actualities__form__input" id="act_date" type="date" name="act_date" value="<?=htmlspecialchars($content["act_date"])?>">
-
-                <label class="actualities__form__label actualities__form__input--update" for="act_content">Modifier la description :</label>
-                <textarea class="actualities__form__textArea" id="act_content" type="text" name="act_content"><?=htmlspecialchars($content["act_content"])?></textarea>
-                <button class="actualities__Button actualities__Button--validate">Valider Modification</button>
-            </form>
-        <!-- </div> -->
-        <a class="Button--link" href="index.php?route=deleteActualitie&act_id=<?= htmlspecialchars($content["act_id"]) ?>">
-            <button class="actualities__Button actualities__Button--delete">Supprimer Actualité</button>
-        </a>
-
-    </article>
-    <?php endforeach ?>
+    <div class="previews__group-card">
+        <?php foreach($contents as $content): ?>
+            <article class="previews__card">
+                <div class="underline-decoration"></div>
+                <img class="previews__img" src="../assets/img/actu_img/<?=htmlspecialchars($content["act_photo"])?>" alt="photo d'illustration de l'article">
+                <form class="form__card" method ="POST" enctype="multipart/form-data" action="index.php?route=updateActualitie&act_id=<?=htmlspecialchars($content["act_id"])?>">
+                    <div class="form__fields">
+                        <label class="form__label" for="act_photo">Modifier la photo :</label>
+                        <?php if(isset($errors) && array_key_exists("updatePhoto", $errors)):?>
+                            <p class="form__error"><?=htmlspecialchars($errors["updatePhoto"])?></p>
+                        <?php endif?>
+                        <input class="form__input" id="act_photo" type="file" name="act_photo">
+                    </div>
+                    <div class="form__fields">
+                        <label class="form__label" for="act_title">Modifier le titre :</label>
+                        <input class="form__input" id="act_title" type="text" name="act_title" value="<?=htmlspecialchars($content["act_title"])?>">
+                    </div>
+                    <div class="form__fields">
+                        <label class="form__label" for="act_date">Modifier la date :</label>
+                        <input class="form__input" id="act_date" type="date" name="act_date" value="<?=htmlspecialchars($content["act_date"])?>">
+                    </div>
+                    <div class="form__fields">
+                        <label class="form__label" for="act_content">Modifier la description :</label>
+                        <textarea class="form__text-arrea" id="act_content" type="text" name="act_content"><?=htmlspecialchars($content["act_content"])?></textarea>
+                    </div>
+                    <button class="button button--validate">Valider</button>
+                </form>
+                <a class="link__style" href="index.php?route=deleteActualitie&act_id=<?= htmlspecialchars($content["act_id"]) ?>">
+                    <button class="button button--delete">Supprimer</button>
+                </a>
+            </article>
+        <?php endforeach ?>
+    </div>
 </section>

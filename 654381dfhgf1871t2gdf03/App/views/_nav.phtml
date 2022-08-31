@@ -1,24 +1,24 @@
 <div class="nav">
     <h1 class ="nav__title-admin nav__title-admin--home">
-        <a class="link__style" href="index.php?route=home">CYES PHOTOGRAPHIE</a>
+        <a class="link__style link__nav-hover" href="index.php?route=home">CYES PHOTOGRAPHIE</a>
     </h1>
     <h2 class="nav__admin-subtitle">BACK OFFICE</h2>
     <?php if(isset($_SESSION["connected"])): ?>
     <ul class="nav__list">
         <li class="nav__element">
-            <a class="link__style" href="index.php?route=albums">Albums Management</a>
+            <a class="link__style link__nav-hover" href="index.php?route=albums">Albums Management</a>
         </li>
         <li class="nav__element">
-            <a class="link__style" href="index.php?route=about">About Management</a>
+            <a class="link__style link__nav-hover" href="index.php?route=about">About Management</a>
         </li>
         <li class="nav__element">
-            <a class="link__style" href="index.php?route=actualities">Actualities Management</a>
+            <a class="link__style link__nav-hover" href="index.php?route=actualities">Actualities Management</a>
         </li>
         <li class="nav__element">
-            <a class="link__style" href="index.php?route=mails">Messagerie</a>
+            <a class="link__style link__nav-hover" href="index.php?route=mails">Messagerie</a>
         </li>
         <li class="nav__element">
-            <a class="link__style" href="index.php?route=admin">Mes infos administrateur</a>
+            <a class="link__style link__nav-hover" href="index.php?route=admin">Mes infos administrateur</a>
         </li>
     </ul>
     <?php endif ?>

@@ -1,4 +1,4 @@
-<section>
+<section class="container">
 <h3 class="form__title">Ajouter ou modifier la présentation :</h3>
     <article class="about__card">
     <div class="about__photo-form">
@@ -92,7 +92,7 @@
                 </a>
                 <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?    route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
                     <div class="form__fields">
-                        <label class="form__label" for="abt_facebook">Modifier ou supprimer lien Facebook :</label>
+                        <label class="form__label" for="abt_facebook">Lien Facebook :</label>
                         <?php if(isset($errors) && array_key_exists("update_facebook",$errors)): ?>
                             <p class="form__error"><?=htmlspecialchars($errors["update_facebook"])?></p>
                         <?php endif ?>
@@ -124,7 +124,7 @@
                 </a>
                 <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
                     <div class="form__fields">
-                        <label class="form__label" for="abt_instagram">Modifier ou supprimer lien Instagram :</label>
+                        <label class="form__label" for="abt_instagram">Lien Instagram :</label>
                         <?php if(isset($errors) && array_key_exists("update_instagram",$errors)): ?>
                             <p class="form__error"><?=htmlspecialchars($errors["update_instagram"])?></p>
                         <?php endif ?>
@@ -141,7 +141,7 @@
             <?php if(empty($about["abt_twitter"])): ?>
                 <form class="form__card" method="POST" action="index.php?route=addAboutContent">
                 	<div class="form__fields">
-                        <label class="form__label" for="abt_twitter">Votre lien Twitter :</label>
+                        <label class="form__label" for="abt_twitter">Lien Twitter :</label>
                         <?php if(isset($errors) && array_key_exists("twitter",$errors)): ?>
                             <p class="form__error"><?=htmlspecialchars($errors["twitter"])?></p>
                         <?php endif ?>
@@ -154,7 +154,7 @@
                 <a class="link__style" target="_blank" href="<?=htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-brands--admin fa-twitter-square"></i></a>
                 <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
                     <div class="form__fields">
-                        <label class="form__label" for="abt_twitter">Modifier ou supprimer lien Twitter :</label>
+                        <label class="form__label" for="abt_twitter">Lien Twitter :</label>
                         <?php if(isset($errors) && array_key_exists("update_twitter",$errors)): ?>
                             <p class="form__error"><?=htmlspecialchars($errors["update_twitter"])?></p>
                         <?php endif ?>

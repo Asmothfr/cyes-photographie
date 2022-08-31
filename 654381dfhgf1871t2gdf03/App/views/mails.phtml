@@ -1,28 +1,29 @@
-<section class="mails">
-<h3 class="mails__Formtitle">Mes Mails :</h3>
-    
+<section class="container">
+<h3 class="form__title">Mes Messages :</h3>
+    <div class="mails__group-card">
         <?php foreach($mails as $mail): ?>
-            <article class="mails__article">
-                <p class="mails__article__content">
-                <a class="mails__article__link mails__article__link--visited" href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+            <a class="link__style mails__link" href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+            <article class="mails__card">
+                <p class="mails__date">
                     <?= htmlspecialchars($mail["cont_date"])?>
-                    </a>
                 </p>
-                <p class="mails__article__content mails__article__content--userIdentity">
-                <a class="mails__article__link mails__article__link--visited" href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
-                        <?= htmlspecialchars($mail["cont_usr_lastname"]) ?>
-                    </a>
-                </p>
-                <p class="mails__article__content mails__article__content--userIdentity">
-                <a class="mails__article__link mails__article__link--visited" href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+                <div class="mails__identity-group">
+                        <i class="fa-regular fa-user mails__link"></i>
+                    <p class="mails__identity-content">
+                        <?= htmlspecialchars($mail["cont_usr_lastname"])?>
+                    </p>
+                    <p class="mails__identity-content">
                         <?= htmlspecialchars($mail["cont_usr_firstname"])?>
-                    </a>
+                    </p>
+                </div>
+                <p class="mails__subject">
+                    <?= htmlspecialchars($mail["cont_usr_subject"])?>
                 </p>
-                <p class="mails__article__content">
-                <a class="mails__article__link mails__article__link--visited" href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
-                        <?= htmlspecialchars($mail["cont_usr_subject"])  ?>
-                    </a>
+                <p class="overflow">
+                    <?=htmlspecialchars($mail["cont_usr_content"])?>
                 </p>
             </article>
+            </a>
         <?php endforeach ?>
+    </div>
 </section>

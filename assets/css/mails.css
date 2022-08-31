@@ -1,0 +1,41 @@
+.mails__group-card{
+    width: 18rem;
+    margin: 3rem auto;
+    font-size: 1rem;
+}
+.mails__card{
+    position: relative;
+    margin: 1.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--fontColor);
+}
+.mails__identity-group{
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.mails__identity-content{
+    font-weight: 800;
+    margin-left: 0.5rem;
+}
+.mails__subject{
+    font-weight: 600;
+    margin: 0.2rem 0;
+}
+.mails__date{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.mails__link:link{
+    color:#009dff;
+}
+.mails__link:hover{
+    color:#ffcc00;
+}
+
+@media screen and (min-width:1024px) {
+    .mails__group-card{
+        margin: 5rem auto;
+    }
+}

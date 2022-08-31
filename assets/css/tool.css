@@ -25,6 +25,12 @@
     border-top: 1px solid var(--fontColor);
 }
 
+.overflow{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 @media screen and (min-width:1024px) {
     .underline-decoration{
         width: 250px;
