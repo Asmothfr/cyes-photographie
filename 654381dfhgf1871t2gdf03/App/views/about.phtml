@@ -33,9 +33,11 @@
                 </div>
                 <button class="button button--validate">Valider</button>
             </form>
-            <a class="link__style" href="index.php?route=deleteAboutContent&abt_photo=<?= htmlspecialchars($about["abt_photo"])?>">
-                <button class="button button--delete">Supprimer</button>
-            </a>
+            <button class="button button--delete">
+            <a class="link__style link__style--delete" href="index.php?route=deleteAboutContent&abt_photo=<?= htmlspecialchars($about["abt_photo"])?>">
+                    Supprimer
+                </a>
+            </button>
         <?php endif ?>
         </div>
         <div class="about__text_form">
@@ -63,9 +65,11 @@
                 </div>
                 <button class="button button--validate">Valider</button>
             </form>
-            <a class="link__style" href="index.php?route=deleteAboutContent&abt_content=<?= htmlspecialchars($about["abt_content"])?>">
-                <button class="button button--delete">Supprimer</button>
-            </a>
+            <button class="button button--delete">
+            <a class="link__style link__style--delete" href="index.php?route=deleteAboutContent&abt_content=<?= htmlspecialchars($about["abt_content"])?>">
+                    Supprimer
+                </a>
+            </button>
         <?php endif ?>
         </div>
     </article>
@@ -100,9 +104,11 @@
                     </div>
                     <button class="button button--validate">Valider</button>
                 </form>
-                <a class="link__style" href="index.php?route=deleteAboutContent&abt_facebook=<?= htmlspecialchars  ($about["abt_facebook"])?>">
-                    <button class="button button--delete">Supprimer</button>
-                </a>
+                <button class="button button--delete">
+                <a class="link__style link__style--delete" href="index.php?route=deleteAboutContent&abt_facebook=<?= htmlspecialchars  ($about["abt_facebook"])?>">
+                        Supprimer
+                    </a>
+                </button>
             <?php endif ?>
         </div>
         <div class="social-media__form-group">
@@ -132,9 +138,11 @@
                     </div>
                     <button class="button button--validate">Valider</button>
                 </form>
-                <a class="link__style" href="index.php?route=deleteAboutContent&abt_instagram=<?=htmlspecialchars($about["abt_instagram"])?>">
-                    <button class="button button--delete">Supprimer</button>
-                </a>
+                <button class="button button--delete">
+                <a class="link__style link__style--delete" href="index.php?route=deleteAboutContent&abt_instagram=<?=htmlspecialchars($about["abt_instagram"])?>">
+                        Supprimer
+                    </a>
+                </button>
             <?php endif ?>
         </div>
         <div class="social-media__form-group">
@@ -162,9 +170,11 @@
                     </div>
                     <button class="button button--validate">Valider</button>
                 </form>
-                <a class="link__style" href="index.php?route=deleteAboutContent&abt_twitter=<?=htmlspecialchars($about["abt_twitter"])?>">
-                    <button class="button button--delete">Supprimer</button>
-                </a>
+                <button class="button button--delete">
+                <a class="link__style link__style--delete" href="index.php?route=deleteAboutContent&abt_twitter=<?=htmlspecialchars($about["abt_twitter"])?>">
+                        Supprimer
+                    </a>
+                </button>
             <?php endif ?>
         </div>
     </div>

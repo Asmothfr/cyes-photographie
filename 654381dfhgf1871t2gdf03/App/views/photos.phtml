@@ -1,32 +1,39 @@
 <section class="container">
-    <h3 class="gallery__Formtitle">Ajouter des photos à l'album <?=htmlspecialchars($album["albm_title"]) ?> :</h3>
-
-    <form class="gallery__form" action="index.php?route=addPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>" enctype="multipart/form-data" method="POST">
-        <label id="photos"></label>
-        <?php if( isset($errors) && array_key_exists("e1",$errors)): ?>
-            <p class="gallery__form__error"><?= htmlspecialchars($errors["e1"]) ?></p>
-        <?php endif?>
-        <input class="gallery__form__input" type="file" multiple="true" name="photos[]">
-        <?php if( isset($errors) && array_key_exists("phtExist",$errors)): ?>
-            <p><?= htmlspecialchars($errors["phtExist"]) ?></p>
-        <?php endif?>
-        <button class="gallery__Button gallery__Button--validate">Valider</button>
-    </form>
+    <h3 class="form__title">Ajouter des photos à l'album <?=htmlspecialchars($album["albm_title"]) ?> :</h3>
+        <form class="form__card" action="index.php?route=addPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>" enctype="multipart/form-data" method="POST">
+            <div class="form__fields">
+                <label class="form__label" id="photos"></label>
+                <?php if( isset($errors) && array_key_exists("e1",$errors)): ?>
+            <p class="form__error"><?= htmlspecialchars($errors["e1"]) ?></p>
+                <?php endif?>
+                <?php if( isset($errors) && array_key_exists("phtExist",$errors)): ?>
+            <p class="form__error"><?= htmlspecialchars($errors["phtExist"]) ?></p>
+                <?php endif?>
+                <input class="form__input" type="file" multiple="true" name="photos[]">
+                <button class="button button--validate">Valider</button>
+            </div>
+        </form>
     <div>
-        <h3 class="gallery__Formtitle">Supprimer toutes les photos de l'album :</h3>
-        <a class="Button--link" href="index.php?route=deleteAllPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>">
-        <button class="gallery__Button gallery__Button--delete">Supprimer </button>
+        <h3 class="form__title">Supprimer toutes les photos de l'album :</h3>
+        <button class="button button--delete">
+        <a class="link__style link__style--delete" href="index.php?route=deleteAllPhotos&albm_id=<?=htmlspecialchars($album["albm_id"])?>">
+            Supprimer
         </a>
+    </button>
     </div>
-    <hr class="gallery__decoration gallery__decoration--admin">
-    <h3 class="gallery__title"><?=htmlspecialchars($album["albm_title"])?></h2>
-    <p class="gallery__desc"><?=htmlspecialchars($album["albm_description"])?></p>
-    <hr class="gallery__decoration">
+    <div class="underline-decoration"></div>
+    <div class="albums__presentation">
+        <h3 class="text__alb-title"><?=htmlspecialchars($album["albm_title"])?></h2>
+        <p class="text__alb-content"><?=htmlspecialchars($album["albm_description"])?></p>
+    </div>
+    <div class="underline-decoration"></div>
     <?php foreach($photos as $photo): ?>
 
         <img class="gallery__img" src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
-        <a class="Button--link" href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
-            <button class="gallery__Button gallery__Button--delete">Supprimer</button>
-        </a>
+        <button class="gallery__Button gallery__Button--delete">
+        <a class="Button--link link__style--delete" href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
+                Supprimer
+            </a>
+        </button>
     <?php endforeach; ?>
 </section>

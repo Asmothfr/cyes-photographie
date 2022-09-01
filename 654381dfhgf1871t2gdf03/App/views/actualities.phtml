@@ -58,9 +58,11 @@
                     </div>
                     <button class="button button--validate">Valider</button>
                 </form>
-                <a class="link__style" href="index.php?route=deleteActualitie&act_id=<?= htmlspecialchars($content["act_id"]) ?>">
-                    <button class="button button--delete">Supprimer</button>
-                </a>
+                <button class="button button--delete">
+                <a class="link__style link__style--delete" href="index.php?route=deleteActualitie&act_id=<?= htmlspecialchars($content["act_id"]) ?>">
+                        Supprimer
+                    </a>
+                </button>
             </article>
         <?php endforeach ?>
     </div>

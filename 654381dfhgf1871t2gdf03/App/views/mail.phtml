@@ -11,8 +11,10 @@
         </div>
         <p class="mail__text mail__subject"><?= htmlspecialchars($mail["cont_usr_subject"])?></p>
         <p class="mail__text"><?= htmlspecialchars($mail["cont_usr_content"])?></p>
-        <a class="link__style" href="index.php?route=deleteMail&id=<?= htmlspecialchars($mail["cont_id"])?>">
-            <button class="button button--delete">Supprimer</button>
-        </a>
+        <button class="button button--delete">
+        <a class="link__style link__style--delete" href="index.php?route=deleteMail&id=<?= htmlspecialchars($mail["cont_id"])?>">
+                Supprimer
+            </a>
+        </button>
     </article>
 </section>
