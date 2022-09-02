@@ -14,7 +14,7 @@ class Router
     
         if(!isset($routes[$queriedRoute]))
         {
-            header("location: index.php?route=404");
+            header("location: index.php?route=home");
         }
     
         $routeName = $routes[$queriedRoute];
