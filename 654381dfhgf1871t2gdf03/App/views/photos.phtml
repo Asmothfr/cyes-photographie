@@ -27,13 +27,18 @@
         <p class="text__alb-content"><?=htmlspecialchars($album["albm_description"])?></p>
     </div>
     <div class="underline-decoration"></div>
-    <?php foreach($photos as $photo): ?>
 
-        <img class="gallery__img" src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
-        <button class="gallery__Button gallery__Button--delete">
-        <a class="Button--link link__style--delete" href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
+    <div class="grid">
+    <?php foreach($photos as $photo): ?>
+        <div class="grid-item">
+            <img class="image__large" src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
+            <button class="button button--delete">
+            <a class="link__style link__style--delete" href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
                 Supprimer
             </a>
-        </button>
-    <?php endforeach; ?>
+            </button>
+        </div>
+        <?php endforeach; ?>
+    </div>
+
 </section>

@@ -10,10 +10,32 @@
     .image__large{
         width: 500px;
     }
-}
-
-@media screen and (min-width:500px) {
-    .image__large--about{
-        margin-right: 1rem;
+    .grid{
+        margin: 0 auto;
+        width: 500px;
+        margin: 0;
     }
 }
+@media screen and (min-width:768px) {
+    .grid{
+        margin: 0 auto;
+        width: 500px;
+    }
+    .grid-item{
+        float: left;
+        width: 500px;
+        margin: 0 auto;
+    }
+}
+@media screen and (min-width:1024px) {
+    .grid{
+        margin: 0 auto;
+        width: 1024px;
+    }
+    .grid-item{
+        float: left;
+        width: 500px;
+        margin: 5px 5px;
+    }
+}
+

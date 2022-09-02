@@ -6,7 +6,6 @@ window.addEventListener("DOMContentLoaded", () => {
     function homeFrontOffice(){
         let urlEnd = url.substring (url.lastIndexOf( "/" )+1);
         const isHome = urlEnd === "index.php?route=home"
-        console.log(isHome)
         const title = document.querySelector(".nav__title");
         title.classList.toggle("nav__title--home", isHome)
         title.classList.toggle("nav__title--page", !isHome)

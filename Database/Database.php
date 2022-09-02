@@ -15,7 +15,7 @@ class Database
         $this->db = new PDO('mysql:host='. DB_HOST . ';dbname=' . DB_NAME .';charset=utf8', DB_USER, DB_PASSWORD);
     }
 
-    public function findAll(string $sqlQuery, $params = []): array
+    protected function findAll(string $sqlQuery, $params = []): array
     {
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($params);
@@ -23,7 +23,7 @@ class Database
         return $dbResult;
     }
 
-    public function find(string $sqlQuery, $params = []): array
+    protected function find(string $sqlQuery, $params = []): array
     {
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($params);
@@ -31,7 +31,7 @@ class Database
         return $dbResult;
     }
 
-    public function addOne($sqlQuery, $data)
+    protected function addOne($sqlQuery, $data)
     {
         $dbQuery = $this->db->prepare($sqlQuery);
         $dbQuery->execute($data);
