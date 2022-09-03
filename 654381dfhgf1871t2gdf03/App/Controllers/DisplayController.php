@@ -12,7 +12,7 @@ use App\Models\ContactModel;
 use App\Models\CategoriesModel;
 
 // Classe uniquement dédié à l'affichage des pages du sites.
-// Chaque méthode est contruite avec l'appel de la donnée par        l'instantiation des modèles (voir liste ci-dessus);
+// Chaque méthode est contruite avec l'appel de la donnée par l'instantiation des modèles (voir liste ci-dessus);
 // Et l'affichage est gérer par la méthode render (voir LayoutController.php dans Library).
 class DisplayController extends LayoutController
 {

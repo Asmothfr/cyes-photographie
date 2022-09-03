@@ -117,6 +117,9 @@
     .nav__list--homeAdmin{
         margin-top: 15vw;
     }
+    .nav__list{
+        margin: 1rem 0;
+    }
 }
 /*=====================================================================
     PREWIEWS CARD (ALBUM ET ACTUALITÉS)
