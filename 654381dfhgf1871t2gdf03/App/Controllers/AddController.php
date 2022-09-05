@@ -33,6 +33,10 @@ class AddController extends LayoutController
             header("location: index.php?route=albums");
         }
     }
+    /*
+        Ajoute un album et crée un dossier dans 
+        assets/img/photos du nom de l'id du dernier album ajouter en base de donnée
+    */
     public function addOneAlbum()
     {
         $errors = [];
@@ -115,12 +119,13 @@ class AddController extends LayoutController
                     array_push($validPhotos, $uploadedPhoto);
                 }
             }              
-            //Comparaison entre les photos envoyés et les photos valides.
-            //Récupération des index des photos valides.
+            /*
+                Comparaison entre les photos envoyés et les photos valides.
+                Récupération des index des photos valides.
+            */
             $tmpNames = array_intersect($uploadedPhotos["tmp_name"], $validPhotos);
             $phtNames = $uploadedPhotos["name"];
             $destination = "../assets/img/photos/$albmId/";
-            $data["albm_id"] = $albmId;
 
             foreach($tmpNames as $key => $TmpName)
             {
@@ -139,7 +144,10 @@ class AddController extends LayoutController
             $this->render("photos",["album"=>$album, "photos"=>$photos, "errors"=>$errors]);
         }
     }
-
+    /*
+        Vérification individuelle de plusieurs formulaire, afin de ne remplir 
+        que la colonne choisis en base de donnée.
+    */
     public function addAboutcontent()
     {
         $model = new AboutModel;

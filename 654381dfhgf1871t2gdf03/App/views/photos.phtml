@@ -22,12 +22,11 @@
     </button>
     </div>
     <div class="underline-decoration"></div>
-    <div class="albums__presentation">
-        <h3 class="text__alb-title"><?=htmlspecialchars($album["albm_title"])?></h2>
-        <p class="text__alb-content"><?=htmlspecialchars($album["albm_description"])?></p>
-    </div>
+        <div class="albums__presentation">
+            <h3 class="text__alb-title"><?=htmlspecialchars($album["albm_title"])?></h2>
+            <p class="text__alb-content"><?=htmlspecialchars($album["albm_description"])?></p>
+        </div>
     <div class="underline-decoration"></div>
-
     <div class="grid">
     <?php foreach($photos as $photo): ?>
         <div class="grid-item">
@@ -40,5 +39,4 @@
         </div>
         <?php endforeach; ?>
     </div>
-
 </section>

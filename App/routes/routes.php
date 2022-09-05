@@ -1,9 +1,5 @@
 <?php
 return [
-    "404" =>[
-        "controller"=>"App\Controllers\DisplayController",
-        "method"=>"display404"
-    ],
     "home" => [
         "controller"=>"App\Controllers\DisplayController",
         "method"=>"displayHome"

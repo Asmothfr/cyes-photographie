@@ -53,7 +53,9 @@ class DeleteController extends LayoutController
         $albmPthName = $_GET["albm_photo"];
         $albmDir = "../assets/img/photos/".$albmId;
         $model = new AlbumsModel;
-
+        /*
+            Voir delTree en bas de page.
+        */
         $this->delTree($albmDir);
         $model->deleteOneAlbum($albmId);
 
@@ -94,6 +96,12 @@ class DeleteController extends LayoutController
         header("location: index.php?route=actualities");
     }
 
+    /*
+        Fausse suppression.
+        La ligne about en base de donnée ne peut être supprimer.
+        L'admin a le choix de renseigner ou supprimer individuellement des informations contenu dans la table.
+        Si un champs est supprimé, un update de valeur nulle est fait dans la colonne demandé.
+    */
     public function deleteAboutContent():void
     {
         $model = new AboutModel;
@@ -132,7 +140,9 @@ class DeleteController extends LayoutController
             header("location: index.php?route=about");
         }
     }
-    
+    /*
+        Fonction qui scanne un dossier, sépare le contennu des fichiers caché et supprime les fichiers et le dossier.
+    */
     public function delTree($dir)
         {
             $files = array_diff(scandir($dir), array('.','..'));

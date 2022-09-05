@@ -8,13 +8,11 @@ use App\Models\AboutModel;
 use App\Models\ActualitiesModel;
 use App\Models\AlbumsModel;
 
+// Classe uniquement dédié à l'affichage des pages du sites.
+// Chaque méthode est contruite avec l'appel de la donnée par l'instantiation des modèles (voir liste ci-dessus);
+// Et l'affichage est gérer par la méthode render (voir LayoutController.php dans Library).
 class DisplayController extends LayoutController
 {
-    public function display404(): void
-    {
-        require_once "App/views/_404.phtml";
-    }
-
     public function displayHome(): void
     {
         $this->render("home");

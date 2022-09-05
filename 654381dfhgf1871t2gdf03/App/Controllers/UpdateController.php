@@ -11,6 +11,10 @@ use Library\LayoutController;
 
 class UpdateController extends LayoutController
 {
+    /*
+        Vérification individuelle des formulaires de la pages "administrator".
+        Met à jours la colonne ciblé en base de donné.
+    */
     public function AdminInfoUpdate():void
     {
         $errors = [];
@@ -90,7 +94,7 @@ class UpdateController extends LayoutController
             $this->render("administrator",["admin"=>$admin,"errors"=>$errors]);
         }
     }
-
+    
     public function updateActualitie():void
     {
 
@@ -147,7 +151,10 @@ class UpdateController extends LayoutController
             header("location:index.php?route=actualities");
         }
     }
-
+/*
+        Vérification individuelle des formulaires de la pages "about".
+        Met à jours la colonne ciblé en base de donné.
+    */
     public function updateAboutContent():void
     {
         $id = $_GET["abt_id"];

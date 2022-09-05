@@ -1,9 +1,5 @@
 <?php
 return [
-    "404" =>[
-        "controller"=>"App\Controllers\DisplayController",
-        "method"=>"display404"
-    ],
     "login" => [
         "controller"=> "App\Controllers\LoginController",
         "method"=> "connectionCheaking"

@@ -41,7 +41,7 @@
     ===================================================================*/
 
 .background {
-    background-image: url(../img/bgc_img/49730925348_b00d7c8811_o.jpg);
+    background-image: url(../img/bg_img/49730925348_b00d7c8811_o.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
@@ -52,7 +52,7 @@
     background-position-x: 50%;
 }
 .background.dark-mode {
-    background-image: url(../img/bgc_img/49720878792_3bd868bc17_o.jpg);
+    background-image: url(../img/bg_img/49720878792_3bd868bc17_o.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: 60%;

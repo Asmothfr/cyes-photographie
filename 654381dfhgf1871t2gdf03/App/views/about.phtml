@@ -1,6 +1,12 @@
+<!-- 
+    Page qui contient au total 10 formulaires.
+    Si le contenu n'existe pas en base de donnée, formulaire d'ajout.
+    Sinon formulaire de modification et bouton de suppression
+ -->
 <section class="container">
 <h3 class="form__title">Ajouter ou modifier la présentation :</h3>
     <article class="about__card">
+        <!-- formulaire d'ajout de photo de présentation -->
     <div class="about__photo-form">
         <?php if(empty($about["abt_photo"])):?>
             <form class="form__card" method="POST" enctype="multipart/form-data"   action="index.php?route=addAboutContent">
@@ -17,7 +23,7 @@
                 <button class="button button--validate">Valider</button>
             </form>
         <?php endif ?>
-
+        <!-- formulaire de mofification/suppression de photo de présentation -->
         <?php if(!empty($about["abt_photo"])):?>
             <img class="image__large image__large--about" src="../assets/img/about_img/<?=htmlspecialchars($about["abt_photo"])?>" alt="Portrait du photographe">
             <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
@@ -40,6 +46,7 @@
             </button>
         <?php endif ?>
         </div>
+        <!-- formulaire d'ajout de texte de présentation -->
         <div class="about__text_form">
         <?php if(empty($about["abt_content"])):?>
             <form class="form__card" method="POST" action="index.php?route=addAboutContent">
@@ -53,7 +60,7 @@
                 <button class="button button--validate">Valider</button>
             <?php endif ?>
             </form>
-
+        <!-- formulaire de modification ou suppression de texte de présentation -->
         <?php if(!empty($about["abt_content"])):?>
             <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">
             <div class="form__fields">
@@ -73,10 +80,10 @@
         <?php endif ?>
         </div>
     </article>
-
     <div class="social-media__div">
         <h4 class="form__title">Réseaux Sociaux :</h4>
     <div class="social-media__all-form">
+        <!-- Formulaire d'ajout de lien facebook -->
         <div class="social-media__form-group">
             <?php if(empty($about["abt_facebook"])): ?>
                 <form class="form__card" method="POST" action="index.php?route=addAboutContent">
@@ -90,6 +97,7 @@
                     <button class="button button--validate">Valider</button>
                 </form>
             <?php endif ?>
+        <!-- Formulaire de modification ou suppression de lien facebook -->
             <?php if(!empty($about["abt_facebook"])): ?>
                 <a class="link__style" target="_blank" href="<?=htmlspecialchars($about["abt_facebook"])?>">
                     <i class="fa-brands fa-brands--admin fa-facebook"></i>
@@ -111,6 +119,7 @@
                 </button>
             <?php endif ?>
         </div>
+        <!-- Formulaire d'ajout de lien Instagram -->
         <div class="social-media__form-group">
             <?php if(empty($about["abt_instagram"])): ?>
                 <form class="form__card" method="POST" action="index.php?route=addAboutContent">
@@ -124,6 +133,7 @@
                 <button class="button button--validate">Valider</button>
                 </form>
             <?php endif ?>
+        <!-- Formulaire de modification ou suppression de lien Instagram -->
             <?php if(!empty($about["abt_instagram"])): ?>
                 <a class="link__style" target="_blank" href="<?= htmlspecialchars($about["abt_instagram"])?>">
                     <i class="fa-brands fa-brands--admin fa-instagram"></i>
@@ -145,6 +155,7 @@
                 </button>
             <?php endif ?>
         </div>
+        <!-- Formulaire d'ajout de lien Twitter -->
         <div class="social-media__form-group">
             <?php if(empty($about["abt_twitter"])): ?>
                 <form class="form__card" method="POST" action="index.php?route=addAboutContent">
@@ -158,6 +169,7 @@
                     <button class="button button--validate">Valider</button>
                 </form>
             <?php endif ?>
+        <!-- Formulaire de modification ou suppression de lien Twitter -->
             <?php if(!empty($about["abt_twitter"])): ?>
                 <a class="link__style" target="_blank" href="<?=htmlspecialchars($about["abt_twitter"])?>"><i class="fa-brands fa-brands--admin fa-twitter-square"></i></a>
                 <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAboutcontent&abt_id=<?=htmlspecialchars($about["abt_id"])?>">

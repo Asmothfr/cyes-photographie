@@ -7,6 +7,7 @@ use App\Models\ContactModel;
 
 class Formcontroller extends LayoutController
 {
+    /*Validation du formulaire de la page Contact*/
     public function FormValidation()
     {
         $errors = [];

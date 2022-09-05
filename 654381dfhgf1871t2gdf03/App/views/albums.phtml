@@ -1,14 +1,14 @@
 <!-- 
-    * Form page of Albums Management page.
-      Data of this page is manage by the displayController with the displayAlbums methods.
-    * Form of this page is separate in two principal block :
-      - Add edit and delete Categorie.
-      - Add edit and delete Albums .
--->
+    Page qui contient 4 formulaire.
+    Ajout de categorie.
+    Modification de categorie
+    Ajout d'album
+    Modification d'album
+    Bouton de suppresion pour les categorie, et les albums
+ -->
 <section class="container">
-    <!-- categorie form -->
+    <!-- Ajout de categorie -->
     <div class="form__similar-form-block">
-        <!-- Add Categorie -->
         <div>
             <h3 class="form__title">Ajouter un Thème :</h3>
             <form class="form__card" action="index.php?route=addCategorie" method="POST">
@@ -23,7 +23,7 @@
             </form>
         </div>
         <div>
-            <!-- Categorie edit or delete  -->
+            <!-- Modification/Suppression de categorie -->
             <h3 class="form__title">Mes Thèmes :</h3>
             <div>
                 <?php foreach($categories as $categorie): ?>
@@ -46,12 +46,10 @@
             </div>
         </div>
     </div>
-    <!-- Albums form -->
+    <!-- Ajout d'album -->
     <div class="form__similar-form-block">
-        <!-- Add Albums -->
         <h3 class="form__title">Ajouter un Album :</h3>
         <form class="form__card" action="index.php?route=addAlbum" enctype="multipart/form-data" method="POST">
-            <!-- Select categorie for Album -->
             <div class="form__fields">
                 <label class="form__label" for="categories">Thème de l'album :</label>
                 <?php if( isset($errors) && array_key_exists("e1",$errors) ): ?>
@@ -64,7 +62,6 @@
                         <?php endforeach ?>
                     </select>
             </div>
-            <!-- Select title for Album -->
             <div class="form__fields">
                 <label class="form__label" for="title">Titre de l'album :</label>
                 <?php if( isset($errors) && array_key_exists("e2",$errors) ): ?>
@@ -72,7 +69,6 @@
                 <?php endif?>
                 <input class="form__input" id="title" type="text" name="title" placeholder="Titre">
             </div>
-            <!-- Select description for Album -->
             <div class="form__fields">
                 <label class="form__label" for="description">Description de l'album :</label>
                 <?php if( isset($errors) && array_key_exists("e3",$errors) ):?>
@@ -94,6 +90,7 @@
         </form>
     </div>
     <div>
+        <!-- Modification/Suppresion de l'album -->
         <h3 class="form__title">Modifier un Album :</h3>
         <div class="previews__card-form-group">
             <?php foreach($contents as $content): ?>
