@@ -101,42 +101,38 @@ class AddController extends LayoutController
         $albumsModel = new AlbumsModel;
         $album = $albumsModel->getOneAlbum($albmId);
         $photos = $photosModel->getAllPhotos($albmId);
-        
+
         if(($_FILES["photos"]) && in_array(!empty([""]),$_FILES["photos"]["name"]) && in_array(!empty([""]),$_FILES["photos"]["tmp_name"]))
-        {
-            $validPhotos = [];
+        {   $validPhotos = [];
             $refusedPhotos = [];
             $uploadedPhotos = $_FILES["photos"];
 
             foreach($uploadedPhotos["tmp_name"] as $uploadedPhoto)
             {
                 if(mime_content_type($uploadedPhoto) != "image/jpeg")
-                {
+                { 
                     array_push($refusedPhotos, $uploadedPhoto);
                 }
                 else
-                {
+                {  
                     array_push($validPhotos, $uploadedPhoto);
                 }
-            }              
-            /*
-                Comparaison entre les photos envoyés et les photos valides.
-                Récupération des index des photos valides.
-            */
+            }            
+            //Comparaison entre les photos envoyés et les photos valides.
+                //Récupération des index des photos valides.
             $tmpNames = array_intersect($uploadedPhotos["tmp_name"], $validPhotos);
-            $phtNames = $uploadedPhotos["name"];
-            $destination = "../assets/img/photos/$albmId/";
+                //Récupération des noms des photos valides.
+            $phtNames = array_intersect_key($uploadedPhotos["name"], $tmpNames);
 
+            $destination = "../assets/img/photos/$albmId/";
+            $data["albm_id"] = $albmId; 
             foreach($tmpNames as $key => $TmpName)
-            {
-                if(!in_array($phtNames[$key],scandir($destination)))
-                {
-                    move_uploaded_file($TmpName,$destination . $phtNames[$key]);
-                    $data["phtName"] = $phtNames[$key];
-                    $photosModel->addPhotos($data);
-                }
+            { 
+                move_uploaded_file($TmpName,$destination . $phtNames[$key]);
+                $data["phtName"] = $phtNames[$key]; 
+                $photosModel->addPhotos($data);
             }
-                header("location: index.php?route=gallery&id=".$albmId);
+            header("location: index.php?route=gallery&id=".$albmId);
         }
         else
         {
