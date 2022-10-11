@@ -329,6 +329,7 @@
 }
 .form__text-arrea{
     margin-top: 1rem;
+    padding: 0.5rem;
     border-radius: 1rem;
     color: var(--fontColor);
     background-color: transparent;

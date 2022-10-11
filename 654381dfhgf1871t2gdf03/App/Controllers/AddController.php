@@ -44,6 +44,7 @@ class AddController extends LayoutController
         $albModel = new AlbumsModel;
         $albmCatContents = $catModel->catAndAlbmJoin();
         $cat = $catModel->getCategories();
+        
         if(!isset($_POST["categories"]) || empty($_POST["categories"]))
         {
             $errors["e1"] = "Veuillez choisir une categorie.";
@@ -56,9 +57,25 @@ class AddController extends LayoutController
         {
             $errors["e3"] = "Veuillez donner une description à l'album.";
         }
-        if(!isset($_FILES["photoName"]) || empty($_FILES["photoName"]) || $_FILES["photoName"]["type"] != "image/jpeg")
+        if(!isset($_FILES["photoName"]) || empty($_FILES["photoName"]["name"]) && empty($_FILES["photoName"]["tmp_name"]))
         {
-            $errors["e4"] = "Veuillez selectionner une photo au format .jpg ou .jpeg";
+            $errors["e4"] = "Veuillez selectionner une photo de présentation pour l'album.";
+        }
+        else
+        {
+            $info_img = getimagesize($_FILES["photoName"]["tmp_name"]);
+            switch($info_img)
+            {
+                case $info_img === "false" || false:
+                    $errors["e5"] = "C'est pas gentil de vouloir envoyer des photos qui n'en sont pas. Faut pas refaire ça !";
+                    break;
+                case $info_img["mime"] != "image/jpeg":
+                    $errors["e5"] = "Veuillez selectionner une photo au format .jpg ou .jpeg";
+                    break;
+                case $info_img["3"] != 'width="250" height="250"':
+                    $errors["e5"] = "Veuillez téléverser une image au format 250x250 pixels.";
+                    break;
+            }
         }
         if(isset($errors) && !empty($errors))
         {
@@ -66,30 +83,21 @@ class AddController extends LayoutController
         }
         else
         {
-            if(mime_content_type($_FILES["photoName"]["tmp_name"]) != "image/jpeg")
-            {
-                $errors["e5"] = "C'est pas gentil de vouloir envoyer des photos qui n'en sont pas. Faut pas refaire ça !";
-                $this->render("albums", ["contents"=>$albmCatContents, "categories"=>$cat, "errors"=>$errors]);
-            }
-            else
-            {
-                $origine = $_FILES["photoName"]["tmp_name"];
-                $destination = "../assets/img/albm_photos/".$_FILES["photoName"]["name"];
-                $data = [
-                    "categories"=>$_POST["categories"],
-                    "title"=>$_POST["title"],
-                    "descript"=>$_POST["description"],
-                    "photoName"=>$_FILES["photoName"]["name"],
-                ];
-                
-                $albModel->addOneAlbum($data);
-                $lastAlbum = $albModel->getLastAlbum();
-                
-                move_uploaded_file($origine,$destination);
-                mkdir("../assets/img/photos/".$lastAlbum["MAX(albm_id)"]);
-                
-                header("location: index.php?route=albums");
-            }
+            $origine = $_FILES["photoName"]["tmp_name"];
+            $destination = "../assets/img/albm_photos/".$_FILES["photoName"]["name"];
+            $data = [
+                "categories"=>$_POST["categories"],
+                "title"=>$_POST["title"],
+                "descript"=>$_POST["description"],
+                "photoName"=>$_FILES["photoName"]["name"],
+            ];
+            $albModel->addOneAlbum($data);
+            $lastAlbum = $albModel->getLastAlbum();
+            
+            move_uploaded_file($origine,$destination);
+            mkdir("../assets/img/photos/".$lastAlbum["MAX(albm_id)"]);
+            
+            header("location: index.php?route=albums");
         }
     }
 
@@ -150,35 +158,41 @@ class AddController extends LayoutController
         $abtInfo = $model->getOneContent();
         $id = $abtInfo["abt_id"];
         $errors = [];
-        switch($_POST || $_FILES)
+
+        if(isset($_FILES["abtPhoto"]["name"]) && !empty($_FILES["abtPhoto"]["name"]))
         {
-            case isset($_FILES["abtPhoto"]["name"]):
-                if(!empty($_FILES["abtPhoto"]["name"]))
-                {
-                    if(mime_content_type($_FILES["abtPhoto"]["tmp_name"]) == "image/jpeg")
-                    {
-                        $phtName = $_FILES["abtPhoto"]["name"];
-                        $phtTmpName = $_FILES["abtPhoto"]["tmp_name"];
-                        $column = "abt_photo";
-                        $dir = "../assets/img/about_img/";
-                        move_uploaded_file($phtTmpName, $dir . $phtName);
-                        $data = [
-                            "newData" => $phtName,
-                            "id" => $id
-                        ];
-                        $model->addAboutcontent($column,$data);
-                        header("location: index.php?route=about");
-                    }
-                    else
-                    {
-                        $errors["mime"] = ("Attention, ce fichier n'est pas une photo.");
-                    }
-                }
-                else
-                {
-                    $errors["photo"] = "Veuillez selectionner une photo de présentation.";
-                }
-                break;
+            $imgInfo = getimagesize($_FILES["abtPhoto"]["tmp_name"]);
+            switch($imgInfo)
+            {
+                case $imgInfo === "false" || false:
+                    $errors["photo"] = "Attention, ce fichier n'est pas une photo.";
+                    break;
+                case $imgInfo["mime"] !== "image/jpeg":
+                    $errors["photo"] = "Veuillez téléverser une image au format .jpeg ou .jpg.";
+                    break;
+                case $imgInfo["0"] != 500:
+                    $errors["photo"] = "Veuillez téléverser une image d'une largeur de 500px";
+                    break;
+                default:
+                    $phtName = $_FILES["abtPhoto"]["name"];
+                    $phtTmpName = $_FILES["abtPhoto"]["tmp_name"];
+                    $column = "abt_photo";
+                    $dir = "../assets/img/about_img/";
+                    move_uploaded_file($phtTmpName, $dir . $phtName);
+                    $data = [
+                        "newData" => $phtName,
+                        "id" => $id
+                    ];
+                    $model->addAboutcontent($column,$data);
+                    header("location: index.php?route=about");
+            }
+        }
+        else
+        {
+            $errors["photo"] = "Veuillez selectionner une photo de présentation.";
+        }
+        switch($_POST)
+        {
             case isset($_POST["abt_content"]) :
                 if(!empty($_POST["abt_content"]))
                 {
@@ -244,10 +258,10 @@ class AddController extends LayoutController
                 }
                 break;
         }
-            if(isset($errors) && !empty($errors))
-            {
-                $this->render("about",["about"=>$abtInfo,"errors"=>$errors]);
-            }
+        if(isset($errors) && !empty($errors))
+        {
+            $this->render("about",["about"=>$abtInfo,"errors"=>$errors]);
+        }
     }
 
     public function addActualities()
@@ -256,15 +270,24 @@ class AddController extends LayoutController
         $model = new ActualitiesModel;
         $contents = $model->getActuContent();
        
-        if(!isset($_FILES["act_photo"]) || empty($_FILES["act_photo"]["name"]) || empty($_FILES["act_photo"]["tmp_name"]))
+        if(!isset($_FILES["act_photo"]) || empty($_FILES["act_photo"]["name"]) && empty($_FILES["act_photo"]["tmp_name"]))
         {
             $errors["photo"] = "Veuillez selectionner une photo.";
         }
         else
         {
-            if(mime_content_type($_FILES["act_photo"]["tmp_name"]) != "image/jpeg")
+            $imgInfo = getimagesize($_FILES["act_photo"]["tmp_name"]);
+            switch($imgInfo)
             {
-                $errors["mime"] = "LE FICHIER ENVOYÉ N'EST PAS UNE PHOTO.";
+                case $imgInfo === "false" || false:
+                    $errors["photo"] = "LE FICHIER ENVOYÉ N'EST PAS UNE PHOTO.";
+                    break;
+                case $imgInfo["mime"] != "image/jpeg":
+                    $errors["photo"] = "Veuillez téléverser une photo au format .jpg ou .jpeg.";
+                    break;
+                case $imgInfo["3"] != 'width="250" height="250"':
+                    $errors["photo"] = "Veuillez téléverser une photo au format 250x250 pixels";
+                    break;
             }
         }
         if(!isset($_POST["act_title"]) || empty($_POST["act_title"]))

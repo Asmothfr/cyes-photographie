@@ -4,7 +4,7 @@
         <div class="form__fields">
             <label class="form__label" for="act_photo">Photo de présentation : </label>
             <?php if(isset($errors) && array_key_exists("photo", $errors)):?>
-                <?= htmlspecialchars($errors["photo"])?>
+                <p class="form__error"><?= htmlspecialchars($errors["photo"])?></p>
             <?php endif?>
             <input class="form__input" id = "act_photo" type="file" name = "act_photo">
         </div>

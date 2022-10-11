@@ -77,7 +77,7 @@
                 <textarea class="form__text-arrea" id="description" type="text" name="description" placeholder="Description"></textarea>
             </div>
             <div class="form__fields">
-                <label class="form__label" for="photoName">Photo de présentation de l'album :</label>
+                <label class="form__label" for="photoName">Photo de présentation de l'album (Au format 250x250 pixels) :</label>
                 <?php if( isset($errors) && array_key_exists("e4",$errors) ):?>
                     <p class="form__error"><?= htmlspecialchars($errors["e4"]) ?></p>
                 <?php endif?>
