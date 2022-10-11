@@ -106,6 +106,7 @@ class UpdateController extends LayoutController
         $phtTmpName = $_FILES["act_photo"]["tmp_name"];
         $phtNewName = $_FILES["act_photo"]["name"];
         $dir = "../assets/img/actu_img/";
+        $errors = [];
 
         if(isset($_POST["act_title"]) && !empty($_POST["act_title"]) &&
         isset($_POST["act_date"]) && !empty($_POST["act_date"]) &&
@@ -113,23 +114,33 @@ class UpdateController extends LayoutController
         {
             if(isset($_FILES["act_photo"]) && !empty($_FILES["act_photo"]["name"]))
             {
-                if(mime_content_type($_FILES["act_photo"]["tmp_name"])=="image/jpeg")
+                $imgInfo = getimagesize($_FILES["act_photo"]["tmp_name"]);
+                switch($imgInfo)
                 {
-                    $data = [
-                        "title"=>$_POST['act_title'],
-                        "content"=>$_POST["act_content"],
-                        "dat"=>$_POST["act_date"],
-                        "photo"=>$_FILES["act_photo"]["name"],
-                        "id"=>$id
-                    ];
-                    unlink($dir . $phtDbName);
-                    move_uploaded_file($phtTmpName, $dir . $phtNewName);
-                    $model->updateActualitie($data);
-                    header("location:index.php?route=actualities");
+                    case $imgInfo === "false" || false:
+                        $errors["updatePhoto"] = "Attention, ce fichier n'est pas une photo";
+                        break;
+                    case $imgInfo["mime"] !== "image/jpeg":
+                        $errors["updatePhoto"] = "Veuillez téléverser une photo au format .jpeg ou .jpg";
+                        break;
+                    case $imgInfo["3"] !== 'width="250" height="250"':
+                        $errors["updatePhoto"] = "Veuillez téléverser une photo au format 250x250 pixels";
+                        break;
+                    default:
+                        $data = [
+                            "title"=>$_POST['act_title'],
+                            "content"=>$_POST["act_content"],
+                            "dat"=>$_POST["act_date"],
+                            "photo"=>$_FILES["act_photo"]["name"],
+                            "id"=>$id
+                        ];
+                        unlink($dir . $phtDbName);
+                        move_uploaded_file($phtTmpName, $dir . $phtNewName);
+                        $model->updateActualitie($data);
+                        header("location:index.php?route=actualities");
                 }
-                else
+                if(isset($errors)&&!empty($errors))
                 {
-                    $errors["updatePhoto"] = "Attention, ce fichier n'est pas une photo";
                     $this->render("actualities",["contents"=>$actu,"errors"=>$errors]);
                 }
             }
