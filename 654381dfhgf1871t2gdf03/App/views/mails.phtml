@@ -2,7 +2,7 @@
 <h3 class="form__title">Mes Messages :</h3>
     <div class="mails__group-card">
         <?php foreach($mails as $mail): ?>
-            <a class="link__style mails__link" href="index.php?route=mail&id=<?=htmlspecialchars($mail["cont_id"])?>">
+            <a class="link__style mails__link" href="mail_<?=htmlspecialchars($mail["cont_id"])?>">
             <article class="mails__card">
                 <p class="mails__date">
                     <?= htmlspecialchars($mail["cont_date"])?>

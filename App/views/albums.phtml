@@ -2,7 +2,8 @@
     <div class="previews__group-card">
     <?php foreach($albums as $album): ?>
             <article class="previews__card">
-                <a class="previews__link-img"href="index.php?  route=gallery&id=<?=htmlspecialchars($album["albm_id"])?>">
+                <!-- index.php?route=gallery&id= -->
+                <a class="previews__link-img" href="album_<?=htmlspecialchars($album["albm_id"])?>">
                     <img class="previews__img" src="assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des albums">
                 </a>
                 <h2 class="previews__title"><?=htmlspecialchars($album ["albm_title"])?></h2>

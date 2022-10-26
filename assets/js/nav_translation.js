@@ -5,11 +5,11 @@ window.addEventListener("DOMContentLoaded", () => {
    
     function homeFrontOffice()
     {
-        let urlEnd = url.substring (url.lastIndexOf( "/" )+10);
+        let urlEnd = url.substring (url.lastIndexOf( "/" )+1);
         const title = document.querySelector(".nav__title");
         switch(urlEnd)
         {
-            case "?route=home":
+            case "home":
                 title.classList.toggle("nav__title--page")
                 break
             case "":
@@ -22,12 +22,13 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     function homeBackOffice()
     {
-        let urlEnd = url.substring (url.lastIndexOf( "/" )+10);
+        let urlEnd = url.substring (url.lastIndexOf( "/" )+1);
+        console.log(urlEnd)
         const title = document.querySelector(".nav__title-admin");
         const nav = document.querySelector(".nav__list");
         switch(urlEnd)
         {
-            case "?route=home":
+            case "home":
                 title.classList.toggle("nav__title--page")
                 break
             case "":

@@ -47,7 +47,7 @@ class Formcontroller extends LayoutController
             ];
             $model = new ContactModel();
             $model->contactFormValidation($data);
-            header("location:index.php?route=contact");
+            header("location:contact");
         }
         else
         {

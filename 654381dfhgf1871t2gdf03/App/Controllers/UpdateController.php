@@ -31,7 +31,7 @@ class UpdateController extends LayoutController
                         "id"=>$id
                     ];
                     $model->adminUpdate($column,$data);
-                    header("location:index.php?route=admin");
+                    header("location:admin");
                 }
                 else
                 {
@@ -48,7 +48,7 @@ class UpdateController extends LayoutController
                         "id"=>$id
                     ];
                     $model->adminUpdate($column,$data);
-                    header("location:index.php?route=admin");
+                    header("location:admin");
                 }
                 else
                 {
@@ -64,7 +64,7 @@ class UpdateController extends LayoutController
                         "id"=>$id
                     ];
                     $model->adminUpdate($column,$data);
-                    header("location:index.php?route=admin");
+                    header("location:admin");
                 }
                 else
                 {
@@ -80,7 +80,7 @@ class UpdateController extends LayoutController
                         "id"=>$id
                     ];
                     $model->adminUpdate($column,$data);
-                    header("location:index.php?route=admin");
+                    header("location:admin");
                 }
                 else
                 {
@@ -137,11 +137,11 @@ class UpdateController extends LayoutController
                         unlink($dir . $phtDbName);
                         move_uploaded_file($phtTmpName, $dir . $phtNewName);
                         $model->updateActualitie($data);
-                        header("location:index.php?route=actualities");
+                        header("location:actualities");
                 }
                 if(isset($errors)&&!empty($errors))
                 {
-                    $this->render("actualities",["contents"=>$actu,"errors"=>$errors]);
+                    $this->render("actualities",["contents"=>$actu,"errors"=>$errors,"id"=>$id]);
                 }
             }
             else
@@ -154,12 +154,12 @@ class UpdateController extends LayoutController
                     "id"=>$id
                 ];
                 $model->updateActualitie($data);
-                header("location:index.php?route=actualities");
+                header("location:actualities");
             }
         }
         else
         {
-            header("location:index.php?route=actualities");
+            header("location:actualities");
         }
     }
 /*
@@ -173,36 +173,41 @@ class UpdateController extends LayoutController
         $phtfind = $model->getOnepht($id);
         $phtOldName = $phtfind["abt_photo"];
         $errors= [];
-        switch($_FILES || $_POST)
+        if(isset($_FILES["abt_photo"])&& !empty($_FILES["abt_photo"]["name"]) && !empty($_FILES["abt_photo"]["tmp_name"]))
         {
-            case(isset($_FILES["abt_photo"])):
-                if(!empty($_FILES["abt_photo"]["name"]) && !empty($_FILES["abt_photo"]["tmp_name"]))
-                {   
-                    if(mime_content_type($_FILES["abt_photo"]["tmp_name"]) == "image/jpeg")
-                    {
-                        $phtTmpName = $_FILES["abt_photo"]["tmp_name"];
-                        $phtNewName = $_FILES["abt_photo"]["name"];
-                        $dir ="../assets/img/about_img/";
-
-                        $column = "abt_photo";
-                        $data = [
-                            "newData"=>$phtNewName,
-                            "id"=>$id
-                        ];
-                        unlink($dir . $phtOldName);
-                        move_uploaded_file($phtTmpName, $dir . $phtNewName);
-                        $model->addAboutcontent($column,$data);
-                    }
-                    else
-                    {
-                        $errors["update_mime"] = "Attention, ce fichier n'est pas une photo.";
-                    }
-                }
-                else
-                {
-                    $errors["update_photo"] = "Veuillez selectionner une photo avant de valider la modification.";
-                }
-                break;
+            $imgInfo = getimagesize($_FILES["abt_photo"]["tmp_name"]);
+            switch($imgInfo)
+            {
+                case $imgInfo === "false" || false:
+                    $errors["update_photo"] = "Attention, ce fichier n'est pas une photo.";
+                    break;
+                case $imgInfo["0"] !== "500":
+                    $errors["update_photo"] = "Veuillez téléverser une photo à la largeur de 500 pixels.";
+                    break;
+                case $imgInfo["mime"] !== "image/jpeg":
+                    $errors["update_photo"] = "Veuillez téléverser une photo au format .jpeg ou .jpg.";
+                    break;
+                default:
+                $phtTmpName = $_FILES["abt_photo"]["tmp_name"];
+                $phtNewName = $_FILES["abt_photo"]["name"];
+                $dir ="../assets/img/about_img/";
+                $column = "abt_photo";
+                $data = [
+                    "newData"=>$phtNewName,
+                    "id"=>$id
+                ];
+                unlink($dir . $phtOldName);
+                move_uploaded_file($phtTmpName, $dir . $phtNewName);
+                $model->addAboutcontent($column,$data);
+            }
+        }
+        else
+        {
+            $errors["update_photo"] = "Veuillez selectionner une photo avant de valider la modification.";
+        }
+        if(!empty($_POST))
+        switch($_POST)
+        {
             case(isset($_POST["abt_content"])):
                 if(!empty($_POST["abt_content"]))
                 {
@@ -271,13 +276,12 @@ class UpdateController extends LayoutController
         }
         else
         {
-            header("location:index.php?route=about");
+            header("location:about");
         }
     }
 
     public function updateCategorie():void
     {
-        print_r($_POST);
         $catModel = new CategoriesModel;
         if(isset($_POST["cat_name"])&&!empty($_POST["cat_name"]))
         {
@@ -287,7 +291,7 @@ class UpdateController extends LayoutController
             ];
             
             $catModel->updateCatName($data);
-            header("location:index.php?route=albums");
+            header("location:albums");
         }
         else
         {
@@ -305,37 +309,51 @@ class UpdateController extends LayoutController
         $catModel= new CategoriesModel;
         $albmCatContents = $catModel->catAndAlbmJoin();
         $categories = $catModel->getCategories();
-
+        $errors = [];
+        $id = $_GET["albm_id"];
         if(isset($_POST["categories"]) && !empty($_POST["categories"]) &&
             isset($_POST["albm_title"]) && !empty($_POST["albm_title"]) &&
             isset($_POST["albm_description"]) && !empty($_POST["albm_description"]))
         {
-            $id = $_GET["albm_id"];
             $oldPhotoRequest = $model->getPhtAlbm($id);
             $oldPhoto = $oldPhotoRequest["albm_photo"];
             if(isset($_FILES["albm_pht"]) && !empty($_FILES["albm_pht"]["name"]))
             {
-                if(mime_content_type($_FILES["albm_pht"]["tmp_name"])=="image/jpeg")
+                $imgInfo = getimagesize($_FILES["albm_pht"]["tmp_name"]);
+                switch($imgInfo)
                 {
-                    $phtNewName = $_FILES["albm_pht"]["name"];
-                    $tmpName = $_FILES["albm_pht"]["tmp_name"];
-                    $dir = "../assets/img/albm_photos/";
-                    unlink($dir.$oldPhoto);
-                    move_uploaded_file($tmpName, $dir . $phtNewName);
-                    $data = [
-                        "cat_id"=>$_POST["categories"],
-                        "title"=>$_POST["albm_title"],
-                        "descrip"=>$_POST["albm_description"],
-                        "photo"=>$phtNewName,
-                        "id"=>$id
-                    ];
-                    $model->updateAlbum($data);
-                    header("location:index.php?route=albums");
+                    case $imgInfo === "false" || false:
+                        $errors["update_image_errors"]="Attention, ce fichier n'est pas une photo.";
+                        break;
+                    case $imgInfo["mime"] !== "image/jpeg":
+                        $errors["update_image_errors"]="Veuillez téléverser une image au format .jpeg ou .jpg.";
+                        break;
+                    case $imgInfo["3"] !== 'width="250" height="250"':
+                        $errors["update_image_errors"]="Veuillez téléverser une image au format 250x250 pixels.";
+                        break;
+                    default:
+                        $phtNewName = $_FILES["albm_pht"]["name"];
+                        $tmpName = $_FILES["albm_pht"]["tmp_name"];
+                        $dir = "../assets/img/albm_photos/";
+                        unlink($dir.$oldPhoto);
+                        move_uploaded_file($tmpName, $dir . $phtNewName);
+                        $data = [
+                            "cat_id"=>$_POST["categories"],
+                            "title"=>$_POST["albm_title"],
+                            "descrip"=>$_POST["albm_description"],
+                            "photo"=>$phtNewName,
+                            "id"=>$id
+                        ];
+                        $model->updateAlbum($data);
+                        header("location:albums");
                 }
-                else
+                if(isset($errors)&&!empty($errors))
                 {
-                    $error["update_mime"]="Attention, ce fichier n'est pas une photo.";
-                    $this->render("albums",["contents"=>$albmCatContents,"categories"=>$categories,"error"=>$error]);
+                    $this->render("albums",[
+                        "contents"=>$albmCatContents,
+                        "categories"=>$categories,
+                        "errors"=>$errors,
+                        "id"=>$id]);
                 }
             }
             else
@@ -348,14 +366,17 @@ class UpdateController extends LayoutController
                     "id"=>$id
                 ];
                 $model->updateAlbum($data);
-                header("location:index.php?route=albums");
+                header("location:albums");
             }
         }
         else
         {
-            $error["update_empty"]="Veuillez renseigner tous les champs avant de valider le formulaire.";
-            $this->render("albums",["contents"=>$albmCatContents,"categories"=>$categories,"error"=>$error]);
+            $errors["update_empty"]="Veuillez renseigner tous les champs avant de valider le formulaire.";
+            $this->render("albums",[
+                "contents"=>$albmCatContents,
+            "categories"=>$categories,
+            "errors"=>$errors,
+            "id"=>$id]);
         }
-
     }
 }

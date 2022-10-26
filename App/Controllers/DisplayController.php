@@ -9,7 +9,7 @@ use App\Models\ActualitiesModel;
 use App\Models\AlbumsModel;
 
 // Classe uniquement dédié à l'affichage des pages du sites.
-// Chaque méthode est contruite avec l'appel de la donnée par l'instantiation des modèles (voir liste ci-dessus);
+// Chaque méthode est construite avec l'appel de la donnée par l'instantiation des modèles (voir liste ci-dessus);
 // Et l'affichage est gérer par la méthode render (voir LayoutController.php dans Library).
 class DisplayController extends LayoutController
 {
@@ -28,10 +28,8 @@ class DisplayController extends LayoutController
     public function displayGallery(): void
     {   
         $id= $_GET["id"];
-
         $model = new AlbumsModel;
         $album = $model->getOneAlbum($id);
-
         $secondModel = new PhotosModel;
         $photos = $secondModel->getAllPhotos($id);
 

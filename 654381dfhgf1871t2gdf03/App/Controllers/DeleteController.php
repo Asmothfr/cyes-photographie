@@ -17,7 +17,7 @@ class DeleteController extends LayoutController
         $id = $_GET["id"];
         $model = new ContactModel;
         $model->deleteOneMail($id);
-        header("location: index.php?route=mails");
+        header("location:mails");
     }
 
     public function deleteOnePhoto():void
@@ -29,7 +29,7 @@ class DeleteController extends LayoutController
 
         unlink("../assets/img/photos/$albmId/$phtName");
         
-        header("location: index.php?route=gallery&id=".$albmId);
+        header("location:album_".$albmId);
     }
 
     public function deleteAllPhotos():void
@@ -44,7 +44,7 @@ class DeleteController extends LayoutController
         }
         $model = new PhotosModel;
         $model -> deleteAllPhotos($id);
-        header("location:index.php?route=gallery&id=".$id);
+        header("location:album_".$id);
     }
 
     public function deleteOneAlbum():void
@@ -60,7 +60,7 @@ class DeleteController extends LayoutController
         $model->deleteOneAlbum($albmId);
 
         unlink("../assets/img/albm_photos/$albmPthName");
-        header("location: index.php?route=albums");
+        header("location:albums");
     }
 
     public function deleteOneCategorie():void
@@ -82,7 +82,7 @@ class DeleteController extends LayoutController
         }
 
         $catModel->deleteOneCategorie($catId);
-        header("location: index.php?route=albums");
+        header("location:albums");
     }
 
     public function deleteOneActualitie():void
@@ -93,7 +93,7 @@ class DeleteController extends LayoutController
         $phtName = $dbPhtName["act_photo"];
         unlink("../assets/img/actu_img/". $phtName);
         $model->deleteActualitieById($act_id);
-        header("location: index.php?route=actualities");
+        header("location:actualities");
     }
 
     /*
@@ -137,7 +137,7 @@ class DeleteController extends LayoutController
                         $model->deleteAboutContent($column,$data);
                         break;
                 }
-            header("location: index.php?route=about");
+            header("location:about");
         }
     }
     /*

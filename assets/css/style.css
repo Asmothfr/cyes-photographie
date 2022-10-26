@@ -88,6 +88,7 @@
 }
 .nav__admin-subtitle{
     margin-bottom: 0;
+    font-size: 1.5rem;
 }
 .nav__list{
     padding: 0;
@@ -114,11 +115,11 @@
         display: flex;
         justify-content: space-evenly;
     }
-    .nav__list--homeAdmin{
-        margin-top: 15vw;
-    }
     .nav__list{
         margin: 1rem 0;
+    }
+    .nav__list--homeAdmin{
+        margin-top: 24vh;
     }
 }
 /*=====================================================================
@@ -318,6 +319,7 @@
     margin-top: 1rem;
 }
 .form__input{
+    padding: 0 0.5rem;
     border: none;
     border-bottom: 1px solid var(--fontColor);
     color: var(--fontColor);

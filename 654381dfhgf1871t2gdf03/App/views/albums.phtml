@@ -97,7 +97,7 @@
             <div class="previews__card">
                 <div class="previews__group-card">
                     <article>
-                        <a class="previews__link-img" href="index.php?route=gallery&id=<?=htmlspecialchars($content["albm_id"])?>">
+                        <a class="previews__link-img" href="album_<?=htmlspecialchars($content["albm_id"])?>">
                             <img class="previews__img" src="../assets/img/albm_photos/<?=htmlspecialchars($content["albm_photo"])?>" alt="Photo de présentation des catégories">
                         </a>
                         <h4 class="previews__title"><?=htmlspecialchars($content["albm_title"])?></h4>
@@ -105,11 +105,11 @@
                 </div>
                 <h4 class="form__title">Modifier l'album : <?=htmlspecialchars($content["albm_title"])?></h4>
                 <form class="form__card" method="POST" enctype="multipart/form-data" action="index.php?route=updateAlbum&albm_id=<?=htmlspecialchars($content["albm_id"])?>">
-                    <?php if(isset($error) && array_key_exists("update_mime",$error)):?>
-                        <p class="form__error"><?=htmlspecialchars($error["update_mime"])?></p>
+                    <?php if(isset($errors) && array_key_exists("update_image_errors",$errors)&&$content["albm_id"]==$id):?>
+                        <p class="form__error"><?=htmlspecialchars($errors["update_image_errors"])?></p>
                     <?php endif ?>
-                    <?php if(isset($error) && array_key_exists("update_empty",$error)):?>
-                        <p class="form__error"><?=htmlspecialchars($error["update_empty"])?></p>
+                    <?php if(isset($errors) && array_key_exists("update_empty",$errors)&&$content["albm_id"]==$id):?>
+                        <p class="form__error"><?=htmlspecialchars($errors["update_empty"])?></p>
                     <?php endif ?>
                     <div class="form__fields">
                         <label class="form__label" for="categories">Modifier le thème :</label>

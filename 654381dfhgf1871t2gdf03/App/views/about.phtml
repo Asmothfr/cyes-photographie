@@ -30,10 +30,7 @@
             <div class="form__fields">
                 <label class="form__label" for="abt_photo">Modifier ou supprimer la photo :</label>
                 <?php if(isset($errors) && array_key_exists("update_photo",$errors)): ?>
-                    <p class="form__label"><?=htmlspecialchars($errors["update_photo"])?></p>
-                <?php endif ?>
-                <?php if(isset($errors) && array_key_exists("update_mime",$errors)): ?>
-                    <p class="form__error"><?=htmlspecialchars($errors["update_mime"])?></p>
+                    <p class="form__error"><?=htmlspecialchars($errors["update_photo"])?></p>
                 <?php endif ?>
                 <input class="form__input" id="abt_photo" type="file" name="abt_photo">
                 </div>

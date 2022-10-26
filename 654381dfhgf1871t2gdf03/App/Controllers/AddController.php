@@ -30,7 +30,7 @@ class AddController extends LayoutController
         {
             $data = ["catName"=>$_POST["catName"]];
             $catModel->addOneCategorie($data);
-            header("location: index.php?route=albums");
+            header("location: albums");
         }
     }
     /*
@@ -97,7 +97,7 @@ class AddController extends LayoutController
             move_uploaded_file($origine,$destination);
             mkdir("../assets/img/photos/".$lastAlbum["MAX(albm_id)"]);
             
-            header("location: index.php?route=albums");
+            header("location: albums");
         }
     }
 
@@ -140,7 +140,7 @@ class AddController extends LayoutController
                 $data["phtName"] = $phtNames[$key]; 
                 $photosModel->addPhotos($data);
             }
-            header("location: index.php?route=gallery&id=".$albmId);
+            header("location: album_".$albmId);
         }
         else
         {
@@ -184,7 +184,7 @@ class AddController extends LayoutController
                         "id" => $id
                     ];
                     $model->addAboutcontent($column,$data);
-                    header("location: index.php?route=about");
+                    header("location: about");
             }
         }
         else
@@ -202,7 +202,7 @@ class AddController extends LayoutController
                         "id" => $id
                     ];
                     $model->addAboutcontent($column,$data);
-                    header("location: index.php?route=about");
+                    header("location: about");
                 }
                 else
                 {
@@ -218,7 +218,7 @@ class AddController extends LayoutController
                         "id" => $id
                     ];
                     $model->addAboutcontent($column,$data);
-                    header("location: index.php?route=about");
+                    header("location: about");
                 }
                 else
                 {
@@ -234,7 +234,7 @@ class AddController extends LayoutController
                         "id" => $id
                     ];
                     $model->addAboutcontent($column,$data);
-                    header("location: index.php?route=about");
+                    header("location: about");
                 }
                 else
                 {
@@ -250,7 +250,7 @@ class AddController extends LayoutController
                         "id" => $id
                     ];
                     $model->addAboutcontent($column,$data);
-                    header("location: index.php?route=about");
+                    header("location: about");
                 }
                 else
                 {
@@ -319,7 +319,7 @@ class AddController extends LayoutController
                 $_FILES["act_photo"]["name"]
             ];
             $model->addActualitie($data);
-            header("location:index.php?route=actualities");
+            header("location:actualities");
         }
     }
 }

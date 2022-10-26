@@ -11,13 +11,14 @@ class Router
         $routes = require "App/routes/routes.php";
     
         $queriedRoute = htmlspecialchars($_GET['route'] ?? "home");
-    
+
         if(!isset($routes[$queriedRoute]))
         {
-            header("location: index.php?route=home");
+            header("location: home");
         }
-    
+        
         $routeName = $routes[$queriedRoute];
+
         $controller = $routeName["controller"];
         $method = $routeName["method"];
         

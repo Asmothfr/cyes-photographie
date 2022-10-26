@@ -39,7 +39,7 @@
                 <form class="form__card" method ="POST" enctype="multipart/form-data" action="index.php?route=updateActualitie&act_id=<?=htmlspecialchars($content["act_id"])?>">
                     <div class="form__fields">
                         <label class="form__label" for="act_photo">Modifier la photo :</label>
-                        <?php if(isset($errors) && array_key_exists("updatePhoto", $errors)):?>
+                        <?php if(isset($errors) && array_key_exists("updatePhoto", $errors)&&$content["act_id"]==$id):?>
                             <p class="form__error"><?=htmlspecialchars($errors["updatePhoto"])?></p>
                         <?php endif?>
                         <input class="form__input" id="act_photo" type="file" name="act_photo">
