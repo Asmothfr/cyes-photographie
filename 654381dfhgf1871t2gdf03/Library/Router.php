@@ -13,7 +13,7 @@ class Router
         
         if(!isset($routes[$queriedRoute]))
         {
-            header("location: index.php?route=home");
+            header("location:home");
         }
         $routeName = $routes[$queriedRoute];
         $controller = $routeName["controller"];

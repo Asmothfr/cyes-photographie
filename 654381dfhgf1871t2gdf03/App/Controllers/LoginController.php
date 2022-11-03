@@ -19,7 +19,11 @@ class LoginController extends LayoutController
             {
                 echo("condition ok");
                 $_SESSION["connected"] = true;
-                header("location: home");
+                header("location:home");
+            }
+            else
+            {
+                header("location:home");
             }
         }
         else
@@ -30,6 +34,6 @@ class LoginController extends LayoutController
     public function logout()
     {
         session_destroy();
-        header("location: home");
+        header("location:home");
     }
 }

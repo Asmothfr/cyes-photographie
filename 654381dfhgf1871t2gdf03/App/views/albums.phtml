@@ -113,7 +113,7 @@
                     <?php endif ?>
                     <div class="form__fields">
                         <label class="form__label" for="categories">Modifier le thème :</label>
-                        <select class="form__input" name="categories" id="categories">
+                        <select class="form__input form__select" name="categories" id="categories">
                             <option value="<?=htmlspecialchars($content["albm_cat_id"])?>"><?= htmlspecialchars($content["cat_name"])?></option>
                             <?php foreach($categories as $categorie):?>
                                 <option value="<?= htmlspecialchars($categorie["cat_id"])?>"><?= htmlspecialchars($categorie["cat_name"])?></option>

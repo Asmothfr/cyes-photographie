@@ -52,11 +52,13 @@ class DeleteController extends LayoutController
         $albmId = $_GET["albm_id"];
         $albmPthName = $_GET["albm_photo"];
         $albmDir = "../assets/img/photos/".$albmId;
+        $thumbnailsDir = "../assets/img/thumbnails/".$albmId;
         $model = new AlbumsModel;
         /*
             Voir delTree en bas de page.
         */
         $this->delTree($albmDir);
+        $this->delTree($thumbnailsDir);
         $model->deleteOneAlbum($albmId);
 
         unlink("../assets/img/albm_photos/$albmPthName");

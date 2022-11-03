@@ -96,6 +96,7 @@ class AddController extends LayoutController
             
             move_uploaded_file($origine,$destination);
             mkdir("../assets/img/photos/".$lastAlbum["MAX(albm_id)"]);
+            mkdir("../assets/img/thumbnails/".$lastAlbum["MAX(albm_id)"]);
             
             header("location: albums");
         }
@@ -132,15 +133,36 @@ class AddController extends LayoutController
                 //Récupération des noms des photos valides.
             $phtNames = array_intersect_key($uploadedPhotos["name"], $tmpNames);
 
-            $destination = "../assets/img/photos/$albmId/";
-            $data["albm_id"] = $albmId; 
-            foreach($tmpNames as $key => $TmpName)
-            { 
-                move_uploaded_file($TmpName,$destination . $phtNames[$key]);
+            $originalDestination = "../assets/img/photos/$albmId/";
+            $thumbnailDestination ="../assets/img/thumbnails/$albmId/";
+            $data["albm_id"] = $albmId;
+
+            foreach($tmpNames as $key => $tmpName)
+            {   
+                $maxWidth = 500;
+                $maxHeight = 751;
+                list($widthOrigin, $heightOrigin) = getimagesize($tmpName);
+                $ratio = $widthOrigin/$heightOrigin;
+                
+                if($maxWidth/$maxHeight > $ratio)
+                {
+                    $maxWidth = $maxHeight*$ratio;
+                }
+                else
+                {
+                    $maxHeight = $maxWidth/$ratio;
+                }
+
+                $createImage = imagecreatetruecolor($maxWidth,$maxHeight);
+                $originImg = imagecreatefromjpeg($tmpName);
+
+                imagecopyresampled($createImage,$originImg,0,0,0,0,$maxWidth,$maxHeight,$widthOrigin,$heightOrigin);
+                imagejpeg($createImage, $thumbnailDestination.$phtNames[$key], 100);
+                move_uploaded_file($tmpName,$originalDestination . $phtNames[$key]);
                 $data["phtName"] = $phtNames[$key]; 
                 $photosModel->addPhotos($data);
+                header("location: album_".$albmId);
             }
-            header("location: album_".$albmId);
         }
         else
         {

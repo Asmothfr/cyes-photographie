@@ -7,10 +7,10 @@
     <div class="underline-decoration"></div>
     <div class="grid">
         <?php foreach ($photos as $photo) : ?>
-            <div class="grid-item gallery">
+            <div class="grid-item">
                 <a href="assets/img/photos/<?= htmlspecialchars($photo["pht_albm_id"]) ?>/<?= htmlspecialchars($photo["pht_name"]) ?>"
                 data-fancybox="gallery">
-                <img class="image__large" src="assets/img/photos/<?= htmlspecialchars($photo["pht_albm_id"]) ?>/<?= htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
+                <img class="image__large" src="assets/img/thumbnails/<?= htmlspecialchars($photo["pht_albm_id"]) ?>/<?= htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
                 </a>
             </div>
         <?php endforeach; ?>

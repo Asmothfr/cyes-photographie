@@ -32,7 +32,7 @@
         <div class="grid-item">
         <a href="../assets/img/photos/<?= htmlspecialchars($photo["pht_albm_id"]) ?>/<?= htmlspecialchars($photo["pht_name"]) ?>"
                 data-fancybox="gallery">
-            <img class="image__large" src="../assets/img/photos/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
+            <img class="image__large" src="../assets/img/thumbnails/<?=htmlspecialchars($photo["pht_albm_id"])?>/<?=htmlspecialchars($photo["pht_name"]) ?>" alt="photo de la gallerie">
         </a>
             <button class="button button--delete">
             <a class="link__style link__style--delete" href="index.php?route=deletePhoto&albm_id=<?=htmlspecialchars($album["albm_id"])?>&pht_name=<?=htmlspecialchars($photo["pht_name"])?>">
