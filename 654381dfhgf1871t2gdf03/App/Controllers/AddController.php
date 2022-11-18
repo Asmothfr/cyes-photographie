@@ -136,7 +136,10 @@ class AddController extends LayoutController
             $originalDestination = "../assets/img/photos/$albmId/";
             $thumbnailDestination ="../assets/img/thumbnails/$albmId/";
             $data["albm_id"] = $albmId;
-
+            /***Création des images avec largeur et hauteur modifiées.
+                Envoie dans les dossier les images originales et modifiées.
+                Envoie en base de donnée le nom des images.
+            ***/
             foreach($tmpNames as $key => $tmpName)
             {   
                 $maxWidth = 500;

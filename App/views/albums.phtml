@@ -4,7 +4,7 @@
             <article class="previews__card">
                 <!-- index.php?route=gallery&id= -->
                 <a class="previews__link-img" href="album_<?=htmlspecialchars($album["albm_id"])?>">
-                    <img class="previews__img" src="assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des albums">
+                    <img class="previews__img" width="250" height=250 src="assets/img/albm_photos/<?= htmlspecialchars($album["albm_photo"])?>" alt="Photo de présentation des albums">
                 </a>
                 <h2 class="previews__title"><?=htmlspecialchars($album ["albm_title"])?></h2>
                 <div class="underline-decoration"></div>

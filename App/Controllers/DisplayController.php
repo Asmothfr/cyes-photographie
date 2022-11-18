@@ -29,8 +29,8 @@ class DisplayController extends LayoutController
     {   
         $id= $_GET["id"];
         $model = new AlbumsModel;
-        $album = $model->getOneAlbum($id);
         $secondModel = new PhotosModel;
+        $album = $model->getOneAlbum($id);
         $photos = $secondModel->getAllPhotos($id);
 
         $this->render("gallery", ["album"=>$album, "photos"=>$photos]);

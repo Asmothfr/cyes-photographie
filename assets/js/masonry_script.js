@@ -1,9 +1,5 @@
-window.addEventListener("DOMContentLoaded", () => {
-
-    jQuery(function($){
-        let portfolio = $(".grid")
-        portfolio.masonry({
-            itemSelector:".grid-item"
-        })
+let $grid = $('.grid').imagesLoaded( function() {
+    $('.grid').masonry({
+        itemSelector: '.grid-item',
     })
 });

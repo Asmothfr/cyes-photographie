@@ -1,13 +1,13 @@
 <section class="container">
     <div class="previews__group-card">
-        <?php foreach($contents as $content): ?>
+        <?php foreach($contents as $content):?>
             <article class="previews__card">
                 <img class="previews__img" src="assets/img/actu_img/<?=htmlspecialchars($content["act_photo"])?>" alt="photo d'illustration de l'article">
-                <h2 class="previews__title"><?=htmlspecialchars($content["act_title"])?></h2>
-                <p class="previews__text"><?=htmlspecialchars($content["act_date"])?></p>
-                <p class="previews__text"><?=htmlspecialchars($content["act_content"])?></p>
+                <h2 class=" previews__title"><?=htmlspecialchars($content["act_title"])?></h2>
+                <p class=" previews__text"><?=htmlspecialchars($content["act_date"])?></p>
+                <p class=" previews__text"><?=htmlspecialchars($content["act_content"])?></p>
                 <div class="underline-decoration"></div>
             </article>
-        <?php endforeach ?>
+        <?php endforeach?>
     </div>
 </section>

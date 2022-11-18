@@ -119,7 +119,7 @@
         margin: 1rem 0;
     }
     .nav__list--homeAdmin{
-        margin-top: 24vh;
+        margin-top: 20vh;
     }
 }
 /*=====================================================================
@@ -464,6 +464,15 @@
     font-size: 1.2rem;
     font-weight: 700;
     border-radius: 0.5rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+.button__logo{
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: none;
+    color: var(--fontColor);
     background-color: transparent;
     cursor: pointer;
 }
