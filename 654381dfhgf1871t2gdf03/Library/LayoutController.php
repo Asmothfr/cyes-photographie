@@ -4,9 +4,10 @@ namespace Library;
 
 class LayoutController
 {
-    public function render(string $view, $model=[]): void
+    protected function render(string $view, $model=[]): void
     {
         extract($model);
+        $view = $view;
         require_once "App/views/_layout.phtml";
     }
 }

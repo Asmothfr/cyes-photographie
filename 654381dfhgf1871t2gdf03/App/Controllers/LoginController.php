@@ -17,7 +17,6 @@ class LoginController extends LayoutController
             $admin = $model -> adminInfo();
             if($_POST["login"] == $admin["adm_login"] && password_verify($_POST["password"], $admin["adm_password"]))
             {
-                echo("condition ok");
                 $_SESSION["connected"] = true;
                 header("location:home");
             }

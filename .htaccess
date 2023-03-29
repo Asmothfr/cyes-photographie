@@ -1,0 +1,24 @@
+Options +FollowSymlinks
+RewriteEngine on
+#-----------------
+# FRONT
+#-----------------
+RewriteRule ^home$ index.php?route=home [L]
+RewriteRule ^albums$ index.php?route=albums [L]
+RewriteRule ^album_([0-9]+)$ index.php?route=gallery&id=$1 [L]
+RewriteRule ^about$ index.php?route=about [L]
+RewriteRule ^actualities$ index.php?route=actualities [L]
+RewriteRule ^contact$ index.php?route=contact [L]
+#-----------------
+# BACK-OFFICE
+#-----------------
+RewriteRule ^654381dfhgf1871t2gdf03/home$ 654381dfhgf1871t2gdf03/index.php?route=home [L]
+RewriteRule ^654381dfhgf1871t2gdf03/albums$ 654381dfhgf1871t2gdf03/index.php?route=albums [L]
+RewriteRule ^654381dfhgf1871t2gdf03/album_([0-9]+)$ 654381dfhgf1871t2gdf03/index.php?route=gallery&id=$1 [L]
+RewriteRule ^654381dfhgf1871t2gdf03/about$ 654381dfhgf1871t2gdf03/index.php?route=about [L]
+RewriteRule ^654381dfhgf1871t2gdf03/actualities$ 654381dfhgf1871t2gdf03/index.php?route=actualities [L]
+RewriteRule ^654381dfhgf1871t2gdf03/mails$ 654381dfhgf1871t2gdf03/index.php?route=mails [L]
+RewriteRule ^654381dfhgf1871t2gdf03/mail_([0-9]+)$ 654381dfhgf1871t2gdf03/index.php?route=mail&id=$1 [L]
+RewriteRule ^654381dfhgf1871t2gdf03/admin$ 654381dfhgf1871t2gdf03/index.php?route=admin [L]
+
+
